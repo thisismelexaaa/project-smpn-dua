@@ -43,6 +43,6 @@ class LoginController extends Controller
         //logout user
         auth()->logout();
         // redirect to homepage
-        return redirect('/');
+        return redirect('/login');
     }
 }

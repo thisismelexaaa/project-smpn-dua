@@ -11,7 +11,7 @@ class PersonilController extends Controller
      */
     public function index()
     {
-        //
+        return view('panel.admin.personil.index');
     }
 
     /**

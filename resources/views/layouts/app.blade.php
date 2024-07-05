@@ -44,7 +44,7 @@
                         <i class="fas fa-laugh-wink"></i>
                     </div>
                     <div class="sidebar-brand-text mx-3 text-left">SMP Negeri 2 <br>
-                Cirebon</div>
+                        Cirebon</div>
                 </a>
 
                 <!-- Divider -->
@@ -52,7 +52,7 @@
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="{{ route('home') }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span></a>
                 </li>
@@ -67,7 +67,7 @@
 
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
+                    <a class="nav-link" href="{{ route('personil.index') }}">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Personil</span></a>
                 </li>
@@ -103,7 +103,19 @@
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                         <div
                             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <h1 class="h3 mb-0 text-gray-800">Dashboard Guru</h1>
+                            <h1 class="h3 mb-0 text-gray-800">
+                                @if (Route::getRoutes()->getByName('personil'))
+                                    Personil
+                                @elseif (Route::getRoutes()->getByName('berita'))
+                                    Berita
+                                @elseif (Route::getRoutes()->getByName('gallery'))
+                                    Gallery
+                                @elseif (Route::getRoutes()->getByName('settings'))
+                                    Settings
+                                @else
+                                    Dashboard Guru
+                                @endif
+                            </h1>
                         </div>
                         <!-- Sidebar Toggle (Topbar) -->
                         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -116,7 +128,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span
-                                        class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name != null ? Auth::user()->name : ""  }}</span>
+                                        class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name != null ? Auth::user()->name : '' }}</span>
                                     <i class="bi bi-person-fill"></i>
                                 </a>
                                 <!-- Dropdown - User Information -->

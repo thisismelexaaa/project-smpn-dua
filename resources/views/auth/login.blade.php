@@ -34,19 +34,24 @@
 <body class="bg-gradient-primary">
     <div class="container">
         <div class="card o-hidden border-0 shadow-lg my-5 w-75 mx-auto">
-            <div class="card-body p-0">
+            <div class="card-body p-5">
                 <div class="row">
+                    <div class="col row mb-4 ">
+                        <img class="img-fluid" src="{{ asset('assets/landingpage/img/logosmp2.png') }}"
+                            alt="Logo SMP Negeri 2 Kota Cirebon">
+                    </div>
                     <div class="col mx-auto">
-                        <div class="p-5 w-50 mx-auto">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Silahkan login terlebih dahulu</h1>
-                            </div>
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Halaman Login Admin SMP Negeri 2 Kota Cirebon</h1>
+                        </div>
+                        <div class="mx-auto">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-group">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Masukkan Email">
+                                        value="{{ old('email') }}" required autocomplete="email" autofocus
+                                        placeholder="Masukkan Email">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
