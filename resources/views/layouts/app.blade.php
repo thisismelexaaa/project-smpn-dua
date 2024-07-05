@@ -122,6 +122,7 @@
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
+                                    <form action="{{ route('logout') }}" method="get"></form>
                                     <a class="dropdown-item" href="{{ route('logout') }}">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout

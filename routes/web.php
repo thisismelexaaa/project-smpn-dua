@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -9,5 +11,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/panel/admin/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/panel/admin/dashboard', [HomeController::class, 'index'])->name('home');
 
+// logout
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
