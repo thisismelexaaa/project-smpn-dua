@@ -27,6 +27,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/panel/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/panel/vendor/datatables/dataTables.min.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -190,6 +191,7 @@
     </script>
     <script src="{{ asset('assets/panel/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/panel/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/panel/vendor/datatables/dataTables.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('assets/panel/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
@@ -198,11 +200,14 @@
     <script src="{{ asset('assets/panel/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{ asset('assets/panel/vendor/chart.js/Chart.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/panel/vendor/chart.js/Chart.min.js') }}"></script> --}}
 
     <!-- Page level custom scripts -->
-    <script src="{{ asset('assets/panel/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('assets/panel/js/demo/chart-pie-demo.js') }}"></script>
+    {{-- <script src="{{ asset('assets/panel/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('assets/panel/js/demo/chart-pie-demo.js') }}"></script> --}}
+
+    @yield('scripts')
+    @include('sweetalert::alert')
 </body>
 
 </html>
