@@ -28,6 +28,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/panel/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/panel/vendor/datatables/dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/panel/vendor/ckeditor5-build-classic/sample/css/sample.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -69,22 +70,22 @@
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item {{ request()->routeIs('personil.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('personil.index') }}">
-                        <i class="fas fa-fw fa-chart-area"></i>
+                        <i class="bi bi-person-fill"></i>
                         <span>Personil</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
+                <li class="nav-item {{ request()->routeIs('berita.*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('berita.index') }}">
+                        <i class="bi bi-newspaper"></i>
                         <span>Berita</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
+                        <i class="bi bi-card-image"></i>
                         <span>Gallery</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
+                        <i class="bi bi-gear-fill"></i>
                         <span>Settings</span></a>
                 </li>
                 {{-- <li class="nav-item">
@@ -105,10 +106,12 @@
                         <div
                             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <h1 class="h3 mb-0 text-gray-800">
-                                @if(Route::currentRouteName() == 'home')
+                                @if (request()->routeIs('home'))
                                     Dashboard Guru
-                                @elseif(Route::currentRouteName() == 'personil.index')
+                                @elseif(request()->routeIs('personil.*'))
                                     Personil
+                                @elseif(request()->routeIs('berita.*'))
+                                    Berita
                                 @endif
                             </h1>
                         </div>
@@ -131,7 +134,7 @@
                                     aria-labelledby="userDropdown">
                                     <form action="{{ route('logout') }}" method="get"></form>
                                     <a class="dropdown-item" href="{{ route('logout') }}">
-                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-dark"></i>
                                         Logout
                                     </a>
                                 </div>
@@ -192,7 +195,7 @@
     <script src="{{ asset('assets/panel/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/panel/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/panel/vendor/datatables/dataTables.min.js') }}"></script>
-
+    <script src="{{ asset('assets/panel/vendor/ckeditor5-build-classic/ckeditor.js') }}"></script>
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('assets/panel/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 

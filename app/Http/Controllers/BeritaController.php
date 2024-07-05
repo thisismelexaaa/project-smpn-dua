@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BeritaController extends Controller
 {
@@ -11,7 +13,8 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        //
+        $berita = Berita::all();
+        return view('panel.admin.berita.index', compact('berita'));
     }
 
     /**
@@ -19,7 +22,7 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        //
+        return view('panel.admin.berita.create');
     }
 
     /**
@@ -27,7 +30,29 @@ class BeritaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                'title' => 'required',
+                'category' => 'required',
+                'content' => 'required',
+            ]);
+
+            $data = [
+                'title' => $request->title,
+                'category' => $request->category,
+                'content' => $request->content,
+                'penulis' => Auth::user()->name,
+                'tgl_posting' => date('Y-m-d'),
+            ];
+
+            Berita::create($data);
+
+            toast()->success('Berita Berhasil Di Posting', 'Success');
+            return redirect()->route('berita.index')->with('success', 'Berita Berhasil');
+        } catch (\Throwable $th) {
+            toast()->error('Posting gagal, Ada kesalahan dalam proses input', $th->getMessage());
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
 
     /**
@@ -35,7 +60,8 @@ class BeritaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $berita = Berita::find($id);
+        return view('panel.admin.berita.show', compact('berita'));
     }
 
     /**

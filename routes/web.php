@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PersonilController;
 use Illuminate\Support\Facades\Auth;
@@ -18,3 +19,4 @@ Route::get('/panel/admin/dashboard', [HomeController::class, 'index'])->name('ho
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::resource('/panel/admin/personil', PersonilController::class);
+Route::resource('/panel/admin/berita', BeritaController::class);

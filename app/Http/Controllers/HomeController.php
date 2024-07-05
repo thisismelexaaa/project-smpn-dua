@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
+use App\Models\Personil;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('panel.admin.dashboard.index');
+        $personilCount = Personil::count();
+        $personil = Personil::all();
+
+        $beritaCount = Berita::count();
+        $berita = Berita::all();
+        return view('panel.admin.dashboard.index', compact('personil','personilCount','beritaCount','berita'));
     }
 }

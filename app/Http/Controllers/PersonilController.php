@@ -18,22 +18,25 @@ class PersonilController extends Controller
      */
     public function index()
     {
-        $data = Personil::all()->toArray();
+        $data = Personil::all()->map(function ($item) {
+            $fullName = explode(' ', $item->name);
+            $email = explode('@', $item->email);
 
-        foreach ($data as $key => $item) {
-            // destructuring first_name and last_name
-            $fullName = explode(' ', $item['name']);
-            $data[$key]['first_name'] = $fullName[0];
-            $data[$key]['last_name'] = isset($fullName[1]) ? $fullName[1] : '';
+            return [
+                'id' => $item->id,
+                'name' => $item->name,
+                'jabatan' => $item->jabatan,
+                'phone' => $item->phone,
+                'image' => $item->image,
+                'first_name' => $fullName[0],
+                'last_name' => isset($fullName[1]) ? $fullName[1] : '',
+                'email' => $email[0],
+            ];
+        })->toArray();
 
-            // destructuring email
-            $email = explode('@', $item['email']);
-            $data[$key]['email'] = $email[0];
-        }
-
-        // dd($data);
         return view('panel.admin.personil.index', compact('data'));
     }
+
 
 
     /**
@@ -174,8 +177,15 @@ class PersonilController extends Controller
                 return redirect()->back();
             }
 
-            $personil->delete();
+            // delete image
+            if ($personil->image && $personil->image !== 'person.jpg') {
+                $imagePath = public_path('assets/panel/admin/images/personil/' . $personil->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
 
+            $personil->delete();
             toast('Data Berhasil Dihapus', 'success');
             return redirect()->back();
         } catch (\Exception $e) {

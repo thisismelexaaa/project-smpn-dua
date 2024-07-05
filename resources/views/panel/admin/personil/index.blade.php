@@ -12,44 +12,53 @@
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
-                        <form action="{{ route('personil.store') }}" class="p-3" method="POST"
+                        <form action="{{ route('personil.store') }}" class="mx-3" method="POST"
                             enctype="multipart/form-data">
                             @csrf
-                            <div class="mb-3 row">
-                                <label for="nama" class="form-label col-md-2">Nama Lengkap</label>
-                                <input required name="first_name" type="text" class="form-control col-md-4 me-1 col-sm-2"
-                                    placeholder="Nama Depan" aria-label="Recipient's username"
-                                    aria-describedby="button-addon2">
-
-                                <input required name="last_name" type="text" class="form-control col-md-4  col-sm-2"
-                                    placeholder="Nama Belakang" aria-label="Recipient's username"
-                                    aria-describedby="button-addon2">
+                            <div class="row mb-2">
+                                <div class="col-md-6 col-sm-12">
+                                    <label for="nama" class="form-label my-auto pb-1">Nama
+                                        Lengkap</label>
+                                    <div class="d-flex gap-1">
+                                        <input required name="first_name" type="text"
+                                            class="form-control col-md col-sm-3" placeholder="Nama Depan"
+                                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                                        <input required name="last_name" type="text" class="form-control col-md col-sm-3"
+                                            placeholder="Nama Belakang" aria-label="Recipient's username"
+                                            aria-describedby="button-addon2">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <label for="email" class="form-label my-auto pb-1">Email</label>
+                                    <div class="input-group col p-0">
+                                        <input type="text" class="form-control col-md col-sm-3" name="email"
+                                            placeholder="Email" aria-label="Recipient's username"
+                                            aria-describedby="basic-addon2">
+                                        <span class="input-group-text" id="basic-addon2">@gmail.com</span>
+                                        <input type="hidden" name="gmail" value="@gmail.com">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3 row">
-                                <label for="email" class="form-label col-md-2">Email</label>
-                                <div class="input-group p-0 col-md-8 col-sm-2">
-                                    <input type="text" class="form-control" name="email" placeholder="Email"
-                                        aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                    <span class="input-group-text" id="basic-addon2">@gmail.com</span>
-                                    <input type="hidden" name="gmail" value="@gmail.com">
+                            <div class="row mb-2">
+                                <div class="col-md-6 col-sm-12">
+                                    <label for="jabatan" class="form-label my-auto pb-1">Jabatan</label>
+                                    <input required name="jabatan" type="text" class="form-control col"
+                                        placeholder="Jabatan" aria-label="Recipient's username"
+                                        aria-describedby="button-addon2">
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <label for="phone" class="form-label my-auto pb-1">Nomor Telepon</label>
+                                    <input required name="phone" type="number" class="form-control col"
+                                        placeholder="Nomor Telepon" aria-label="Recipient's username"
+                                        aria-describedby="button-addon2">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="jabatan" class="form-label col-md-2">Jabatan</label>
-                                <input required name="jabatan" type="text" class="form-control col-md-8 col-sm-2"
-                                    placeholder="Jabatan" aria-label="Recipient's username"
-                                    aria-describedby="button-addon2">
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="phone" class="form-label col-md-2">Nomor Telepon</label>
-                                <input required name="phone" type="number" class="form-control col-md-8 col-sm-2"
-                                    placeholder="Nomor Telepon" aria-label="Recipient's username"
-                                    aria-describedby="button-addon2">
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="image" class="form-label col-md-2">Foto</label>
-                                <input required name="image" type="file" class="form-control col-md-8 col-sm-2"
-                                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <div class="col-md-6 col-sm-12">
+                                    <label for="image" class="form-label my-auto pb-1">Foto</label>
+                                    <input required name="image" type="file" class="form-control col"
+                                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                         </form>
@@ -66,7 +75,7 @@
                 <table class="table table-bordered dataTable table-hover table-striped" id="dataTable">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th class="text-start">#</th>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Telepon</th>
@@ -77,7 +86,7 @@
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td class="text-start">{{ $loop->iteration }}</td>
                                 <td>{{ $item['name'] }}</td>
                                 <td>{{ $item['email'] }}</td>
                                 <td>{{ $item['phone'] }}</td>

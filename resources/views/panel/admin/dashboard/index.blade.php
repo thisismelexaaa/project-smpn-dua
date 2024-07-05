@@ -12,7 +12,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Total Berita</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $beritaCount }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -49,12 +49,12 @@
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Personil</div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $personilCount }}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                <i class="fas fa-user fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -69,19 +69,22 @@
                         <span>Berita</span>
                     </div>
                     <div class="card-body overflow-auto" style="height: 50vh">
-                        @for ($i = 1; $i <= 10; $i++)
+                        @foreach ($berita as $berita)
                             <div class="card my-2">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between w-100">
-                                        <h5 class="card-title">Berita {{ $i }}</h5>
-                                        <a href="#" class="text-dark">Lihat Berita ></a>
+                                        <h5 class="card-title">{{ $berita['title'] }}</h5>
+                                        <a href="{{ route('berita.show', $berita['id']) }}" class="text-dark">Lihat Berita ></a>
                                     </div>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the
-                                        bulk
-                                        of the card's content.</p>
+                                    <div class="d-flex">
+                                        <span>{{ $berita['tgl_posting'] }}</span>
+                                        <span class="mx-2">|</span>
+                                        <span>{{ $berita['penulis'] }}</span>
+                                    </div>
+                                    <p class="card-text">{!! Str::limit($berita['content'], 100) !!}</p>
                                 </div>
                             </div>
-                        @endfor
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -92,9 +95,9 @@
                     </div>
                     <div class="card-body overflow-auto" style="height: 50vh">
                         <div class="row gap-1">
-                        @for ($i = 1; $i <= 20; $i++)
-                            <img class="m-1 col" src="https://via.placeholder.com/200" alt="">
-                        @endfor
+                            @for ($i = 1; $i <= 20; $i++)
+                                <img class="m-1 col" src="https://via.placeholder.com/200" alt="">
+                            @endfor
                         </div>
                     </div>
                 </div>
