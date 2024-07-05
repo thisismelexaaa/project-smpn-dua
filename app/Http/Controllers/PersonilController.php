@@ -119,7 +119,6 @@ class PersonilController extends Controller
                 toast('Data Personil Tidak Ditemukan', 'error');
                 return redirect()->back();
             }
-            dd($personil, $request->all());
 
             $this->validate($request, [
                 'first_name' => 'required|string|max:255',
@@ -127,11 +126,11 @@ class PersonilController extends Controller
                 'jabatan' => 'required|string|max:255',
                 'email' => 'required|string|max:255',
                 'phone' => 'required|string|max:20',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
+
             // Menggabungkan first_name dan last_name menjadi name
             $name = $request->first_name . ' ' . $request->last_name;
-            $email = $request->email . $request->gmail;
+            $email = $request->email;
             $data = [
                 'name' => $name,
                 'jabatan' => $request->jabatan,
@@ -146,27 +145,43 @@ class PersonilController extends Controller
                 $data['image'] = $imageName;
             }
 
-            // Menyimpan data ke database
-            Personil::create($data);
+            // Memperbarui data di database
+            $personil->update($data);
 
             // Menampilkan pesan sukses
-            toast('Data Berhasil Ditambahkan', 'success');
+            toast('Data Berhasil Diperbarui', 'success');
             return redirect()->back();
         } catch (\Exception $e) {
             // Menangkap dan mencatat pesan kesalahan
-            Log::error('Error while saving personil: ' . $e->getMessage());
+            Log::error('Error while updating personil: ' . $e->getMessage());
 
             // Menampilkan pesan kesalahan kepada pengguna
-            toast('Terjadi kesalahan saat menyimpan data. Silakan coba lagi.', 'error');
+            toast('Terjadi kesalahan saat menyimpan data. Silakan coba lagi. ' . $e->getMessage(), 'error');
             return redirect()->back();
         }
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $personil = Personil::find($id);
+            if (!$personil) {
+                toast('Data Personil Tidak Ditemukan', 'error');
+                return redirect()->back();
+            }
+
+            $personil->delete();
+
+            toast('Data Berhasil Dihapus', 'success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            Log::error('Error while deleting personil: ' . $e->getMessage());
+            toast('Terjadi kesalahan saat menghapus data. Silakan coba lagi. ' . $e->getMessage(), 'error');
+            return redirect()->back();
+        }
     }
 }

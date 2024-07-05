@@ -52,7 +52,7 @@
                 <hr class="sidebar-divider my-0">
 
                 <!-- Nav Item - Dashboard -->
-                <li class="nav-item active">
+                <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('home') }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span></a>
@@ -67,7 +67,7 @@
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
+                <li class="nav-item {{ request()->routeIs('personil.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('personil.index') }}">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Personil</span></a>

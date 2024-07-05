@@ -16,14 +16,12 @@ class PersonilSeeder extends Seeder
     public function run(): void
     {
         for($i = 1; $i <= 10; $i++) {
-            DB::table('personils')->insert([
+            Personil::create([
                 'name' => Str::random(10),
-                'email' => Str::random(10).'@example.com',
-                'phone' => Str::random(10),
+                'email' => Str::random(10) . '@example.com',
+                'phone' => rand(1000000000, 9999999999),
                 'jabatan' => Str::random(10),
-                'image' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now()
+                'image' => 'person.jpg',
             ]);
         }
     }

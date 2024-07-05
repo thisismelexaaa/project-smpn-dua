@@ -63,7 +63,7 @@
                 <span>Data Personil</span>
             </div>
             <div class="card-body overflow-auto" style="height: 100%">
-                <table class="table table-bordered dataTable" id="dataTable" width="100%">
+                <table class="table table-bordered dataTable table-hover table-striped" id="dataTable">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -86,7 +86,11 @@
                                     <div class="d-flex gap-1">
                                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#modalEdit{{ $item['id'] }}">Edit</button>
-                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                        <form action="{{ route('personil.destroy', $item['id']) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -104,12 +108,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="modalEditLabel">Edit Data Personil</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('personil.update', $item['id']) }}" class="p-3" method="GET"
+                        <form action="{{ route('personil.update', $item['id']) }}" class="px-3" method="POST"
                             enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="mb-3 row">
                                 <label for="nama" class="form-label col-md-3">Nama Lengkap</label>
                                 <input required name="first_name" type="text"
@@ -149,11 +154,18 @@
                             </div>
                             <div class="mb-3 row">
                                 <label for="image" class="form-label col-md-3">Foto Lama</label>
-                                <img class="img-fluid" style="width: 150px; height: 150px; object-fit: cover; transition: 0.2s ease;" src="{{ asset('assets/panel/admin/images/personil/' . $item['image']) }}"
-                                    alt="Image of {{ $item['name'] }}" onMouseOver="this.style.width='200px';this.style.height='200px';"
+                                <img class="img-fluid"
+                                    style="width: 150px; height: 150px; object-fit: cover; transition: 0.2s ease; cursor: zoom-in;"
+                                    src="{{ asset('assets/panel/admin/images/personil/' . $item['image']) }}"
+                                    alt="Image of {{ $item['name'] }}"
+                                    onMouseOver="this.style.width='250px';this.style.height='250px';"
                                     onMouseOut="this.style.width='150px';this.style.height='150px'">
                             </div>
-                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                            <div class="row gap-2">
+                                <button type="submit" class="btn btn-primary btn-sm col-2">Submit</button>
+                                <button type="button" class="btn btn-secondary btn-sm col-2"
+                                    data-bs-dismiss="modal">Close</button>
+                            </div>
                         </form>
                     </div>
                 </div>
