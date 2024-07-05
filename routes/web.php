@@ -10,3 +10,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/panel/admin/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

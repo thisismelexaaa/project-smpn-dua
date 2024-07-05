@@ -81,6 +81,11 @@
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Gallery</span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="charts.html">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Settings</span></a>
+                </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="charts.html">
                         <i class="fas fa-fw fa-chart-area"></i>
@@ -111,7 +116,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span
-                                        class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                        class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name != null ? Auth::user()->name : ""  }}</span>
                                     <i class="bi bi-person-fill"></i>
                                 </a>
                                 <!-- Dropdown - User Information -->
