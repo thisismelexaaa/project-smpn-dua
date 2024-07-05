@@ -104,16 +104,10 @@
                         <div
                             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <h1 class="h3 mb-0 text-gray-800">
-                                @if (Route::getRoutes()->getByName('personil'))
-                                    Personil
-                                @elseif (Route::getRoutes()->getByName('berita'))
-                                    Berita
-                                @elseif (Route::getRoutes()->getByName('gallery'))
-                                    Gallery
-                                @elseif (Route::getRoutes()->getByName('settings'))
-                                    Settings
-                                @else
+                                @if(Route::currentRouteName() == 'home')
                                     Dashboard Guru
+                                @elseif(Route::currentRouteName() == 'personil.index')
+                                    Personil
                                 @endif
                             </h1>
                         </div>
