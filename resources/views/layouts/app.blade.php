@@ -34,6 +34,8 @@
 </head>
 
 <body class="bg-gradient-primary">
+    {{-- @dd(Auth::user() != null ? Auth::user()->name : 'Guest') --}}
+
     <div id="app">
         <div id="wrapper">
 
@@ -78,18 +80,18 @@
                         <i class="bi bi-newspaper"></i>
                         <span>Berita</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
+                <li class="nav-item {{ request()->routeIs('galleries.*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('galleries.index') }}">
                         <i class="bi bi-card-image"></i>
                         <span>Gallery</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
+                    <a class="nav-link" href="/">
                         <i class="bi bi-gear-fill"></i>
                         <span>Settings</span></a>
                 </li>
                 {{-- <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
+                    <a class="nav-link" href="/">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Personil</span></a>
                 </li> --}}
@@ -112,6 +114,8 @@
                                     Personil
                                 @elseif(request()->routeIs('berita.*'))
                                     Berita
+                                @elseif(request()->routeIs('gallery.*'))
+                                    Gallery
                                 @endif
                             </h1>
                         </div>
@@ -126,7 +130,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span
-                                        class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name != null ? Auth::user()->name : '' }}</span>
+                                        class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user() != null ? Auth::user()->name : 'Guest' }}</span>
                                     <i class="bi bi-person-fill"></i>
                                 </a>
                                 <!-- Dropdown - User Information -->

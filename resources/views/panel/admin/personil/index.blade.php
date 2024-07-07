@@ -15,6 +15,7 @@
                         <form action="{{ route('personil.store') }}" class="mx-3" method="POST"
                             enctype="multipart/form-data">
                             @csrf
+                            <input type="text" name="kode_personil" id="kode_personil">
                             <div class="row mb-2">
                                 <div class="col-md-6 col-sm-12">
                                     <label for="nama" class="form-label my-auto pb-1">Nama
@@ -23,7 +24,7 @@
                                         <input required name="first_name" type="text"
                                             class="form-control col-md col-sm-3" placeholder="Nama Depan"
                                             aria-label="Recipient's username" aria-describedby="button-addon2">
-                                        <input required name="last_name" type="text" class="form-control col-md col-sm-3"
+                                        <input name="last_name" type="text" class="form-control col-md col-sm-3"
                                             placeholder="Nama Belakang" aria-label="Recipient's username"
                                             aria-describedby="button-addon2">
                                     </div>
@@ -130,7 +131,7 @@
                                     class="form-control col-md-4 me-1 col-sm-2" placeholder="Nama Depan"
                                     aria-label="Recipient's username" aria-describedby="button-addon2"
                                     value="{{ $item['first_name'] }}">
-                                <input required name="last_name" type="text" class="form-control col-md-4  col-sm-2"
+                                <input name="last_name" type="text" class="form-control col-md-4  col-sm-2"
                                     placeholder="Nama Belakang" aria-label="Recipient's username"
                                     aria-describedby="button-addon2" value="{{ $item['last_name'] }}">
                             </div>
@@ -189,6 +190,9 @@
             $('#dataTable').DataTable({
                 responsive: true
             });
+
+            // random kode personil
+            $('#kode_personil').val(Math.random().toString(36).substr(2, 6));
         });
     </script>
 @endsection

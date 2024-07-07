@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('personils', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_personil');
             $table->string('name');
             $table->string('email');
             $table->string('phone');
             $table->string('jabatan');
             $table->string('image')->nullable();
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamps();
         });
     }
 

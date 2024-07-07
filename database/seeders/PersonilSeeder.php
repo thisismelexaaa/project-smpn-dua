@@ -15,8 +15,9 @@ class PersonilSeeder extends Seeder
      */
     public function run(): void
     {
-        for($i = 1; $i <= 10; $i++) {
+        for($i = 1; $i <= 5; $i++) {
             Personil::create([
+                'kode_personil' => Str::random(10),
                 'name' => Str::random(10),
                 'email' => Str::random(10) . '@example.com',
                 'phone' => rand(1000000000, 9999999999),

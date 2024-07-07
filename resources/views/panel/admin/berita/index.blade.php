@@ -16,6 +16,7 @@
                             <th class="text-start">Tanggal Posting</th>
                             <th>Kategori</th>
                             <th>Penulis</th>
+                            <th class="text-start">Gambar</th>
                             <th>Isi Berita</th>
                             <th>Action</th>
                         </tr>
@@ -28,12 +29,19 @@
                                 <td class="text-start">{{ $item['tgl_posting'] }}</td>
                                 <td>{{ $item['category'] }}</td>
                                 <td>{{ $item['penulis'] }}</td>
-                                <td>{!! Str::limit($item['content'] , 50, '...') !!}</td>
+                                <td class="text-start">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#modalGambar{{ $item['id'] }}">
+                                        <i class="bi bi-file-image"></i>
+                                    </button>
+                                </td>
+                                <td>{!! Str::limit($item['content'], 50, '...') !!}</td>
                                 <td>
                                     <div class="d-flex gap-1">
-                                        <a href="{{ route('berita.show', $item['id']) }}" class="btn btn-sm btn-warning">View</a>
-                                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalEdit{{ $item['id'] }}">Edit</button>
+                                        <a href="{{ route('berita.show', $item['id']) }}"
+                                            class="btn btn-sm btn-warning">View</a>
+                                        <a href="{{ route('berita.edit', $item['id']) }}"
+                                            class="btn btn-sm btn-primary">Edit</a>
                                         <form action="{{ route('berita.destroy', $item['id']) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -42,6 +50,22 @@
                                     </div>
                                 </td>
                             </tr>
+                            <div class="modal fade" id="modalGambar{{ $item['id'] }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Gambar Berita</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="{{ asset('assets/panel/admin/images/berita/' . $item['image']) }}"
+                                                class="w-100" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
                     </tbody>
                 </table>
