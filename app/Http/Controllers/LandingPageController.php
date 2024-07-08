@@ -11,7 +11,7 @@ class LandingPageController extends Controller
 {
     public function index(Request $request)
     {
-        $galleries = Galleries::all();
+        $galleries = Galleries::where('status', 1)->get();
         $personils = Personil::all();
         $beritas = Berita::all();
 

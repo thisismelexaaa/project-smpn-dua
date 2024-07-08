@@ -113,6 +113,10 @@
                 </div>
                 <div class="col-lg-6 ps-lg-5">
                     <div class="row g-5">
+                        <div class="col-sm-6">
+                            <h4 class="text-light mb-4">Navigasi Cepat</h4>
+                            <x-nav-item></x-nav-item>
+                        </div>
                         <div class="col-sm-6 d-none">
                             <h4 class="text-light mb-4">Quick Links</h4>
                             <a class="btn btn-link" href="">About Us</a>
@@ -120,10 +124,6 @@
                             <a class="btn btn-link" href="">Our Services</a>
                             <a class="btn btn-link" href="">Terms & Condition</a>
                             <a class="btn btn-link" href="">Support</a>
-                        </div>
-                        <div class="col-sm-6">
-                            <h4 class="text-light mb-4">Navigasi Cepat</h4>
-                            <x-nav-item></x-nav-item>
                         </div>
                     </div>
                 </div>
