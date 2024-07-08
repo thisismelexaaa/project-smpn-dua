@@ -26,3 +26,5 @@ Route::prefix('/panel/admin/')->group(function () {
     Route::resource('/galleries', GalleriesController::class);
 });
 
+Route::get('/landingpage/filter/category/', [LandingPageController::class, 'filter'])->name('landingpage.filter');
+

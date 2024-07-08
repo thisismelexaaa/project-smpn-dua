@@ -13,6 +13,7 @@
                         <tr>
                             <th class="text-start">#</th>
                             <th>Judul Berita</th>
+                            <th>Kategori</th>
                             <th class="text-start">Tanggal Posting</th>
                             <th>Kategori</th>
                             <th>Penulis</th>
@@ -26,6 +27,7 @@
                             <tr>
                                 <td class="text-start">{{ $loop->iteration }}</td>
                                 <td>{{ $item['title'] }}</td>
+                                <td>{{ $item['category'] }}</td>
                                 <td class="text-start">{{ $item['tgl_posting'] }}</td>
                                 <td>{{ $item['category'] }}</td>
                                 <td>{{ $item['penulis'] }}</td>

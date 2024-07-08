@@ -407,7 +407,7 @@
     height: 100%;
     padding: 45px 30px;
     background: var(--bs-white);
-    box-shadow: 0 0 45px rgba(0, 0, 0, 0.05);
+    box-shadow: 45px rgba(0, 0, 0, 0.05);
 }
 
 .service-item::before {

@@ -9,11 +9,12 @@ use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $galleries = Galleries::all();
         $personils = Personil::all();
         $beritas = Berita::all();
+
         return view('landingpage.index', compact('galleries', 'personils', 'beritas'));
     }
 

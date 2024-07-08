@@ -68,7 +68,7 @@
                         <a href="/" class="nav-item nav-link active text-white">Beranda</a>
                         <a href="#profil" class="nav-item nav-link text-white">Profil</a>
                         <a href="#personil" class="nav-item nav-link text-white">Personil</a>
-                        <a href="#berita" class="nav-item nav-link text-white">Berita</a>
+                        <a href="#berita" class="nav-item nav-link text-white">Informasi</a>
                         <a href="" class="nav-item nav-link text-white">Gallery</a>
                         <a href="" class="nav-item nav-link text-white">Contact</a>
                     </div>
@@ -97,7 +97,7 @@
                     <a href="/" class="nav-item nav-link active">Beranda</a>
                         <a href="#profil" class="nav-item nav-link">Profil</a>
                         <a href="#personil" class="nav-item nav-link">Personil</a>
-                        <a href="#berita" class="nav-item nav-link">Berita</a>
+                        <a href="#berita" class="nav-item nav-link">Informasi</a>
                         <a href="" class="nav-item nav-link">Gallery</a>
                         <a href="" class="nav-item nav-link">Contact</a>
                 </div>
@@ -182,7 +182,7 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top shadow"><i
             class="bi bi-arrow-up"></i></a>
 
 
@@ -197,6 +197,8 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('assets/landingpage/js/main.js') }}"></script>
+
+    @yield('scripts')
 
     <script>
         $('.owl-carousel').owlCarousel({
