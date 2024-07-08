@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\Galleries;
 use App\Models\Personil;
 use Illuminate\Http\Request;
 
@@ -30,6 +31,19 @@ class HomeController extends Controller
 
         $beritaCount = Berita::count();
         $berita = Berita::all();
-        return view('panel.admin.dashboard.index', compact('personil','personilCount','beritaCount','berita'));
+
+        $gallerie = Galleries::all();
+        $gallerieCount = Galleries::count();
+
+        $compact = compact(
+            'personilCount',
+            'personil',
+            'beritaCount',
+            'berita',
+            'gallerie',
+            'gallerieCount'
+        );
+
+        return view('panel.admin.dashboard.index', $compact);
     }
 }

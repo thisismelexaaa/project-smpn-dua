@@ -56,6 +56,11 @@
                                         alt="Image" class="w-100 rounded-lg">
                                 </div>
                                 <div class="modal-footer">
+                                    <form action="{{ route('galleries.update', $gallerie['id']) }}" method="POST">
+                                        @csrf
+                                        @method('put')
+                                        <button type="submit" class="btn btn-success">Restore Gambar</button>
+                                    </form>
                                     <form action="{{ route('galleries.destroy', $gallerie['id']) }}" method="POST">
                                         @csrf
                                         @method('delete')

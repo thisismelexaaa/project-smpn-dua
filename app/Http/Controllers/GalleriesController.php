@@ -88,7 +88,17 @@ class GalleriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $gallery = Galleries::findOrFail($id);
+
+            $gallery->update(['status' => 1]);
+
+            toast()->success('Galeri Berhasil Dihapus', 'Success');
+            return redirect()->back();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            toast()->error('Galeri Tidak Ditemukan', 'Error');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -102,13 +112,10 @@ class GalleriesController extends Controller
             $gallery->update(['status' => 0]);
 
             toast()->success('Galeri Berhasil Dihapus', 'Success');
+            return redirect()->back();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             toast()->error('Galeri Tidak Ditemukan', 'Error');
-        } catch (\Exception $e) {
-            toast()->error('Terjadi Kesalahan Saat Menghapus Galeri', 'Error');
-            Log::error('Error while deleting gallery: ' . $e->getMessage());
+            return redirect()->back();
         }
-
-        return redirect()->back();
     }
 }

@@ -34,8 +34,6 @@
 </head>
 
 <body class="bg-gradient-primary">
-    {{-- @dd(Auth::user() != null ? Auth::user()->name : 'Guest') --}}
-
     <div id="app">
         <div id="wrapper">
 

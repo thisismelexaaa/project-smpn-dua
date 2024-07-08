@@ -71,7 +71,7 @@ class PersonilController extends Controller
                 'jabatan' => $request->jabatan,
                 'email' => $email,
                 'phone' => $request->phone,
-                'kode_personil' => $request->kode_personil
+                'kode_personil' => $request->kode
             ];
 
             // Menghandle file upload jika ada
@@ -102,8 +102,9 @@ class PersonilController extends Controller
                 // Or, if you want to move instead of copy, uncomment the line below:
                 // $image->move($galleriesPath, $imageName);
             }
+
             $dataGalleries = [
-                'kode_personil' => $request->kode_personil,
+                'kode' => $request->kode,
                 'category' => 'personil',
                 'title' => $data['name'],
                 'status' => 1,
@@ -207,7 +208,7 @@ class PersonilController extends Controller
             }
 
             // Update galleries data if it exists
-            $findGalleries = Galleries::where('kode_personil', $personil->kode_personil)->first();
+            $findGalleries = Galleries::where('kode', $personil->kode_personil)->first();
 
             if ($findGalleries) {
                 $dataGalleries = [
@@ -249,12 +250,16 @@ class PersonilController extends Controller
                 return redirect()->back();
             }
 
-            // delete image
-            if ($personil->image && $personil->image !== 'person.jpg') {
-                $imagePath = public_path('assets/panel/admin/images/personil/' . $personil->image);
-                if (file_exists($imagePath)) {
-                    unlink($imagePath);
-                }
+            // Update galleries data if it exists
+            $findGalleries = Galleries::where('kode', $personil->kode_personil)->first();
+
+            if ($findGalleries) {
+                $dataGalleries = [
+                    'status' => 0,
+                ];
+                // dd($dataGalleries);
+
+                $findGalleries->update($dataGalleries);
             }
 
             $personil->delete();

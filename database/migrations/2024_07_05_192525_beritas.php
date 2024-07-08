@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('beritas', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_berita');
             $table->string('title');
             $table->date('tgl_posting');
             $table->string('category');

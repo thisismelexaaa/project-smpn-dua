@@ -12,6 +12,7 @@
                     <span>{{ $berita['penulis'] }}</span>
                 </div>
                 <hr class="border-dark mx-auto">
+                <img src="{{ asset('assets/panel/admin/images/berita/' . $berita['image']) }}" alt="Image" class="image-fluid text-center w-25">
                 <p class="text-justify">{!! $berita['content'] !!}</p>
             </div>
             <div class="card-footer">

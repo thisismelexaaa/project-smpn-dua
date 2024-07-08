@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\Galleries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -51,15 +52,49 @@ class BeritaController extends Controller
                 'content' => $request->content,
                 'penulis' => Auth::user()->name,
                 'tgl_posting' => now()->format('Y-m-d'),
+                'kode_berita' => $request->kode
             ];
 
+            // Menghandle file upload jika ada
             if ($request->hasFile('image')) {
-                $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->file('image')->move(public_path('assets/panel/admin/images/berita'), $imageName);
+                $image = $request->file('image');
+
+                // Generate unique filename
+                $imageName = time() . '_' . $image->getClientOriginalName();
+
+                // Determine destination paths
+                $beritaPath = public_path('assets/panel/admin/images/berita');
+                $galleriesPath = public_path('assets/panel/admin/images/galleries');
+
+                // Ensure directories exist or create them
+                if (!file_exists($beritaPath)) {
+                    mkdir($beritaPath, 0777, true);
+                }
+                if (!file_exists($galleriesPath)) {
+                    mkdir($galleriesPath, 0777, true);
+                }
+
+                // Move file to berita directory
+                $image->move($beritaPath, $imageName);
                 $data['image'] = $imageName;
+
+                // Optionally copy to galleries directory
+                copy($beritaPath . '/' . $imageName, $galleriesPath . '/' . $imageName);
+                // Or, if you want to move instead of copy, uncomment the line below:
+                // $image->move($galleriesPath, $imageName);
             }
 
+            $dataGalleries = [
+                'kode' => $request->kode,
+                'category' => 'berita',
+                'title' => $request->title,
+                'status' => 1,
+                'image' => $data['image'],
+            ];
+
             Berita::create($data);
+
+            Galleries::create($dataGalleries);
 
             toast()->success('Berita Berhasil Di Posting', 'Success');
             return redirect()->route('berita.index')->with('success', 'Berita Berhasil');
@@ -111,15 +146,50 @@ class BeritaController extends Controller
                 'tgl_posting' => now()->format('Y-m-d'),
             ];
 
+            // Handle file upload if present
             if ($request->hasFile('image')) {
-                // Hapus gambar lama jika ada
-                if ($berita->image && file_exists(public_path('assets/panel/admin/images/berita/' . $berita->image))) {
-                    unlink(public_path('assets/panel/admin/images/berita/' . $berita->image));
+                $image = $request->file('image');
+
+                // Generate unique filename
+                $imageName = time() . '_' . $image->getClientOriginalName();
+
+                // Determine destination paths
+                $beritaPath = public_path('assets/panel/admin/images/berita');
+                $galleriesPath = public_path('assets/panel/admin/images/galleries');
+
+                // Ensure directories exist or create them
+                if (!file_exists($beritaPath)) {
+                    mkdir($beritaPath, 0777, true);
+                }
+                if (!file_exists($galleriesPath)) {
+                    mkdir($galleriesPath, 0777, true);
                 }
 
-                $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->file('image')->move(public_path('assets/panel/admin/images/berita'), $imageName);
+                // Move file to berita directory
+                $image->move($beritaPath, $imageName);
                 $data['image'] = $imageName;
+
+                // Optionally copy to galleries directory
+                copy($beritaPath . '/' . $imageName, $galleriesPath . '/' . $imageName);
+                // Or, if you want to move instead of copy, uncomment the line below:
+                // $image->move($galleriesPath, $imageName);
+            }
+
+            // Update galleries data if it exists
+            $findGalleries = Galleries::where('kode', $berita->kode_berita)->first();
+
+            if ($findGalleries) {
+                $dataGalleries = [
+                    'category' => 'berita',
+                    'title' => $request->title,
+                    'status' => 1,
+                ];
+
+                if (isset($data['image'])) {
+                    $dataGalleries['image'] = $data['image'];
+                }
+
+                $findGalleries->update($dataGalleries);
             }
 
             // dd($data);
@@ -139,9 +209,26 @@ class BeritaController extends Controller
      */
     public function destroy(string $id)
     {
-        $berita = Berita::find($id);
-        $berita->delete();
-        toast()->success('Berita Berhasil Dihapus', 'Success');
-        return redirect()->back();
+        try {
+            $berita = Berita::find($id);
+
+            // Update galleries data if it exists
+            $findGalleries = Galleries::where('kode', $berita->kode_berita)->first();
+
+            if ($findGalleries) {
+                $dataGalleries = [
+                    'status' => 0,
+                ];
+
+                $findGalleries->update($dataGalleries);
+            }
+
+            $berita->delete();
+            toast()->success('Berita Berhasil Dihapus', 'Success');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            toast()->error('Hapus gagal, Ada kesalahan dalam proses, Silakan coba lagi' . $th->getMessage());
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
 }

@@ -4,13 +4,13 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GalleriesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PersonilController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('landingpage.index');
-});
+Route::get('/', [LandingPageController::class, 'index'])->name('home');
+Route::resource('/home', LandingPageController::class);
 
 Auth::routes();
 

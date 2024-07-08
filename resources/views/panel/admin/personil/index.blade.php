@@ -15,7 +15,7 @@
                         <form action="{{ route('personil.store') }}" class="mx-3" method="POST"
                             enctype="multipart/form-data">
                             @csrf
-                            <input type="text" name="kode_personil" id="kode_personil">
+                            <input type="hidden" name="kode" id="kode_personil">
                             <div class="row mb-2">
                                 <div class="col-md-6 col-sm-12">
                                     <label for="nama" class="form-label my-auto pb-1">Nama

@@ -10,6 +10,7 @@
                 <form action="{{ route('berita.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
+                    <input type="text" hidden name="kode" id="kode_berita">
                     <div class="row">
                         <div class="col-6 mb-2">
                             <label for="title" class="form-label">Judul Berita</label>
@@ -71,6 +72,9 @@
                 .catch(error => {
                     console.error(error);
                 });
+
+            $('#kode_berita').val(Math.random().toString(36).substr(2, 6));
+
         });
     </script>
 @endsection
