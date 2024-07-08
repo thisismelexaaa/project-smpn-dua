@@ -45,8 +45,8 @@
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg/640px-Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg.png"
-                        alt="" class="img-fluid" style="width: 10%">
+                    <img src="{{ asset('assets/landingpage/img/smpn-2-logo.jpg') }}" alt="" class="img-fluid"
+                        style="width: 10%; border-radius: 100%">
                     <div class="ms-3 h3 my-auto">
                         <a href="/home" class="text-white"><span>SMP Negeri 2 <br> Kota Cirebon</span></a>
                     </div>
@@ -59,18 +59,14 @@
                                 class="fab text-dark fa-facebook-f"></i></a>
                         <a class="btn btn-sm-square bg-white ms-2" target="_blank" href=""><i
                                 class="fab text-dark fa-youtube"></i></a>
-                        <a class="btn btn-sm-square bg-white ms-2" target="_blank" href="mailto:smpn2_crbn@yahoo.co.id"><i
-                                class="fa text-dark fa-envelope"></i></a>
+                        <a class="btn btn-sm-square bg-white ms-2" target="_blank"
+                            href="mailto:smpn2_crbn@yahoo.co.id"><i class="fa text-dark fa-envelope"></i></a>
                         <a class="btn btn-sm-square bg-white ms-2" target="_blank" href="https://wa.me/0231203075"><i
                                 class="fab text-dark fa-whatsapp"></i></a>
+
                     </div>
                     <div class="d-flex">
-                        <a href="/" class="nav-item nav-link active text-white">Beranda</a>
-                        <a href="#profil" class="nav-item nav-link text-white">Profil</a>
-                        <a href="#personil" class="nav-item nav-link text-white">Personil</a>
-                        <a href="#berita" class="nav-item nav-link text-white">Informasi</a>
-                        <a href="" class="nav-item nav-link text-white">Gallery</a>
-                        <a href="" class="nav-item nav-link text-white">Contact</a>
+                        <x-nav-item></x-nav-item>
                     </div>
                 </div>
             </div>
@@ -93,20 +89,8 @@
                 </button>
             </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav">
-                    <a href="/" class="nav-item nav-link active">Beranda</a>
-                        <a href="#profil" class="nav-item nav-link">Profil</a>
-                        <a href="#personil" class="nav-item nav-link">Personil</a>
-                        <a href="#berita" class="nav-item nav-link">Informasi</a>
-                        <a href="" class="nav-item nav-link">Gallery</a>
-                        <a href="" class="nav-item nav-link">Contact</a>
-                </div>
-                <div class="ms-auto d-none d-lg-flex">
-                    <a class="btn btn-sm-square btn-primary ms-2" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-sm-square btn-primary ms-2" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-sm-square btn-primary ms-2" href=""><i
-                            class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-sm-square btn-primary ms-2" href=""><i class="fab fa-youtube"></i></a>
+                <div class="d-flex justify-content-end pe-3 pb-1">
+                    <x-nav-item></x-nav-item>
                 </div>
             </div>
         </nav>
@@ -129,7 +113,7 @@
                 </div>
                 <div class="col-lg-6 ps-lg-5">
                     <div class="row g-5">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 d-none">
                             <h4 class="text-light mb-4">Quick Links</h4>
                             <a class="btn btn-link" href="">About Us</a>
                             <a class="btn btn-link" href="">Contact Us</a>
@@ -138,23 +122,8 @@
                             <a class="btn btn-link" href="">Support</a>
                         </div>
                         <div class="col-sm-6">
-                            <h4 class="text-light mb-4">Popular Links</h4>
-                            <a class="btn btn-link" href="">About Us</a>
-                            <a class="btn btn-link" href="">Contact Us</a>
-                            <a class="btn btn-link" href="">Our Services</a>
-                            <a class="btn btn-link" href="">Terms & Condition</a>
-                            <a class="btn btn-link" href="">Support</a>
-                        </div>
-                        <div class="col-sm-12">
-                            <h4 class="text-light mb-4">Newsletter</h4>
-                            <div class="w-100">
-                                <div class="input-group">
-                                    <input type="text" class="form-control border-0 py-3 px-4"
-                                        style="background: rgba(255, 255, 255, .1);"
-                                        placeholder="Your Email Address"><button class="btn btn-primary px-4">Sign
-                                        Up</button>
-                                </div>
-                            </div>
+                            <h4 class="text-light mb-4">Navigasi Cepat</h4>
+                            <x-nav-item></x-nav-item>
                         </div>
                     </div>
                 </div>
@@ -165,7 +134,7 @@
 
 
     <!-- Copyright Start -->
-    <div class="container-fluid copyright bg-dark text-white-50 py-4">
+    {{-- <div class="container-fluid copyright bg-dark text-white-50 py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start">
@@ -177,7 +146,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Copyright End -->
 
 
