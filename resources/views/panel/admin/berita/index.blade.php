@@ -8,14 +8,13 @@
                 <a href="{{ route('berita.create') }}" class="btn btn-primary">Tambah Data</a>
             </div>
             <div class="card-body">
-                <table class="table dataTable table-hover table-striped" width="100%" id="dataTable">
+                <table class="table dataTable table-hover table-striped text-capitalize" width="100%" id="dataTable">
                     <thead>
                         <tr>
                             <th class="text-start">#</th>
                             <th>Judul Berita</th>
                             <th>Kategori</th>
                             <th class="text-start">Tanggal Posting</th>
-                            <th>Kategori</th>
                             <th>Penulis</th>
                             <th class="text-start">Gambar</th>
                             <th>Isi Berita</th>
@@ -26,10 +25,9 @@
                         @foreach ($berita as $item)
                             <tr>
                                 <td class="text-start">{{ $loop->iteration }}</td>
-                                <td>{{ $item['title'] }}</td>
+                                <td class="w-25">{{ $item['title'] }}</td>
                                 <td>{{ $item['category'] }}</td>
                                 <td class="text-start">{{ $item['tgl_posting'] }}</td>
-                                <td>{{ $item['category'] }}</td>
                                 <td>{{ $item['penulis'] }}</td>
                                 <td class="text-start">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"

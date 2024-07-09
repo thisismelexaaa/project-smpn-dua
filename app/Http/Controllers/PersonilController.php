@@ -19,26 +19,55 @@ class PersonilController extends Controller
      */
     public function index()
     {
-        $data = Personil::all()->map(function ($item) {
-            $fullName = explode(' ', $item->name);
-            $email = explode('@', $item->email);
+        try {
+            // Fetch and transform all Personil data
+            $data = Personil::all()->map(function ($item) {
+                $fullName = explode(' ', $item->name);
+                $email = explode('@', $item->email);
 
-            return [
-                'id' => $item->id,
-                'name' => $item->name,
-                'jabatan' => $item->jabatan,
-                'phone' => $item->phone,
-                'image' => $item->image,
-                'first_name' => $fullName[0],
-                'last_name' => isset($fullName[1]) ? $fullName[1] : '',
-                'email' => $email[0],
-            ];
-        })->toArray();
+                return [
+                    'id' => $item->id,
+                    'name' => $item->name,
+                    'jabatan' => $item->jabatan,
+                    'phone' => $item->phone,
+                    'image' => $item->image,
+                    'first_name' => $fullName[0],
+                    'last_name' => isset($fullName[1]) ? $fullName[1] : '',
+                    'email' => $email[0],
+                ];
+            })->toArray();
+        } catch (\Exception $e) {
+            // Handle the exception (log it, notify, etc.)
+            return back()->withErrors(['error' => 'Failed to fetch personil data.']);
+        }
 
-        return view('panel.admin.personil.index', compact('data'));
+        try {
+            // Fetch the specific Personil with jabatan equal to 1 (assuming it's an ID check)
+            $jabatan = Personil::where('jabatan', 1)->first();
+
+            if ($jabatan) {
+                $fullName = explode(' ', $jabatan->name);
+                $email = explode('@', $jabatan->email);
+
+                $jabatan = [
+                    'id' => $jabatan->id,
+                    'name' => $jabatan->name,
+                    'jabatan' => $jabatan->jabatan,
+                    'phone' => $jabatan->phone,
+                    'image' => $jabatan->image,
+                    'first_name' => $fullName[0],
+                    'last_name' => isset($fullName[1]) ? $fullName[1] : '',
+                    'email' => $email[0],
+                    'sambutan' => $jabatan->sambutan
+                ];
+            }
+        } catch (\Exception $e) {
+            // Handle the exception (log it, notify, etc.)
+            return back()->withErrors(['error' => 'Failed to fetch jabatan data.']);
+        }
+
+        return view('panel.admin.personil.index', compact('data', 'jabatan'));
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -56,7 +85,7 @@ class PersonilController extends Controller
         try {
             $this->validate($request, [
                 'jabatan' => 'required|string|max:255',
-                'email' => 'required|string|max:255',
+                'email' => 'nullable|string|max:255',
                 'phone' => 'required|string|max:20',
             ]);
 
@@ -65,13 +94,14 @@ class PersonilController extends Controller
 
             // Combine email and gmail fields
             $email = $request->email;
-
+            $kode = 'staff_' . rand(10000, 99999);
             $data = [
                 'name' => $name,
                 'jabatan' => $request->jabatan,
                 'email' => $email,
                 'phone' => $request->phone,
-                'kode_personil' => $request->kode
+                'kode_personil' => $kode,
+                'sambutan' => $request->sambutan
             ];
 
             // Menghandle file upload jika ada
@@ -83,40 +113,19 @@ class PersonilController extends Controller
 
                 // Determine destination paths
                 $personilPath = public_path('assets/panel/admin/images/personil');
-                $galleriesPath = public_path('assets/panel/admin/images/galleries');
 
                 // Ensure directories exist or create them
                 if (!file_exists($personilPath)) {
                     mkdir($personilPath, 0777, true);
                 }
-                if (!file_exists($galleriesPath)) {
-                    mkdir($galleriesPath, 0777, true);
-                }
 
                 // Move file to personil directory
                 $image->move($personilPath, $imageName);
                 $data['image'] = $imageName;
-
-                // Optionally copy to galleries directory
-                copy($personilPath . '/' . $imageName, $galleriesPath . '/' . $imageName);
-                // Or, if you want to move instead of copy, uncomment the line below:
-                // $image->move($galleriesPath, $imageName);
             }
-
-            $dataGalleries = [
-                'kode' => $request->kode,
-                'category' => 'personil',
-                'title' => $data['name'],
-                'status' => 1,
-                'image' => $data['image'],
-            ];
 
             // Store in personil table
             Personil::create($data);
-
-
-            // Store in galleries table
-            Galleries::create($dataGalleries);
 
             // Menampilkan pesan sukses
             toast('Data Berhasil Ditambahkan', 'success');
@@ -169,13 +178,15 @@ class PersonilController extends Controller
 
             // Combine email and gmail fields
             $email = $request->email;
+            $kode = 'staff_' . rand(10000, 99999);
 
-            // Prepare data for updating personil
             $data = [
                 'name' => $name,
                 'jabatan' => $request->jabatan,
                 'email' => $email,
                 'phone' => $request->phone,
+                'kode_personil' => $kode,
+                'sambutan' => $request->sambutan
             ];
 
             // Handle file upload if present
@@ -183,20 +194,15 @@ class PersonilController extends Controller
                 $image = $request->file('image');
                 $imageName = time() . '_' . $image->getClientOriginalName();
                 $personilPath = public_path('assets/panel/admin/images/personil');
-                $galleriesPath = public_path('assets/panel/admin/images/galleries');
 
                 // Ensure directories exist or create them
                 if (!file_exists($personilPath)) {
                     mkdir($personilPath, 0777, true);
                 }
-                if (!file_exists($galleriesPath)) {
-                    mkdir($galleriesPath, 0777, true);
-                }
 
                 // Move file to personil directory and copy to galleries directory
                 $image->move($personilPath, $imageName);
                 $data['image'] = $imageName;
-                copy($personilPath . '/' . $imageName, $galleriesPath . '/' . $imageName);
 
                 // Delete previous image file if exists
                 if (!empty($personil->image)) {
@@ -205,23 +211,6 @@ class PersonilController extends Controller
                         unlink($previousImagePath);
                     }
                 }
-            }
-
-            // Update galleries data if it exists
-            $findGalleries = Galleries::where('kode', $personil->kode_personil)->first();
-
-            if ($findGalleries) {
-                $dataGalleries = [
-                    'category' => 'personil',
-                    'title' => $data['name'],
-                    'status' => 1,
-                ];
-
-                if (isset($data['image'])) {
-                    $dataGalleries['image'] = $data['image'];
-                }
-
-                $findGalleries->update($dataGalleries);
             }
 
             // Update personil data
@@ -248,18 +237,6 @@ class PersonilController extends Controller
             if (!$personil) {
                 toast('Data Personil Tidak Ditemukan', 'error');
                 return redirect()->back();
-            }
-
-            // Update galleries data if it exists
-            $findGalleries = Galleries::where('kode', $personil->kode_personil)->first();
-
-            if ($findGalleries) {
-                $dataGalleries = [
-                    'status' => 0,
-                ];
-                // dd($dataGalleries);
-
-                $findGalleries->update($dataGalleries);
             }
 
             $personil->delete();

@@ -23,54 +23,56 @@
                 @if ($galleries->isEmpty())
                     <h4>Tidak ada gambar</h4>
                 @endif
-                @foreach ($galleries as $j => $gallerie)
-                    <div class="d-flex flex-column border rounded overflow-hidden">
-                        <div class="my-auto">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $j }}"
-                                class="my-auto">
+                <div class="row gap-2">
+                    @foreach ($galleries as $j => $gallerie)
+                        <div class="col-md-3 border rounded overflow-hidden p-3">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $j }}">
                                 <img src="{{ asset('assets/panel/admin/images/galleries/' . $gallerie['image']) }}"
-                                    alt="Image" class="shadow-sm image-fluid" width="200"
+                                    alt="Image" class="shadow-sm image-fluid" width="100%"
                                     style="{{ $gallerie['status'] == 0 ? 'filter: grayscale(100%);' : '' }}">
                             </a>
-                        </div>
-                        <div class="p-2">
-                            @if ($gallerie['category'] == 'pengumuman')
-                                <span class="badge text-bg-primary p-2">Pengumuman</span>
-                            @elseif ($gallerie['category'] == 'prestasi')
-                                <span class="badge text-bg-info p-2">Prestasi</span>
-                            @elseif ($gallerie['category'] == 'berita')
-                                <span class="badge text-bg-success p-2">Berita</span>
-                            @else
-                                <span class="badge text-bg-secondary p-2">Personil</span>
-                            @endif
-                            <div class="text-capitalize fw-bold py-1">{{ $gallerie['title'] }}</div>
-                        </div>
-                    </div>
+                            <div class="my-2">
+                                @if ($gallerie['category'] == 'pengumuman')
+                                    <span class="badge text-bg-primary p-2">Pengumuman</span>
+                                @elseif ($gallerie['category'] == 'prestasi')
+                                    <span class="badge text-bg-info p-2">Prestasi</span>
+                                @elseif ($gallerie['category'] == 'berita')
+                                    <span class="badge text-bg-success p-2">Berita</span>
+                                @endif
+                                <p class="text-capitalize fw-bold mt-3 text-justify" style="text-wrap: wrap">
+                                    <a href="#" class="text-decoration-none text-dark" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal{{ $j }}">
+                                        {{ $gallerie['title'] }}
+                                    </a>
+                                </p>
+                            </div>
 
-                    <div class="modal fade" id="exampleModal{{ $j }}" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <img src="{{ asset('assets/panel/admin/images/galleries/' . $gallerie['image']) }}"
-                                        alt="Image" class="w-100 rounded-lg">
-                                </div>
-                                <div class="modal-footer">
-                                    <form action="{{ route('galleries.update', $gallerie['id']) }}" method="POST">
-                                        @csrf
-                                        @method('put')
-                                        <button type="submit" class="btn btn-success">Restore Gambar</button>
-                                    </form>
-                                    <form action="{{ route('galleries.destroy', $gallerie['id']) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger">Delete Gambar</button>
-                                    </form>
+                            <div class="modal fade" id="exampleModal{{ $j }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <img src="{{ asset('assets/panel/admin/images/galleries/' . $gallerie['image']) }}"
+                                                alt="Image" class="w-100 rounded-lg">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form action="{{ route('galleries.update', $gallerie['id']) }}" method="POST">
+                                                @csrf
+                                                @method('put')
+                                                <button type="submit" class="btn btn-success">Restore Gambar</button>
+                                            </form>
+                                            <form action="{{ route('galleries.destroy', $gallerie['id']) }}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger">Delete Gambar</button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

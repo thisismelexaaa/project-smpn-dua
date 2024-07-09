@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('kode_personil');
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('phone');
             $table->string('jabatan');
             $table->string('image')->nullable();
+            $table->text('sambutan')->nullable();
             $table->timestamps();
         });
     }

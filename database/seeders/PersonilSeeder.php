@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Personil;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 use Illuminate\Support\Str;
+
 
 class PersonilSeeder extends Seeder
 {
@@ -15,13 +15,25 @@ class PersonilSeeder extends Seeder
      */
     public function run(): void
     {
-        for($i = 1; $i <= 5; $i++) {
+        $faker = Faker::create();
+        $name = $faker->name;
+        Personil::create([
+            'kode_personil' => Str::random(10),
+            'name' => 'Kepala Sekolah',
+            'email' => 'kepalasekolah@gmail.com',
+            'phone' => $faker->phoneNumber(),
+            'jabatan' => 1,
+            'image' => 'person.jpg',
+            'sambutan' => 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        ]);
+
+        for ($i = 1; $i <= 5; $i++) {
             Personil::create([
                 'kode_personil' => Str::random(10),
-                'name' => Str::random(10),
-                'email' => Str::random(10) . '@example.com',
-                'phone' => rand(1000000000, 9999999999),
-                'jabatan' => Str::random(10),
+                'name' => $faker->name,
+                'email' => $name. '@gmail.com',
+                'phone' => $faker->phoneNumber,
+                'jabatan' => 2,
                 'image' => 'person.jpg',
             ]);
         }

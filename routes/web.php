@@ -10,11 +10,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('home');
+Route::get('/galleries', [LandingPageController::class, 'galleries'])->name('galleries');
+Route::get('/informasi', [LandingPageController::class, 'informasi'])->name('informasi');
+Route::get('/profile', [LandingPageController::class, 'profile'])->name('profile');
 Route::resource('/home', LandingPageController::class);
 
 Auth::routes();
 
 Route::get('/panel/admin/dashboard', [HomeController::class, 'index'])->name('home');
+
 
 // logout
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -25,6 +29,3 @@ Route::prefix('/panel/admin/')->group(function () {
     Route::resource('/berita', BeritaController::class);
     Route::resource('/galleries', GalleriesController::class);
 });
-
-Route::get('/landingpage/filter/category/', [LandingPageController::class, 'filter'])->name('landingpage.filter');
-

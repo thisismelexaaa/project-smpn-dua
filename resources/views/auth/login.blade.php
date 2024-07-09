@@ -37,7 +37,7 @@
             <div class="card-body p-5">
                 <div class="row">
                     <div class="col row mb-4 ">
-                        <img class="img-fluid" src="{{ asset('assets/landingpage/img/logosmp2.png') }}"
+                        <img class="img-fluid" src="{{ asset('assets/landingpage/img/smpn-2-logo.jpg') }}"
                             alt="Logo SMP Negeri 2 Kota Cirebon">
                     </div>
                     <div class="col mx-auto">

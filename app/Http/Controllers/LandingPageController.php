@@ -11,15 +11,31 @@ class LandingPageController extends Controller
 {
     public function index(Request $request)
     {
-        $galleries = Galleries::where('status', 1)->get();
         $personils = Personil::all();
-        $beritas = Berita::all();
+        $kepalaSekolah = Personil::where('jabatan', 1)->first();
+        $berita = Berita::where('category', 'prestasi')->get();
 
-        return view('landingpage.index', compact('galleries', 'personils', 'beritas'));
+        return view('landingpage.index', compact('personils', 'kepalaSekolah', 'berita'));
     }
 
     public function show($id){
         $berita = Berita::find($id);
-        return view('landingpage.show', compact('berita'));
+        $beritas = Berita::where('category', 'prestasi')->get()->except($id);
+
+        return view('landingpage.show', compact('berita', 'beritas'));
+    }
+
+    public function galleries(){
+        $galleries = Galleries::where('status', 1)->get();
+        return view('landingpage.galleries', compact('galleries'));
+    }
+
+    public function informasi(){
+        $beritas = Berita::all();
+        return view('landingpage.informasi', compact('beritas'));
+    }
+
+    public function profile(){
+        return view('landingpage.profile');
     }
 }
