@@ -94,10 +94,10 @@
                         <span>Gallery</span>
                     </div>
                     <div class="card-body overflow-auto" style="height: 50vh">
-                        <div class="row gap-1">
-                            @for ($i = 1; $i <= 20; $i++)
-                                <img class="m-1 col" src="https://via.placeholder.com/200" alt="">
-                            @endfor
+                        <div class="row">
+                            @foreach ($gallerie as $gallerie)
+                                <img class="col-md-4 mb-4" src="{{ asset('assets/panel/admin/images/galleries/' . $gallerie->image) }}" alt="">
+                            @endforeach
                         </div>
                     </div>
                 </div>

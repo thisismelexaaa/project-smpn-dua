@@ -32,7 +32,12 @@
         "Noto Color Emoji";
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
         "Liberation Mono", "Courier New", monospace;
-    --bs-gradient: linear-gradient(90deg, rgba(0,74,139,1) 0%, rgba(46,138,200,1) 50%, rgba(89,174,250,1) 100%);
+    --bs-gradient: linear-gradient(
+        90deg,
+        rgba(0, 74, 139, 1) 0%,
+        rgba(46, 138, 200, 1) 50%,
+        rgba(89, 174, 250, 1) 100%
+    );
 }
 *,
 *::before,
@@ -51,8 +56,12 @@ body {
     font-weight: 400;
     line-height: 1.5;
     color: #8a91ac;
-    background: var(--bs-gradient);
-    -webkit-text-size-adjust: 100%;
+    background: #ddd;
+    /* background-image: url("../img/smpn_2_kota_cirebon.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+    /-webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 hr {
@@ -417,7 +426,7 @@ progress {
 }
 @media (min-width: 1200px) {
     .display-1 {
-        font-size: 4rem;
+        font-size: 3rem;
     }
 }
 .display-2 {
@@ -2178,7 +2187,7 @@ textarea.form-control-lg {
     height: 1rem;
     margin-top: -0.25rem;
     background-color: var(--bs-primary);
-    border:var(--bs-primary);
+    border: var(--bs-primary);
     border-radius: 1rem;
     -webkit-transition: background-color 0.15s ease-in-out,
         border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2209,7 +2218,7 @@ textarea.form-control-lg {
     width: 1rem;
     height: 1rem;
     background-color: var(--bs-primary);
-    border:var(--bs-primary);
+    border: var(--bs-primary);
     border-radius: 1rem;
     -moz-transition: background-color 0.15s ease-in-out,
         border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -3472,7 +3481,8 @@ fieldset:disabled .btn {
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: var(--bs-primary)var(--bs-primary)}
+    background-color: var(--bs-primary) var(--bs-primary);
+}
 .dropdown-item.disabled,
 .dropdown-item:disabled {
     color: #adb5bd;
@@ -3511,7 +3521,8 @@ fieldset:disabled .btn {
 .dropdown-menu-dark .dropdown-item.active,
 .dropdown-menu-dark .dropdown-item:active {
     color: #fff;
-    background-color: var(--bs-primary)var(--bs-primary)}
+    background-color: var(--bs-primary) var(--bs-primary);
+}
 .dropdown-menu-dark .dropdown-item.disabled,
 .dropdown-menu-dark .dropdown-item:disabled {
     color: #adb5bd;
@@ -3685,7 +3696,8 @@ fieldset:disabled .btn {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
     color: #fff;
-    background-color: var(--bs-primary)var(--bs-primary)}
+    background-color: var(--bs-primary) var(--bs-primary);
+}
 .nav-fill > .nav-link,
 .nav-fill .nav-item {
     flex: 1 1 auto;
@@ -4502,7 +4514,7 @@ fieldset:disabled .btn {
     text-align: center;
     white-space: nowrap;
     background-color: var(--bs-primary);
-    transition: width 0.6svar(--bs-primary);
+    transition: width 0.6svar (--bs-primary);
 }
 @media (prefers-reduced-motion: reduce) {
     .progress-bar {
@@ -6872,7 +6884,7 @@ fieldset:disabled .btn {
 .text-muted {
     color: #6c757d !important;
 }
-.text-header{
+.text-header {
     color: #59aefa !important;
 }
 .text-black-50 {

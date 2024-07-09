@@ -1,55 +1,43 @@
 @extends('landingpage.app')
 
 @section('content')
-    {{-- carousel --}}
-    <div class="container-fluid header-carousel px-0">
-        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="{{ asset('assets/landingpage/img/smpn_2_kota_cirebon.jpg') }}" alt="Image">
-                    <div class="carousel-caption">
-                        <div class="container">
-                            <div class="row justify-content-start">
-                                <div class="col-lg-7 text-start">
-                                    <h1 class="display-1 text-white animated slideInRight mb-3">Wellcome to Website <br>
-                                        <span class="text-header">SMP Negeri 2 Kota Cirebon</span>
-                                    </h1>
-                                    <p class="mb-5 animated slideInRight fs-4">Unggul Dalam Mutu Teruji Dalam Prestasi
-                                        Dengan Dilandasi Iman Dan Taqwa</p>
-                                    <a href="#profil" class="btn btn-primary py-3 px-5 animated slideInRight">Tentang
-                                        Kami</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    {{-- rapor pendidikan --}}
-    <div class="container-fluid py-5">
+    {{-- Hero --}}
+    <div class="container-fluid hero-section py-5">
         <div class="container">
-            <h1 class="text-white">Rapor pendidikan SMP Negeri 2 Kota Cirebon</h1>
-            <div class="d-flex flex-wrap justify-content-center g-0 feature-row bg-white" id="rapor">
-                {{-- <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s" id="rapor-item">
-                    <div class="feature-item border h-100 p-5">
-                        <h5 class="mb-3" id="rapor-title"></h5>
-                        <p id="rapor-nilai"></p>
-                        <p id="rapor-predikat"></p>
-                        <p id="rapor-keterangan"></p>
-                        <p id="rapor-description" class="mb-0"></p>
-                    </div>
+            <div class="overlay"></div>
+            <div class="bg-hero"></div>
+            <div class="row hero justify-content-start">
+                <div class="col-lg-7 text-start">
+                    <h1 class="display-1 text-white animated slideInRight mb-3">Wellcome to Website <br>
+                        <span class="text-header">SMP Negeri 2 Kota Cirebon</span>
+                    </h1>
+                    <p class="mb-5 text-white animated slideInRight fs-4">Unggul Dalam Mutu Teruji Dalam Prestasi
+                        Dengan Dilandasi Iman Dan Taqwa</p>
+                    <a href="#profil" class="btn btn-primary py-3 px-5 animated slideInRight">Tentang
+                        Kami</a>
+                </div>
+                {{-- <div class="col-lg-5">
+                    <img src="{{ asset('assets/landingpage/img/smpn-2-logo.jpg') }}" alt="" class="img-fluid w-100">
                 </div> --}}
             </div>
         </div>
     </div>
 
-    {{-- personil --}}
-    <div class="container-fluid container-team" id="personil">
+    {{-- rapor pendidikan --}}
+    <div class="container-fluid container-rapor py-5">
         <div class="container">
-            <div class="row g-5 py-2">
-                <h1 class="display-6 text-white fw-bold mb-2">Kepala Sekolah</h1>
+            <h1 class="mb-3">Rapor pendidikan SMP Negeri 2 Kota Cirebon</h1>
+            <div class="d-flex flex-wrap justify-content-center g-0 feature-row bg-white" id="rapor">
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid container-team" id="personil">
+        {{-- personil --}}
+        <div class="container">
+            <div class="row py-2">
+                <h1 class="display-6 fw-bold mb-3">Kepala Sekolah</h1>
                 <div class="col-md-6 wow fadeIn mt-2 my-4" data-wow-delay="0.3s">
                     <img class="img-fluid w-100 shadow" style="border-radius: 1%"
                         src="{{ isset($kepalaSekolah) ? asset('assets/panel/admin/images/personil/' . $kepalaSekolah->image) : asset('assets/panel/admin/images/personil/person.jpg') }}"
@@ -112,24 +100,22 @@
         </div>
     </div>
 
-
     <div class="container-fluid container-service py-5">
         {{-- prestasi --}}
         <div class="container pb-5" id="prestasi">
-            <h1 class="mb-2">Prestasi SMP Negeri 2 Kota Cirebon</h1>
+            <h1 class="mb-3">Prestasi SMP Negeri 2 Kota Cirebon</h1>
             <div class="row g-4">
-                @foreach ($berita as $berita)
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s"
-                        style="object-fit: cover;">
+                @foreach ($prestasi as $prestasi)
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" style="object-fit: cover;">
                         <div class="team-item">
-                            <a href="{{ route('home.show', $berita->id) }}">
+                            <a href="{{ route('home.show', $prestasi->id) }}">
                                 <div class="position-relative overflow-hidden" style="border-radius: 1%">
                                     <img class="img-fluid w-100"
-                                        src="{{ asset('assets/panel/admin/images/berita/' . $berita->image) }}"
+                                        src="{{ asset('assets/panel/admin/images/berita/' . $prestasi->image) }}"
                                         alt="" style="object-fit: cover; height: 250px; width: 100%">
                                     <div class="team-social">
                                         <span class="btn text-white mx-1 w-100">
-                                            {{ $berita->title }}
+                                            {{ $prestasi->title }}
                                         </span>
                                     </div>
                                 </div>
@@ -137,6 +123,50 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+
+        <div class="container-fluid py-5" id="berita" style="height: 100%">
+            <div class="container">
+                <h1 class="display-6 mb-3">Berita</h1>
+                {{-- <div class="d-flex justify-content-between wow fadeInUp" data-wow-delay="0.1s">
+                    <select name="category" id="selectCategory" class="form-select w-25 h-25">
+                        <option value="all">Semua Kategori</option>
+                        <option value="prestasi">Prestasi</option>
+                        <option value="pengumuman">Pengumuman</option>
+                    </select>
+                </div> --}}
+                <div class="row g-2">
+                    @foreach ($pengumuman as $pengumuman)
+                        <div class="col-lg-4 col-md-6 wow fadeInUp overflow-hidden" style="border-radius: 1%;"
+                            data-wow-delay="0.1s" data-category="{{ $pengumuman['category'] }}">
+                            <div class="service-item">
+                                <div class="mb-4">
+                                    <img src="{{ asset('assets/panel/admin/images/berita/' . $pengumuman['image']) }}"
+                                        alt="Image of {{ $pengumuman['title'] }}" class="image-fluid shadow-sm"
+                                        style="width: 100%; height: 250px; object-fit: cover">
+                                </div>
+                                <hr class="p-0 my-1">
+                                <div class="d-flex justify-content-between my-1">
+                                    <span class="text-capitalize">
+                                        <i class="bi bi-calendar-week"></i>
+                                        {{ \Carbon\Carbon::parse($pengumuman['tgl_posting'])->isoFormat('dddd, D MMMM YYYY', 'Do MMMM YYYY') }}
+                                    </span>
+                                    <span class="text-capitalize">
+                                        <i class="bi bi-bookmark-fill"></i> {{ $pengumuman['category'] }}
+                                    </span>
+                                    <input type="hidden" class="category" value="{{ $pengumuman['category'] }}">
+                                </div>
+                                <hr class="p-0 my-1">
+                                <span class="h3">{{ $pengumuman['title'] }}</span><br>
+                                {{-- <span class="mb-4">{!! Str::limit($pengumuman['content'], 50, '...') !!}</span> --}}
+                                <a class="btn btn-light mt-3"
+                                    href="{{ route('home.show', $pengumuman['id']) }}">Selengkapnya<i
+                                        class="bi bi-chevron-double-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
 

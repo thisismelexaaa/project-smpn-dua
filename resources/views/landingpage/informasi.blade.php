@@ -11,7 +11,7 @@
                     <option value="pengumuman">Pengumuman</option>
                 </select>
             </div>
-            <div class="row g-4">
+            <div class="row g-2">
                 @foreach ($beritas as $berita)
                     <div class="col-lg-4 col-md-6 wow fadeInUp overflow-hidden berita-card" style="border-radius: 1%;"
                         data-wow-delay="0.1s" data-category="{{ $berita['category'] }}">
@@ -19,21 +19,22 @@
                             <div class="mb-4">
                                 <img src="{{ asset('assets/panel/admin/images/berita/' . $berita['image']) }}"
                                     alt="Image of {{ $berita['title'] }}" class="image-fluid shadow-sm"
-                                    style="width: 100%; height: 150px">
+                                    style="width: 100%; height: 250px; object-fit: cover">
                             </div>
-                            <span class="h3">{{ $berita['title'] }}</span><br>
                             <hr class="p-0 my-1">
-                            <div class="d-flex justify-content-between my-1 fw-bold">
-                                <small class="text-capitalize text-dark">
+                            <div class="d-flex justify-content-between my-1">
+                                <span class="text-capitalize">
                                     {{ \Carbon\Carbon::parse($berita['tgl_posting'])->isoFormat('dddd, D MMMM YYYY', 'Do MMMM YYYY') }}
-                                </small>
-                                <small class="text-capitalize text-dark">
-                                    {{ $berita['category'] }}</small>
+                                </span>
+                                <span class="text-capitalize">
+                                    {{ $berita['category'] }}
+                                </span>
                                 <input type="hidden" class="category" value="{{ $berita['category'] }}">
                             </div>
                             <hr class="p-0 my-1">
-                            <span class="mb-4">{!! Str::limit($berita['content'], 50, '...') !!}</span>
-                            <a class="btn btn-light" href="{{ route('home.show', $berita['id']) }}">Selengkapnya<i
+                            <span class="h3">{{ $berita['title'] }}</span><br>
+                            {{-- <span class="mb-4">{!! Str::limit($berita['content'], 50, '...') !!}</span> --}}
+                            <a class="btn btn-light mt-3" href="{{ route('home.show', $berita['id']) }}">Selengkapnya<i
                                     class="bi bi-chevron-double-right ms-1"></i></a>
                         </div>
                     </div>

@@ -9,7 +9,7 @@
                     <div class="col-md-4 mb-3" style="object-fit: cover;">
                         <img src="{{ asset('assets/panel/admin/images/galleries/' . $gallery->image) }}"
                         alt="" class="img-fluid w-100"
-                        style="{{ $gallery->status == 0 ? 'filter: grayscale(100%);' : '' }} width: 200px; height: 50%; object-fit: cover">
+                        style="{{ $gallery->status == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover">
                         <p class="h5 my-3">{{ $gallery->title }}</p>
                     </div>
                 @endforeach

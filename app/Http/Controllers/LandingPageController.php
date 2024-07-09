@@ -13,9 +13,10 @@ class LandingPageController extends Controller
     {
         $personils = Personil::all();
         $kepalaSekolah = Personil::where('jabatan', 1)->first();
-        $berita = Berita::where('category', 'prestasi')->get();
+        $prestasi = Berita::where('category', 'prestasi')->get();
+        $pengumuman = Berita::where('category', 'pengumuman')->get();
 
-        return view('landingpage.index', compact('personils', 'kepalaSekolah', 'berita'));
+        return view('landingpage.index', compact('personils', 'kepalaSekolah', 'prestasi', 'pengumuman'));
     }
 
     public function show($id){

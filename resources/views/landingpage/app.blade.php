@@ -40,47 +40,43 @@
     </div>
     <!-- Spinner End -->
 
-    <!-- Brand Start -->
-    <div class="container-fluid text-white pt-4 pb-5 d-none d-lg-flex bg-gradient">
-        <div class="container">
-            <div class="d-flex align-items-center justify-content-between">
+    <div class="container-fluid sticky-top stick-lg d-none bg-white d-lg-flex py-4">
+        <nav class="container navbar navbar-expand-lg navbar-light">
+            <a href="/home" class="navbar-brand gap-1">
                 <div class="d-flex">
-                    <img src="{{ asset('assets/landingpage/img/smpn-2-logo.jpg') }}" alt="" class="img-fluid"
-                        style="width: 10%; border-radius: 100%">
-                    <div class="ms-3 h3 my-auto">
-                        <a href="/home" class="text-white"><span>SMP Negeri 2 <br> Kota Cirebon</span></a>
-                    </div>
+                    <img src="{{ asset('assets/landingpage/img/smpn-2-logo.jpg') }}" alt=""
+                        class="img-fluid me-2" style="width: 12%; border-radius: 100%">
+                    <h1 class="text-dark m-0 h3 my-auto">SMP Negeri 2 <br> Kota Cirebon</h1>
                 </div>
-                <div class="d-block">
-                    <div class="d-flex justify-content-end pe-3 pb-1">
-                        <a class="btn btn-sm-square bg-white ms-2" target="_blank" href=""><i
-                                class="fab text-dark fa-instagram"></i></a>
-                        <a class="btn btn-sm-square bg-white ms-2" target="_blank" href=""><i
-                                class="fab text-dark fa-facebook-f"></i></a>
-                        <a class="btn btn-sm-square bg-white ms-2" target="_blank" href=""><i
-                                class="fab text-dark fa-youtube"></i></a>
-                        <a class="btn btn-sm-square bg-white ms-2" target="_blank"
-                            href="mailto:smpn2_crbn@yahoo.co.id"><i class="fa text-dark fa-envelope"></i></a>
-                        <a class="btn btn-sm-square bg-white ms-2" target="_blank" href="https://wa.me/0231203075"><i
-                                class="fab text-dark fa-whatsapp"></i></a>
+            </a>
+            <div class="d-block">
+                <div class="d-flex justify-content-end pe-3 pb-1">
+                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href=""><i
+                            class="fab text-dark fa-instagram"></i></a>
+                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href=""><i
+                            class="fab text-dark fa-facebook-f"></i></a>
+                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href=""><i
+                            class="fab text-dark fa-youtube"></i></a>
+                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href="mailto:smpn2_crbn@yahoo.co.id"><i
+                            class="fa text-dark fa-envelope"></i></a>
+                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href="https://wa.me/0231203075"><i
+                            class="fab text-dark fa-whatsapp"></i></a>
 
-                    </div>
-                    <div class="d-flex">
-                        <x-nav-item></x-nav-item>
-                    </div>
+                </div>
+                <div class="d-flex ">
+                    <x-nav-item></x-nav-item>
                 </div>
             </div>
-        </div>
+        </nav>
     </div>
-    <!-- Brand End -->
 
     <!-- Navbar Start -->
     <div class="container-fluid sticky-top bg-white">
         <nav class="container navbar navbar-expand-lg navbar-light bg-white py-lg-0 px-lg-3">
             <div class="d-flex">
                 <a href="/home" class="navbar-brand d-lg-none d-flex gap-1">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg/640px-Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg.png"
-                        alt="" class="img-fluid me-2" style="width: 12%">
+                    <img src="{{ asset('assets/landingpage/img/smpn-2-logo.jpg') }}" alt=""
+                        class="img-fluid me-2" style="width: 12%">
                     <h1 class="text-dark m-0 fs-6">SMP Negeri 2 <br> Kota Cirebon</h1>
                 </a>
                 <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
@@ -89,8 +85,10 @@
                 </button>
             </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="d-flex justify-content-end pe-3 pb-1">
-                    <x-nav-item></x-nav-item>
+                <div class="d-block justify-content-end pe-3 pb-1">
+                    <div class="my-4">
+                        <x-nav-item></x-nav-item>
+                    </div>
                 </div>
             </div>
         </nav>
