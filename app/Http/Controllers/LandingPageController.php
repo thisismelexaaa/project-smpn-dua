@@ -21,7 +21,7 @@ class LandingPageController extends Controller
 
     public function show($id){
         $berita = Berita::find($id);
-        $beritas = Berita::where('category', 'prestasi')->get()->except($id);
+        $beritas = Berita::all()->except($id);
 
         return view('landingpage.show', compact('berita', 'beritas'));
     }
