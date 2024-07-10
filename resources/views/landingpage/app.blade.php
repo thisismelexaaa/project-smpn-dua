@@ -57,14 +57,14 @@
                             class="fab text-dark fa-facebook-f"></i></a>
                     <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href=""><i
                             class="fab text-dark fa-youtube"></i></a>
-                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href="mailto:smpn2_crbn@yahoo.co.id"><i
-                            class="fa text-dark fa-envelope"></i></a>
-                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href="https://wa.me/0231203075"><i
-                            class="fab text-dark fa-whatsapp"></i></a>
+                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank"
+                        href="mailto:smpn2_crbn@yahoo.co.id"><i class="fa text-dark fa-envelope"></i></a>
+                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank"
+                        href="https://wa.me/0231203075"><i class="fab text-dark fa-whatsapp"></i></a>
 
                 </div>
-                <div class="d-flex ">
-                    <x-nav-item></x-nav-item>
+                <div class="d-flex">
+                    <x-navItem class="text-dark"></x-navItem>
                 </div>
             </div>
         </nav>
@@ -87,7 +87,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="d-block justify-content-end pe-3 pb-1">
                     <div class="my-4">
-                        <x-nav-item></x-nav-item>
+                        <x-navItem class="text-dark"></x-navItem>
                     </div>
                 </div>
             </div>
@@ -98,22 +98,28 @@
     @yield('content')
 
     <!-- Footer Start -->
-    <div class="container-fluid footer position-relative bg-dark text-white-50 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid bg-dark text-white wow fadeIn" id="contact" data-wow-delay="0.1s">
         <div class="container">
             <div class="row g-5 py-5">
-                <div class="col-lg-6 pe-lg-5">
-                    <a href="index.html" class="navbar-brand">
+                <div class="col-lg-6 pe-5">
+                    <a href="/" class="navbar-brand">
                         <h1 class="h1 text-white mb-0">SMP Negeri 2<span class="text-header"><br>Kota Cirebon</span>
                         </h1>
                     </a>
-                    <p>Unggul Dalam Mutu Teruji Dalam Prestasi
-                        Dengan Dilandasi Iman Dan Taqwa</p>
+                    <p>Unggul Dalam Mutu Teruji Dalam Prestasi Dengan Dilandasi Iman Dan Taqwa</p>
+                    <h1 class="text-white w-100">Ayo Hubungi Kami</h1>
+                    <p class="fs-5 mb-4 ">Mari berinteraksi dengan kami via kontak berikut ini</p>
+                    <p class=""><i class="fa fa-map-marker-alt me-2"></i>Jl. Siliwangi No.82, Kebonbaru,
+                        Kec.
+                        Kejaksan, Kota Cirebon, Jawa Barat 45121</p>
+                    <p class=""><i class="fa fa-phone-alt me-2"></i>(0231) 203075</p>
+                    <p class=""><i class="fa fa-envelope me-2"></i>smpn2_crbn@yahoo.co.id</p>
                 </div>
                 <div class="col-lg-6 ps-lg-5">
                     <div class="row g-5">
                         <div class="col-sm-6">
-                            <h4 class="text-light mb-4">Navigasi Cepat</h4>
-                            <x-nav-item></x-nav-item>
+                            <h4 class="text-white mb-4">Navigasi Cepat</h4>
+                            <x-navItem class="text-light"></x-navItem>
                         </div>
                         <div class="col-sm-6 d-none">
                             <h4 class="text-light mb-4">Quick Links</h4>
@@ -124,6 +130,12 @@
                             <a class="btn btn-link" href="">Support</a>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-12">
+                    <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.502361355244!2d108.55587667587346!3d-6.708375865589129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ee3cd2c05eccd%3A0x55ee252d2b9484d4!2sSMP%20Negeri%202%20Kota%20Cirebon!5e0!3m2!1sid!2sid!4v1720074334568!5m2!1sid!2sid"
+                    width="100%" height="300px" style="border:0;" allowfullscreen="true" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

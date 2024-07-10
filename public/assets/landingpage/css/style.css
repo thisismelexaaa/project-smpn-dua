@@ -5,10 +5,6 @@
     --overlay-bg-color: rgba(0, 58, 117, 0.36);
 }
 
-:root {
-    --overlay-bg-color: rgba(0, 58, 117, 0.36);
-}
-
 /* android */
 .hero-section {
     z-index: -1;
@@ -52,6 +48,10 @@
 
 .container-rapor {
     background: #fff;
+}
+
+.siswa{
+    margin-top:-20%;
 }
 
 /* desktop */
@@ -570,7 +570,7 @@
 
 @media (min-width: 992px) {
     .footer::after {
-        position: absolute;
+        /* position: absolute; */
         content: "";
         width: 0px;
         height: 100%;
@@ -605,7 +605,7 @@
     letter-spacing: 1px;
     box-shadow: none;
 }
-
+/*
 .copyright {
     border-top: 1px dashed rgba(255, 255, 255, 0.2);
 }
@@ -616,4 +616,4 @@
 
 .copyright a:hover {
     color: var(--bs-primary);
-}
+} */

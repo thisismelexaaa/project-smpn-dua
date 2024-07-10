@@ -1,14 +1,13 @@
 @extends('landingpage.app')
 
 @section('content')
-
     {{-- Hero --}}
     <div class="container-fluid hero-section py-5">
         <div class="container">
             <div class="overlay"></div>
             <div class="bg-hero"></div>
             <div class="row hero justify-content-start">
-                <div class="col-lg-7 text-start">
+                <div class="col-lg-5 text-start">
                     <h1 class="display-1 text-white animated slideInRight mb-3">Wellcome to Website <br>
                         <span class="text-header">SMP Negeri 2 Kota Cirebon</span>
                     </h1>
@@ -17,9 +16,9 @@
                     <a href="#profil" class="btn btn-primary py-3 px-5 animated slideInRight">Tentang
                         Kami</a>
                 </div>
-                {{-- <div class="col-lg-5">
-                    <img src="{{ asset('assets/landingpage/img/smpn-2-logo.jpg') }}" alt="" class="img-fluid w-100">
-                </div> --}}
+                <div class="col-lg-6 d-lg-block d-none">
+                    <img src="{{ asset('assets/landingpage/img/siswa.png') }}" alt="" class="img-fluid w-100 siswa">
+                </div>
             </div>
         </div>
     </div>
@@ -105,6 +104,9 @@
         <div class="container pb-5" id="prestasi">
             <h1 class="mb-3">Prestasi SMP Negeri 2 Kota Cirebon</h1>
             <div class="row g-4">
+                @if (count($prestasi) == 0)
+                    <h5 class="text-center">Tidak ada prestasi</h5>
+                @endif
                 @foreach ($prestasi as $prestasi)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" style="object-fit: cover;">
                         <div class="team-item">
@@ -137,6 +139,9 @@
                     </select>
                 </div> --}}
                 <div class="row g-2">
+                    @if (count($pengumuman) == 0)
+                        <h5 class="text-center">Tidak ada pengumuman</h5>
+                    @endif
                     @foreach ($pengumuman as $pengumuman)
                         <div class="col-lg-4 col-md-6 wow fadeInUp overflow-hidden" style="border-radius: 1%;"
                             data-wow-delay="0.1s" data-category="{{ $pengumuman['category'] }}">
@@ -171,7 +176,7 @@
         </div>
 
         {{-- contact --}}
-        <div class="container" style="height: 100%" id="contact">
+        {{-- <div class="container" style="height: 100%" id="contact">
             <div class="row h-100 shadow g-0">
                 <div class="col-md-6 col-sm-12">
                     <iframe
@@ -189,7 +194,7 @@
                     <p class="text-dark"><i class="fa fa-envelope me-2"></i>smpn2_crbn@yahoo.co.id</p>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection
 
