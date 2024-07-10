@@ -64,37 +64,37 @@ class BeritaController extends Controller
 
                 // Determine destination paths
                 $beritaPath = public_path('assets/panel/admin/images/berita');
-                $galleriesPath = public_path('assets/panel/admin/images/galleries');
+                // $galleriesPath = public_path('assets/panel/admin/images/galleries');
 
                 // Ensure directories exist or create them
                 if (!file_exists($beritaPath)) {
                     mkdir($beritaPath, 0777, true);
                 }
-                if (!file_exists($galleriesPath)) {
-                    mkdir($galleriesPath, 0777, true);
-                }
+                // if (!file_exists($galleriesPath)) {
+                //     mkdir($galleriesPath, 0777, true);
+                // }
 
                 // Move file to berita directory
                 $image->move($beritaPath, $imageName);
                 $data['image'] = $imageName;
 
                 // Optionally copy to galleries directory
-                copy($beritaPath . '/' . $imageName, $galleriesPath . '/' . $imageName);
+                // copy($beritaPath . '/' . $imageName, $galleriesPath . '/' . $imageName);
                 // Or, if you want to move instead of copy, uncomment the line below:
                 // $image->move($galleriesPath, $imageName);
             }
 
-            $dataGalleries = [
-                'kode' => $request->kode,
-                'category' => 'berita',
-                'title' => $request->title,
-                'status' => 1,
-                'image' => $data['image'],
-            ];
+            // $dataGalleries = [
+            //     'kode' => $request->kode,
+            //     'category' => 'berita',
+            //     'title' => $request->title,
+            //     'status' => 1,
+            //     'image' => $data['image'],
+            // ];
 
             Berita::create($data);
 
-            Galleries::create($dataGalleries);
+            // Galleries::create($dataGalleries);
 
             toast()->success('Berita Berhasil Di Posting', 'Success');
             return redirect()->route('berita.index')->with('success', 'Berita Berhasil');
@@ -155,42 +155,42 @@ class BeritaController extends Controller
 
                 // Determine destination paths
                 $beritaPath = public_path('assets/panel/admin/images/berita');
-                $galleriesPath = public_path('assets/panel/admin/images/galleries');
+                // $galleriesPath = public_path('assets/panel/admin/images/galleries');
 
                 // Ensure directories exist or create them
                 if (!file_exists($beritaPath)) {
                     mkdir($beritaPath, 0777, true);
                 }
-                if (!file_exists($galleriesPath)) {
-                    mkdir($galleriesPath, 0777, true);
-                }
+                // if (!file_exists($galleriesPath)) {
+                //     mkdir($galleriesPath, 0777, true);
+                // }
 
                 // Move file to berita directory
                 $image->move($beritaPath, $imageName);
                 $data['image'] = $imageName;
 
                 // Optionally copy to galleries directory
-                copy($beritaPath . '/' . $imageName, $galleriesPath . '/' . $imageName);
+                // copy($beritaPath . '/' . $imageName, $galleriesPath . '/' . $imageName);
                 // Or, if you want to move instead of copy, uncomment the line below:
                 // $image->move($galleriesPath, $imageName);
             }
 
             // Update galleries data if it exists
-            $findGalleries = Galleries::where('kode', $berita->kode_berita)->first();
+            // $findGalleries = Galleries::where('kode', $berita->kode_berita)->first();
 
-            if ($findGalleries) {
-                $dataGalleries = [
-                    'category' => 'berita',
-                    'title' => $request->title,
-                    'status' => 1,
-                ];
+            // if ($findGalleries) {
+            //     $dataGalleries = [
+            //         'category' => 'berita',
+            //         'title' => $request->title,
+            //         'status' => 1,
+            //     ];
 
-                if (isset($data['image'])) {
-                    $dataGalleries['image'] = $data['image'];
-                }
+            //     if (isset($data['image'])) {
+            //         $dataGalleries['image'] = $data['image'];
+            //     }
 
-                $findGalleries->update($dataGalleries);
-            }
+            //     $findGalleries->update($dataGalleries);
+            // }
 
             // dd($data);
 
@@ -213,15 +213,15 @@ class BeritaController extends Controller
             $berita = Berita::find($id);
 
             // Update galleries data if it exists
-            $findGalleries = Galleries::where('kode', $berita->kode_berita)->first();
+            // $findGalleries = Galleries::where('kode', $berita->kode_berita)->first();
 
-            if ($findGalleries) {
-                $dataGalleries = [
-                    'status' => 0,
-                ];
+            // if ($findGalleries) {
+            //     $dataGalleries = [
+            //         'status' => 0,
+            //     ];
 
-                $findGalleries->update($dataGalleries);
-            }
+            //     $findGalleries->update($dataGalleries);
+            // }
 
             $berita->delete();
             toast()->success('Berita Berhasil Dihapus', 'Success');

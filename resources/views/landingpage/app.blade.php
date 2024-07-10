@@ -52,15 +52,15 @@
             <div class="d-block">
                 <div class="d-flex justify-content-end pe-3 pb-1">
                     <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href=""><i
-                            class="fab text-dark fa-instagram"></i></a>
+                            class="fab fa-instagram"></i></a>
                     <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href=""><i
-                            class="fab text-dark fa-facebook-f"></i></a>
+                            class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href=""><i
-                            class="fab text-dark fa-youtube"></i></a>
+                            class="fab fa-youtube"></i></a>
                     <a class="btn btn-sm-square border border-dark ms-2" target="_blank"
-                        href="mailto:smpn2_crbn@yahoo.co.id"><i class="fa text-dark fa-envelope"></i></a>
+                        href="mailto:smpn2_crbn@yahoo.co.id"><i class="fa fa-envelope"></i></a>
                     <a class="btn btn-sm-square border border-dark ms-2" target="_blank"
-                        href="https://wa.me/0231203075"><i class="fab text-dark fa-whatsapp"></i></a>
+                        href="https://wa.me/0231203075"><i class="fab fa-whatsapp"></i></a>
 
                 </div>
                 <div class="d-flex">
@@ -98,7 +98,7 @@
     @yield('content')
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white wow fadeIn" id="contact" data-wow-delay="0.1s">
+    <div class="container-fluid bg-dark footer text-white wow fadeIn" id="contact" data-wow-delay="0.1s">
         <div class="container">
             <div class="row g-5 py-5">
                 <div class="col-lg-6 pe-5">

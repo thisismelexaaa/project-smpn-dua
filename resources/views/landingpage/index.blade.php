@@ -7,7 +7,7 @@
             <div class="overlay"></div>
             <div class="bg-hero"></div>
             <div class="row hero justify-content-start">
-                <div class="col-lg-5 text-start">
+                <div class="col-lg-6 text-start">
                     <h1 class="display-1 text-white animated slideInRight mb-3">Wellcome to Website <br>
                         <span class="text-header">SMP Negeri 2 Kota Cirebon</span>
                     </h1>
@@ -17,7 +17,8 @@
                         Kami</a>
                 </div>
                 <div class="col-lg-6 d-lg-block d-none">
-                    <img src="{{ asset('assets/landingpage/img/siswa.png') }}" alt="" class="img-fluid w-100 siswa">
+                    <img src="{{ asset('assets/landingpage/img/siswa.png') }}" alt=""
+                        class="img-fluid siswa mx-auto">
                 </div>
             </div>
         </div>
@@ -26,8 +27,9 @@
     {{-- rapor pendidikan --}}
     <div class="container-fluid container-rapor py-5">
         <div class="container">
-            <h1 class="mb-3">Rapor pendidikan SMP Negeri 2 Kota Cirebon</h1>
-            <div class="d-flex flex-wrap justify-content-center g-0 feature-row bg-white" id="rapor">
+            <h1 class="mb-3 fadeIn" data-wow-delay="0.3s">Rapor pendidikan SMP Negeri 2 Kota Cirebon</h1>
+            <div class="d-flex flex-wrap justify-content-center g-0 feature-row bg-white fadeIn" id="rapor"
+                data-wow-delay="0.3s">
             </div>
         </div>
     </div>
@@ -55,7 +57,7 @@
                 </div>
             </div>
 
-            <div class="row g-4 pb-5" id="personil">
+            <div class="row g-4 pb-5 fadeIn" data-wow-delay="0.5s" id="personil">
                 <h1 class="display-6 text-dark fw-bold mb-2">Personil</h1>
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
@@ -103,7 +105,7 @@
         {{-- prestasi --}}
         <div class="container pb-5" id="prestasi">
             <h1 class="mb-3">Prestasi SMP Negeri 2 Kota Cirebon</h1>
-            <div class="row g-4">
+            <div class="row g-4 fadeIn" data-wow-delay="0.2s">
                 @if (count($prestasi) == 0)
                     <h5 class="text-center">Tidak ada prestasi</h5>
                 @endif
@@ -143,8 +145,9 @@
                         <h5 class="text-center">Tidak ada pengumuman</h5>
                     @endif
                     @foreach ($pengumuman as $pengumuman)
-                        <div class="col-lg-4 col-md-6 wow fadeInUp overflow-hidden" style="border-radius: 1%;"
-                            data-wow-delay="0.1s" data-category="{{ $pengumuman['category'] }}">
+                        <div class="col-lg-4 col-md-6 wow fadeInUp overflow-hidden fadeIn"
+                            data-wow-delay="0.2s"style="border-radius: 1%;" data-wow-delay="0.1s"
+                            data-category="{{ $pengumuman['category'] }}">
                             <div class="service-item">
                                 <div class="mb-4">
                                     <img src="{{ asset('assets/panel/admin/images/berita/' . $pengumuman['image']) }}"
@@ -195,6 +198,68 @@
                 </div>
             </div>
         </div> --}}
+    </div>
+
+    <div class="container-fluid py-5 bg-white">
+        <div class="container">
+            <h1 class="display-6 text-dark mb-4">Kritik dan Saran</h1>
+            <form action="">
+                <div class="row">
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="basic-addon1">Nama Lengkap</span>
+                        <input type="text" class="form-control" placeholder="Username"
+                            aria-label="Masukkan Nama Lengkap" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="basic-addon1">Email</span>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Masukkan Email"
+                            aria-describedby="basic-addon1"></input>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text">Kritik dan saran</span>
+                    <textarea class="form-control" aria-label="With textarea" placeholder="Masukkan Kritik dan saran"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+            </form>
+        </div>
+    </div>
+    <div class="container-fluid py-5">
+
+        <div class="container pt-5">
+            <div class="row gy-5 gx-0">
+                <div class="col-lg-6 pe-lg-5 wow fadeIn" data-wow-delay="0.3s">
+                    <h1 class="display-6 text-white mb-4">Apa yang di katakan siswa tentang kami?</h1>
+                    <p class="text-white mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                        augue, iaculis id elit eget, ultrices pulvinar tortor.</p>
+                    {{-- <a href="" class="btn btn-primary py-3 px-5">More Testimonials</a> --}}
+                </div>
+                <div class="col-lg-6 mb-n5 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="bg-white p-5">
+                        <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay="0.1s">
+                            @for ($index = 0; $index < 3; $index++)
+                                <div class="testimonial-item">
+                                    <div class="icon-box-primary mb-4">
+                                        <i class="bi bi-person-circle"></i>
+                                    </div>
+                                    <p class="fs-5 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+                                        tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem
+                                        porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.
+                                    </p>
+                                    <div class="d-flex align-items-center">
+                                        {{-- <img class="flex-shrink-0" src="img/testimonial-1.jpg" alt=""> --}}
+                                        <div class="">
+                                            <h5 class="mb-1">Client Name {{ $index }}</h5>
+                                            <span class="text-primary">Siswa SMP Negeri 2 Kota Cirebon</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endfor
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 

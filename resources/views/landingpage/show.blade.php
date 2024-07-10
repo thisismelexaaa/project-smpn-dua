@@ -14,7 +14,7 @@
                         <span>{{ $berita->category }}</span>
                     </div>
                     <img src="{{ asset('assets/panel/admin/images/berita/' . $berita->image) }}"
-                        alt="Image of {{ $berita->title }}" class="image-fluid w-100 col-md-12 col-sm-12 mb-3">
+                        alt="Image of {{ $berita->title }}" class="image-fluid col-md-12 col-sm-12 mb-3" style="width: 75%; height: auto">
                     {!! $berita->content !!}
                 </div>
                 <div class="col-md-4">

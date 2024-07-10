@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid bg-white py-5" id="berita" style="height: 100%">
-        <div class="container">
+        <div class="container pb-5">
             <div class="d-flex justify-content-between wow fadeInUp" data-wow-delay="0.1s">
                 <h1 class="display-6 mb-3">Informasi</h1>
                 <select name="category" id="selectCategory" class="form-select w-25 h-25">
