@@ -352,15 +352,6 @@
                 console.error('Error during ClassicEditor #editor2 initialization:', error);
             }
 
-            try {
-                // Initialize DataTable for #dataTable
-                $('#dataTable').DataTable({
-                    responsive: true
-                });
-            } catch (error) {
-                console.error('Error initializing DataTable:', error);
-            }
-
             // Initially hide the sambutanKepalasekolah section
             $('#sambutanKepalasekolah').hide();
 

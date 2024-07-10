@@ -178,6 +178,7 @@
     <script src="{{ asset('assets/landingpage/js/main.js') }}"></script>
 
     @yield('scripts')
+    @include('sweetalert::alert')
 
     <script>
         $('.owl-carousel').owlCarousel({

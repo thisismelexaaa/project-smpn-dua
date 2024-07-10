@@ -38,15 +38,13 @@
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <ul class="navbar-nav bg-gradient sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                    <div class="sidebar-brand-icon rotate-n-15">
-                        <i class="fas fa-laugh-wink"></i>
-                    </div>
-                    <div class="sidebar-brand-text mx-3 text-left">SMP Negeri 2 <br>
-                        Cirebon</div>
+                    <img src="{{ asset('assets/landingpage/img/smpn-2-logo.jpg') }}" class="w-25 m-0 p-0 sidebar-brand-icon img-fluid" alt="Logo SMP Negeri 2" style="border-radius: 100%">
+                    <small class="mx-3 text-left fw-bolder">SMP Negeri 2 <br>
+                        Cirebon</small>
                 </a>
 
                 <!-- Divider -->
@@ -78,13 +76,18 @@
                         <i class="bi bi-newspaper"></i>
                         <span>Berita</span></a>
                 </li>
+                <li class="nav-item {{ request()->routeIs('masukan.*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('masukan.index') }}">
+                        <i class="bi bi-chat-dots-fill"></i>
+                        <span>Masukan</span></a>
+                </li>
                 <li class="nav-item {{ request()->routeIs('galleries.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('galleries.index') }}">
                         <i class="bi bi-card-image"></i>
                         <span>Gallery</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/">
+                <li class="nav-item {{ request()->routeIs('setting.*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('setting.index') }}">
                         <i class="bi bi-gear-fill"></i>
                         <span>Settings</span></a>
                 </li>
@@ -114,6 +117,10 @@
                                     Berita
                                 @elseif(request()->routeIs('gallery.*'))
                                     Gallery
+                                @elseif(request()->routeIs('setting.*'))
+                                    Setting
+                                @elseif(request()->routeIs('masukan.*'))
+                                    Masukan
                                 @endif
                             </h1>
                         </div>
@@ -213,6 +220,14 @@
 
     @yield('scripts')
     @include('sweetalert::alert')
+
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable({
+                responsive: true
+            });
+        });
+    </script>
 </body>
 
 </html>

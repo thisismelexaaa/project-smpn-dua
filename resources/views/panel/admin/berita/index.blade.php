@@ -73,13 +73,3 @@
         </div>
     </div>
 @endsection
-
-@section('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable({
-                responsive: true
-            });
-        });
-    </script>
-@endsection

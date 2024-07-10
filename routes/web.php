@@ -4,8 +4,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GalleriesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\kritikDanSaranController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PersonilController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +15,7 @@ Route::get('/', [LandingPageController::class, 'index'])->name('home');
 Route::get('/galleries', [LandingPageController::class, 'galleries'])->name('galleries');
 Route::get('/informasi', [LandingPageController::class, 'informasi'])->name('informasi');
 Route::get('/profile', [LandingPageController::class, 'profile'])->name('profile');
+Route::post('/kritik-dan-saran', [LandingPageController::class, 'kritikDanSaran'])->name('kritikDanSaran.store');
 Route::resource('/home', LandingPageController::class);
 
 Auth::routes();
@@ -28,4 +31,6 @@ Route::prefix('/panel/admin/')->group(function () {
     Route::resource('/personil', PersonilController::class);
     Route::resource('/berita', BeritaController::class);
     Route::resource('/galleries', GalleriesController::class);
+    Route::resource('/masukan', kritikDanSaranController::class);
+    Route::resource('/setting', SettingController::class);
 });

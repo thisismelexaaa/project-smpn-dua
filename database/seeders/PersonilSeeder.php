@@ -17,7 +17,6 @@ class PersonilSeeder extends Seeder
     {
         $faker = Faker::create();
         Personil::create([
-            'kode_personil' => Str::random(10),
             'name' => 'Kepala Sekolah',
             'email' => 'kepalasekolah@gmail.com',
             'phone' => $faker->phoneNumber(),
@@ -30,7 +29,6 @@ class PersonilSeeder extends Seeder
             $name = $faker->name;
 
             Personil::create([
-                'kode_personil' => Str::random(10),
                 'name' => $name,
                 'email' => $name . '@gmail.com',
                 'phone' => $faker->phoneNumber,
