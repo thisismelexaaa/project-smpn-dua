@@ -12,6 +12,7 @@
                                 <th>Pengirim</th>
                                 <th>Email</th>
                                 <th>Pesan</th>
+                                <th>Rating</th>
                                 <th>Tanggal</th>
                                 <th>Aksi</th>
                             </tr>
@@ -21,9 +22,14 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $masukan['name'] }}</td>
-                                    <td>{{ $masukan['email'] }}</td>
-                                    <td class="w-50">{{ $masukan['message'] }}</td>
-                                    <td>{{ $masukan['created_at']->format('d-m-Y') }}</td>
+                                    <td style="width: 10%">{{ $masukan['email'] }}</td>
+                                    <td style="width: 40%">{{ $masukan['message'] }}</td>
+                                    <td>
+                                        @for ($i = 0; $i < $masukan['rating']; $i++)
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                        @endfor
+                                    </td>
+                                    <td>{{ $masukan['created_at']->translatedFormat('l, j F Y') }}</td>
                                     <td>
                                         <form action="{{ route('masukan.destroy', $masukan['id']) }}" method="post">
                                             @csrf

@@ -52,8 +52,11 @@ class LandingPageController extends Controller
             $data = [
                 'name' => $request->name,
                 'email' => $request->email . $request->gmail,
-                'message' => $request->message
+                'message' => $request->message,
+                'rating' => $request->rating
             ];
+
+            // dd($data);
 
             kritikDanSaran::create($data);
 

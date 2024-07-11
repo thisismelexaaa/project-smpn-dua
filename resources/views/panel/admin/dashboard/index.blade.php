@@ -15,7 +15,8 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $beritaCount }}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                <i class="bi fa-2x bi-newspaper text-gray-300"></i>
+                                {{-- <i class="fas fa-calendar fa-2x text-gray-300"></i> --}}
                             </div>
                         </div>
                     </div>
@@ -33,7 +34,8 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $gallerieCount }}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                <i class="bi bi-card-image fa-2x text-gray-300"></i>
+                                {{-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> --}}
                             </div>
                         </div>
                     </div>
@@ -54,7 +56,8 @@
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-user fa-2x text-gray-300"></i>
+                                <i class="bi bi-people-fill fa-2x text-gray-300"></i>
+                                {{-- <i class="fas fa-user fa-2x text-gray-300"></i> --}}
                             </div>
                         </div>
                     </div>

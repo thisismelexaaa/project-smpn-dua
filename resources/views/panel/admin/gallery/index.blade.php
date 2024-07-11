@@ -6,10 +6,8 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Tambah Gambar</button>
-                    <select class="form-select col-2" name="" id="">
+                    <select name="category" id="selectCategory" class="form-select col-2">
                         <option value="all">Semua Kategori</option>
-                        <option value="personil">Personil</option>
-                        <option value="berita">Berita</option>
                         <option value="prestasi">Prestasi</option>
                         <option value="pengumuman">Pengumuman</option>
                     </select>
@@ -24,7 +22,7 @@
             @endif
             <div class="row">
                 @foreach ($galleries as $j => $gallerie)
-                    <div class="col-md-3 rounded overflow-hidden">
+                    <div class="col-md-3 rounded overflow-hidden gallerie" data-category="{{ $gallerie['category'] }}">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $j }}">
                             <img src="{{ asset('assets/panel/admin/images/galleries/' . $gallerie['image']) }}"
                                 alt="Image" class="shadow-sm image-fluid w-100"
@@ -131,13 +129,27 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function() {
-            $('#formFile').change(function() {
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    $('#preview').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
+        $(document).ready(() => {
+            // Filter cards based on the selected category
+            function filterCards(category) {
+                $('.gallerie').each(function() {
+                    let cardCategory = $(this).data('category');
+                    if (category === 'all' || category === cardCategory) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+
+            // Initial filter based on default selected value
+            let category = $('#selectCategory').val();
+            filterCards(category);
+
+            // Filter cards when the category changes
+            $('#selectCategory').on('change', function() {
+                category = $(this).val();
+                filterCards(category);
             });
         });
     </script>

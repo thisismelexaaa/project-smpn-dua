@@ -207,28 +207,43 @@
             <div class="container">
                 <h1 class="display-6 text-dark mb-4">Kritik dan Saran</h1>
                 <div class="row">
-                    <div class="input-group mb-3 col-md-6">
-                        <label class="input-group-text" id="basic-addon1">Nama Lengkap</label>
-                        <input type="text" class="form-control" name="name" placeholder="Nama Lengkap"
-                            aria-label="Masukkan Nama Lengkap" aria-describedby="basic-addon1">
-                        <input type="hidden" value="@gmail.com" name="gmail">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" id="basic-addon1">Nama Lengkap</label>
+                            <input type="text" class="form-control" name="name" placeholder="Nama Lengkap"
+                                aria-label="Masukkan Nama Lengkap" aria-describedby="basic-addon1">
+                            <input type="hidden" value="@gmail.com" name="gmail">
+                        </div>
                     </div>
-                    <div class="input-group mb-3 col-md-6">
-                        <span class="input-group-text" id="basic-addon1">Email</span>
-                        <input type="text" class="form-control" name="email" placeholder="Email"
-                            aria-label="Masukkan Email" aria-describedby="basic-addon1"></input>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Email</span>
+                            <input type="text" class="form-control" name="email" placeholder="Email"
+                                aria-label="Masukkan Email" aria-describedby="basic-addon1"></input>
+                        </div>
                     </div>
                 </div>
-                <div class="input-group">
+                <div class="input-group mb-3">
                     <span class="input-group-text">Kritik dan saran</span>
                     <textarea class="form-control" name="message" aria-label="With textarea"
                         placeholder="Masukkan Kritik dan saran maksimal 250 kata" maxlength="250"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Kirim</button>
-            </div>
-
-            <div class="container">
-                <h1>Nilai Kami</h1>
+                <div class="text-center">
+                    <h3>Berikan kami bintang</h3>
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        @for ($i = 1; $i <= 5; $i++)
+                            <input type="radio" class="btn-check" name="rating" id="btnradio{{ $i }}"
+                                autocomplete="off" onclick="fillStar({{ $i }})" value="{{ $i }}">
+                            <label class="mx-2 h1" for="btnradio{{ $i }}">
+                                <i class="bi bi-star text-warning" style="cursor: pointer"
+                                    id="star{{ $i }}"></i>
+                            </label>
+                        @endfor
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary mt-3 w-25">Kirim</button>
+                </div>
             </div>
         </form>
     </div>
@@ -333,6 +348,17 @@
                 // Append the generated HTML to #rapor container
                 $('#rapor').append(raporHTML);
             });
+
+            // Function to fill stars
+            fillStar = (star) => {
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= star) {
+                        $('#star' + i).removeClass('bi-star').addClass('bi-star-fill');
+                    } else {
+                        $('#star' + i).removeClass('bi-star-fill').addClass('bi-star');
+                    }
+                }
+            }
         });
     </script>
 @endsection
