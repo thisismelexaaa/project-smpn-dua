@@ -94,13 +94,11 @@ class PersonilController extends Controller
 
             // Combine email and gmail fields
             $email = $request->email;
-            $kode = 'staff_' . rand(10000, 99999);
             $data = [
                 'name' => $name,
                 'jabatan' => $request->jabatan,
                 'email' => $email,
                 'phone' => $request->phone,
-                'kode_personil' => $kode,
                 'sambutan' => $request->sambutan
             ];
 
@@ -178,14 +176,12 @@ class PersonilController extends Controller
 
             // Combine email and gmail fields
             $email = $request->email;
-            $kode = 'staff_' . rand(10000, 99999);
 
             $data = [
                 'name' => $name,
                 'jabatan' => $request->jabatan,
                 'email' => $email,
                 'phone' => $request->phone,
-                'kode_personil' => $kode,
                 'sambutan' => $request->sambutan
             ];
 
@@ -222,7 +218,7 @@ class PersonilController extends Controller
         } catch (\Exception $e) {
             // Log and display error message
             Log::error('Error while updating personil: ' . $e->getMessage());
-            toast('Terjadi kesalahan saat memperbarui data. Silakan coba lagi.', 'error');
+            toast('Terjadi kesalahan saat memperbarui data. Silakan coba lagi.'. $e->getMessage() , 'error');
             return redirect()->back();
         }
     }
