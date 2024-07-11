@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
+                    {{-- <div class="col-6">
                         <h5>Setting Aplikasi</h5>
                         <hr>
                         <form action="" method="POST" enctype="multipart/form-data">
@@ -21,8 +21,8 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
-                    <div class="col-6 border-left">
+                    </div> --}}
+                    <div class="col-12">
                         <h5>Setting Akun Admin</h5>
                         <hr>
                         <form action="" method="POST">
