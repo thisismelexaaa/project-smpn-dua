@@ -17,32 +17,39 @@ class ekskulController extends Controller
     public function store(Request $request)
     {
         try {
-            $data = $request;
+            $file = $request->file('file');
+            $fileExtension = $file->getClientOriginalExtension();
 
             $data = [
-                'title' => $data->title,
+                'title' => $request->title,
                 'status' => 1,
             ];
 
-            if ($request->hasFile('image')) {
-                // Hapus gambar lama jika ada
-                if ($request->image && file_exists(public_path('assets/panel/admin/images/ekskul/' . $request->image))) {
-                    unlink(public_path('assets/panel/admin/images/ekskul/' . $request->image));
+            if ($file) {
+                // Handle image files
+                if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'svg'])) {
+                    // Delete old image if it exists
+                    if ($request->image && file_exists(public_path('assets/panel/admin/images/ekskul/' . $request->image))) {
+                        unlink(public_path('assets/panel/admin/images/ekskul/' . $request->image));
+                    }
+
+                    $fileName = time() . '.' . $fileExtension;
+                    $file->move(public_path('assets/panel/admin/images/ekskul'), $fileName);
+                    $data['image'] = $fileName;
                 }
+                // Handle video files
+                else if ($fileExtension == 'mp4') {
+                    // Delete old video if it exists
+                    if ($request->video && file_exists(public_path('assets/panel/admin/video/ekskul/' . $request->video))) {
+                        unlink(public_path('assets/panel/admin/video/ekskul/' . $request->video));
+                    }
 
-                $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->file('image')->move(public_path('assets/panel/admin/images/ekskul'), $imageName);
-                $data['image'] = $imageName;
-            }
-
-            if ($request->hasFile('video')) {
-                if ($request->video && file_exists(public_path('assets/panel/admin/video/ekskul/' . $request->video))) {
-                    unlink(public_path('assets/panel/admin/video/ekskul/' . $request->video));
-                }   
-
-                $videoName = time() . '.' . $request->file('video')->getClientOriginalExtension();
-                $request->file('video')->move(public_path('assets/panel/admin/video/ekskul'), $videoName);
-                $data['video'] = $videoName;
+                    $fileName = time() . '.' . $fileExtension;
+                    $file->move(public_path('assets/panel/admin/video/ekskul'), $fileName);
+                    $data['video'] = $fileName;
+                } else {
+                    throw new \Exception("Unsupported file type: $fileExtension");
+                }
             }
 
             Ekskul::create($data);

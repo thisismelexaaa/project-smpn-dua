@@ -16,6 +16,7 @@ Route::get('/', [LandingPageController::class, 'index'])->name('home');
 Route::get('/galleries', [LandingPageController::class, 'galleries'])->name('galleries');
 Route::get('/informasi', [LandingPageController::class, 'informasi'])->name('informasi');
 Route::get('/profile', [LandingPageController::class, 'profile'])->name('profile');
+Route::get('/ekskul', [LandingPageController::class, 'ekskul'])->name('ekskul');
 Route::post('/kritik-dan-saran', [LandingPageController::class, 'kritikDanSaran'])->name('kritikDanSaran.store');
 Route::resource('/home', LandingPageController::class);
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\Ekskul;
 use App\Models\Galleries;
 use App\Models\kritikDanSaran;
 use App\Models\Personil;
@@ -67,5 +68,11 @@ class LandingPageController extends Controller
             toast()->error('Gagal Mengirim Pesan', 'Error');
             return redirect()->back()->with('error', 'Terjadi kesalahan. Silahkan coba lagi.');
         };
+    }
+
+    public function ekskul()
+    {
+        $ekskuls = Ekskul::all();
+        return view('landingpage.ekskul', compact('ekskuls'));
     }
 }

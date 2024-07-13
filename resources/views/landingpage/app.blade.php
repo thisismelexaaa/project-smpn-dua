@@ -117,25 +117,31 @@
                 </div>
                 <div class="col-lg-6 ps-lg-5">
                     <div class="row g-5">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <h4 class="text-white mb-4">Navigasi Cepat</h4>
-                            <x-navItem class="text-light"></x-navItem>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="/" class="nav-item nav-link active text-white">Beranda</a>
+                                    <a href="/profile" class="nav-item nav-link text-white">Profil</a>
+                                    <a href="#personil" class="nav-item nav-link text-white">Personil</a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a href="/informasi" class="nav-item nav-link text-white">Informasi</a>
+                                    <a href="/galleries" class="nav-item nav-link text-white">Gallery</a>
+                                    <a href="#contact" class="nav-item nav-link text-white">Contact</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-6 d-none">
-                            <h4 class="text-light mb-4">Quick Links</h4>
-                            <a class="btn btn-link" href="">About Us</a>
-                            <a class="btn btn-link" href="">Contact Us</a>
-                            <a class="btn btn-link" href="">Our Services</a>
-                            <a class="btn btn-link" href="">Terms & Condition</a>
-                            <a class="btn btn-link" href="">Support</a>
+                            <h4 class="text-light mb-4 ">Quick Links</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-12">
                     <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.502361355244!2d108.55587667587346!3d-6.708375865589129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ee3cd2c05eccd%3A0x55ee252d2b9484d4!2sSMP%20Negeri%202%20Kota%20Cirebon!5e0!3m2!1sid!2sid!4v1720074334568!5m2!1sid!2sid"
-                    width="100%" height="300px" style="border:0;" allowfullscreen="true" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.502361355244!2d108.55587667587346!3d-6.708375865589129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ee3cd2c05eccd%3A0x55ee252d2b9484d4!2sSMP%20Negeri%202%20Kota%20Cirebon!5e0!3m2!1sid!2sid!4v1720074334568!5m2!1sid!2sid"
+                        width="100%" height="300px" style="border:0;" allowfullscreen="true" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

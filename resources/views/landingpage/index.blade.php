@@ -178,74 +178,53 @@
             </div>
         </div>
 
-        {{-- contact --}}
-        {{-- <div class="container" style="height: 100%" id="contact">
-            <div class="row h-100 shadow g-0">
-                <div class="col-md-6 col-sm-12">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.502361355244!2d108.55587667587346!3d-6.708375865589129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ee3cd2c05eccd%3A0x55ee252d2b9484d4!2sSMP%20Negeri%202%20Kota%20Cirebon!5e0!3m2!1sid!2sid!4v1720074334568!5m2!1sid!2sid"
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-                <div class="col-md-6 col-sm-12 h-100 bg-white p-4">
-                    <h1 class="text-dark bg-white w-100">
-                        Ayo Hubungi Kami</h1>
-                    <p class="fs-5 mb-4 text-dark">Mari berinteraksi dengan kami via kontak berikut ini</p>
-                    <p class="text-dark"><i class="fa fa-map-marker-alt me-2"></i>Jl. Siliwangi No.82, Kebonbaru, Kec.
-                        Kejaksan, Kota Cirebon, Jawa Barat 45121</p>
-                    <p class="text-dark"><i class="fa fa-phone-alt me-2"></i>(0231) 203075</p>
-                    <p class="text-dark"><i class="fa fa-envelope me-2"></i>smpn2_crbn@yahoo.co.id</p>
-                </div>
-            </div>
-        </div> --}}
-    </div>
-
-    <div class="container-fluid py-5 bg-white">
-        <form action="{{ route('kritikDanSaran.store') }}" method="POST">
-            @csrf
-            @method('POST')
-            <div class="container">
-                <h1 class="display-6 text-dark mb-4">Kritik dan Saran</h1>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" id="basic-addon1">Nama Lengkap</label>
-                            <input type="text" class="form-control" name="name" placeholder="Nama Lengkap"
-                                aria-label="Masukkan Nama Lengkap" aria-describedby="basic-addon1">
-                            <input type="hidden" value="@gmail.com" name="gmail">
+        <div class="container-fluid py-5 ">
+            <form action="{{ route('kritikDanSaran.store') }}" method="POST">
+                @csrf
+                @method('POST')
+                <div class="container">
+                    <h1 class="display-6 text-dark mb-4">Kritik dan Saran</h1>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" id="basic-addon1">Nama Lengkap</label>
+                                <input type="text" class="form-control" name="name" placeholder="Nama Lengkap"
+                                    aria-label="Masukkan Nama Lengkap" aria-describedby="basic-addon1">
+                                <input type="hidden" value="@gmail.com" name="gmail">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Email</span>
+                                <input type="text" class="form-control" name="email" placeholder="Email"
+                                    aria-label="Masukkan Email" aria-describedby="basic-addon1"></input>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Email</span>
-                            <input type="text" class="form-control" name="email" placeholder="Email"
-                                aria-label="Masukkan Email" aria-describedby="basic-addon1"></input>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Kritik dan saran</span>
+                        <textarea class="form-control" name="message" aria-label="With textarea"
+                            placeholder="Masukkan Kritik dan saran maksimal 250 kata" maxlength="250"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <h3>Berikan kami bintang</h3>
+                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <input type="radio" class="btn-check" name="rating" id="btnradio{{ $i }}"
+                                    autocomplete="off" onclick="fillStar({{ $i }})" value="{{ $i }}">
+                                <label class="mx-2 h1" for="btnradio{{ $i }}">
+                                    <i class="bi bi-star text-warning" style="cursor: pointer"
+                                        id="star{{ $i }}"></i>
+                                </label>
+                            @endfor
                         </div>
                     </div>
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Kritik dan saran</span>
-                    <textarea class="form-control" name="message" aria-label="With textarea"
-                        placeholder="Masukkan Kritik dan saran maksimal 250 kata" maxlength="250"></textarea>
-                </div>
-                <div class="text-center">
-                    <h3>Berikan kami bintang</h3>
-                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                        @for ($i = 1; $i <= 5; $i++)
-                            <input type="radio" class="btn-check" name="rating" id="btnradio{{ $i }}"
-                                autocomplete="off" onclick="fillStar({{ $i }})" value="{{ $i }}">
-                            <label class="mx-2 h1" for="btnradio{{ $i }}">
-                                <i class="bi bi-star text-warning" style="cursor: pointer"
-                                    id="star{{ $i }}"></i>
-                            </label>
-                        @endfor
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary mt-3 w-25">Kirim</button>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary mt-3 w-25">Kirim</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <div class="container-fluid py-5">

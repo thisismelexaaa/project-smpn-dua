@@ -15,11 +15,18 @@
             @endif
             <div class="row">
                 @foreach ($ekskuls as $j => $ekskul)
-                    <div class="col-md-3 rounded overflow-hidden gallerie" data-category="{{ $ekskul['category'] }}">
+                    <div class="col-md-3 rounded overflow-hidden gallerie">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $j }}">
-                            <img src="{{ asset('assets/panel/admin/images/ekskul/' . $ekskul['image']) }}" alt="Image"
-                                class="shadow-sm image-fluid w-100"
-                                style="{{ $ekskul['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
+                            @if (in_array(pathinfo($ekskul['image'], PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'svg']))
+                                <img src="{{ asset('assets/panel/admin/images/ekskul/' . $ekskul['image']) }}"
+                                    alt="Image" class="shadow-sm image-fluid w-100"
+                                    style="{{ $ekskul['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
+                            @elseif (pathinfo($ekskul['video'], PATHINFO_EXTENSION) == 'mp4')
+                                <video src="{{ asset('assets/panel/admin/video/ekskul/' . $ekskul['video']) }}"
+                                    class="shadow-sm image-fluid w-100"
+                                    style="{{ $ekskul['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
+                                </video>
+                            @endif
                         </a>
                         <div class="my-2">
                             <p class="text-capitalize fw-bold mt-3 text-justify" style="text-wrap: wrap">
@@ -34,11 +41,23 @@
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                        {{-- <h5 class="modal-title">Modal title</h5> --}}
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
                                     <div class="modal-body">
-                                        {{-- destruct --}}
-
-                                        <img src="{{ asset('assets/panel/admin/images/ekskul/' . $ekskul['image']) }}"
-                                            alt="Image" class="w-100 rounded-lg">
+                                        @if (in_array(pathinfo($ekskul['image'], PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'svg']))
+                                            <img src="{{ asset('assets/panel/admin/images/ekskul/' . $ekskul['image']) }}"
+                                                alt="Image" class="shadow-sm image-fluid w-100"
+                                                style="{{ $ekskul['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
+                                        @elseif (pathinfo($ekskul['video'], PATHINFO_EXTENSION) == 'mp4')
+                                            <video src="{{ asset('assets/panel/admin/video/ekskul/' . $ekskul['video']) }}"
+                                                class="shadow-sm image-fluid w-100"
+                                                style="{{ $ekskul['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;"
+                                                {{ $ekskul['status'] == 0 ? '' : 'controls' }}>
+                                            </video>
+                                        @endif
                                     </div>
                                     <div class="modal-footer">
                                         <form action="{{ route('ekskul.update', $ekskul['id']) }}" method="POST">
@@ -84,8 +103,9 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center" id="preview-container">
-                            <img class="img-fluid rounded" id="preview" src="https://via.placeholder.com/200"
+                            <img class="img-fluid rounded" id="preview-image" src="https://via.placeholder.com/200"
                                 alt="">
+                            <video class="img-fluid rounded" id="preview-video" style="display: none;" controls></video>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -101,16 +121,33 @@
 
 @section('scripts')
     <script>
-        const previewImage = document.querySelector('#formFile');
-        const preview = document.querySelector('#preview');
+        const previewFileInput = document.querySelector('#formFile');
+        const previewImage = document.querySelector('#preview-image');
+        const previewVideo = document.querySelector('#preview-video');
 
-        previewImage.addEventListener('change', function() {
+        previewFileInput.addEventListener('change', function() {
+            const file = previewFileInput.files[0];
+            const fileType = file.type;
+
             const oFReader = new FileReader();
-            oFReader.readAsDataURL(previewImage.files[0]);
+            oFReader.readAsDataURL(file);
 
             oFReader.onload = function(oFREvent) {
-                preview.src = oFREvent.target.result;
-            }
-        })
+                if (fileType.startsWith('image/')) {
+                    previewImage.style.display = 'block';
+                    previewVideo.style.display = 'none';
+                    previewImage.src = oFREvent.target.result;
+                } else if (fileType.startsWith('video/')) {
+                    previewImage.style.display = 'none';
+                    previewVideo.style.display = 'block';
+                    previewVideo.src = oFREvent.target.result;
+                } else {
+                    previewImage.style.display = 'block';
+                    previewVideo.style.display = 'none';
+                    previewImage.src = 'https://via.placeholder.com/200';
+                    alert('Unsupported file type. Please select an image or video.');
+                }
+            };
+        });
     </script>
 @endsection
