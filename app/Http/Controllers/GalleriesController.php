@@ -37,23 +37,40 @@ class GalleriesController extends Controller
     public function store(Request $request)
     {
         try {
-            $data = $request;
+            // Destructuring file format
+            $file = $request->file('file');
+            $fileExtension = $file->getClientOriginalExtension();
 
             $data = [
-                'title' => $data->title,
+                'title' => $request->title,
                 'status' => 1,
-                'category' => $data->category
             ];
 
-            if ($request->hasFile('image')) {
-                // Hapus gambar lama jika ada
-                if ($request->image && file_exists(public_path('assets/panel/admin/images/galleries/' . $request->image))) {
-                    unlink(public_path('assets/panel/admin/images/galleries/' . $request->image));
-                }
+            if ($file) {
+                // Handle image files
+                if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'svg'])) {
+                    // Delete old image if it exists
+                    if ($request->image && file_exists(public_path('assets/panel/admin/images/galleries/' . $request->image))) {
+                        unlink(public_path('assets/panel/admin/images/galleries/' . $request->image));
+                    }
 
-                $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->file('image')->move(public_path('assets/panel/admin/images/galleries'), $imageName);
-                $data['image'] = $imageName;
+                    $fileName = time() . '.' . $fileExtension;
+                    $file->move(public_path('assets/panel/admin/images/galleries'), $fileName);
+                    $data['image'] = $fileName;
+                }
+                // Handle video files
+                else if ($fileExtension == 'mp4') {
+                    // Delete old video if it exists
+                    if ($request->video && file_exists(public_path('assets/panel/admin/video/galleries/' . $request->video))) {
+                        unlink(public_path('assets/panel/admin/video/galleries/' . $request->video));
+                    }
+
+                    $fileName = time() . '.' . $fileExtension;
+                    $file->move(public_path('assets/panel/admin/video/galleries'), $fileName);
+                    $data['video'] = $fileName;
+                } else {
+                    throw new \Exception("Unsupported file type: $fileExtension");
+                }
             }
 
             Galleries::create($data);

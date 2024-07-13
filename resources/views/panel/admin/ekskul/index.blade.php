@@ -1,0 +1,116 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container-fluid mb-4">
+        <div class="card">
+            <div class="card-body">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Tambah
+                    Ekstrakurikuler</button>
+            </div>
+        </div>
+
+        <div class="card mt-2 p-3">
+            @if ($ekskuls->isEmpty())
+                <h4>Tidak ada Ekstrakurikuler</h4>
+            @endif
+            <div class="row">
+                @foreach ($ekskuls as $j => $ekskul)
+                    <div class="col-md-3 rounded overflow-hidden gallerie" data-category="{{ $ekskul['category'] }}">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $j }}">
+                            <img src="{{ asset('assets/panel/admin/images/ekskul/' . $ekskul['image']) }}" alt="Image"
+                                class="shadow-sm image-fluid w-100"
+                                style="{{ $ekskul['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
+                        </a>
+                        <div class="my-2">
+                            <p class="text-capitalize fw-bold mt-3 text-justify" style="text-wrap: wrap">
+                                <a href="#" class="text-decoration-none text-dark" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal{{ $j }}">
+                                    {{ $ekskul['title'] }}
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="modal fade" id="exampleModal{{ $j }}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        {{-- destruct --}}
+
+                                        <img src="{{ asset('assets/panel/admin/images/ekskul/' . $ekskul['image']) }}"
+                                            alt="Image" class="w-100 rounded-lg">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action="{{ route('ekskul.update', $ekskul['id']) }}" method="POST">
+                                            @csrf
+                                            @method('put')
+                                            <button type="submit" class="btn btn-success">Restore Gambar</button>
+                                        </form>
+                                        <form action="{{ route('ekskul.destroy', $ekskul['id']) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger">Delete Gambar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Ekstrakurikuler</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('ekskul.store') }}" enctype="multipart/form-data" method="POST">
+                        @csrf
+                        @method('POST')
+                        <div class="row">
+                            <div class="mb-3 col-6">
+                                <label for="name" class="form-label">Nama</label>
+                                <input required name="title" type="text" class="form-control" id="name"
+                                    placeholder="Ekstrakurikuler">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="image" class="form-label">Foto/Video</label>
+                                <input class="form-control" type="file" id="formFile" name="file">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center" id="preview-container">
+                            <img class="img-fluid rounded" id="preview" src="https://via.placeholder.com/200"
+                                alt="">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+
+
+@section('scripts')
+    <script>
+        const previewImage = document.querySelector('#formFile');
+        const preview = document.querySelector('#preview');
+
+        previewImage.addEventListener('change', function() {
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(previewImage.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                preview.src = oFREvent.target.result;
+            }
+        })
+    </script>
+@endsection

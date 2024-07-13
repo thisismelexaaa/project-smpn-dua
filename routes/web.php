@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\ekskulController;
 use App\Http\Controllers\GalleriesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\kritikDanSaranController;
@@ -32,5 +33,6 @@ Route::prefix('/panel/admin/')->group(function () {
     Route::resource('/berita', BeritaController::class);
     Route::resource('/galleries', GalleriesController::class);
     Route::resource('/masukan', kritikDanSaranController::class);
+    Route::resource('/ekskul', ekskulController::class);
     Route::resource('/setting', SettingController::class);
 });

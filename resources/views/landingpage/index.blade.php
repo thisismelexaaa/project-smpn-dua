@@ -8,7 +8,7 @@
             <div class="bg-hero"></div>
             <div class="row hero justify-content-start">
                 <div class="col-lg-6 text-start">
-                    <h1 class="display-1 text-white animated slideInRight mb-3">Wellcome to Website <br>
+                    <h1 class="display-1 text-white animated slideInRight mb-3">Welcome to Website <br>
                         <span class="text-header">SMP Negeri 2 Kota Cirebon</span>
                     </h1>
                     <p class="mb-5 text-white animated slideInRight fs-4">Unggul Dalam Mutu Teruji Dalam Prestasi
@@ -58,13 +58,13 @@
             </div>
 
             <div class="row g-4 fadeIn" data-wow-delay="0.5s" id="personil">
-                <h1 class="display-6 text-dark fw-bold mb-2">Personil</h1>
+                <h1 class="display-6 text-dark fw-bold mb-2">Tenaga Pendidik</h1>
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                Lihat Semua Personil Kami
+                                Lihat semua tenaga pendidik Kami
                             </button>
                         </h2>
                         <div id="flush-collapseOne" class="accordion-collapse collapse"
@@ -264,8 +264,10 @@
                         <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay="0.1s">
                             @foreach ($masukan as $index => $masukan)
                                 <div class="testimonial-item mx-3">
-                                    <div class="icon-box-primary mb-4">
-                                        <i class="bi bi-person-circle"></i>
+                                    <div class="mb-4 pt-3">
+                                        @for ($i = 1; $i <= $masukan['rating']; $i++)
+                                            <i class="bi bi-star-fill h4 text-warning"></i>
+                                        @endfor
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="py-2">

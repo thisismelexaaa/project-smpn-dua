@@ -42,7 +42,9 @@
 
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                    <img src="{{ asset('assets/landingpage/img/smpn-2-logo.jpg') }}" class="w-25 m-0 p-0 sidebar-brand-icon img-fluid" alt="Logo SMP Negeri 2" style="border-radius: 100%">
+                    <img src="{{ asset('assets/landingpage/img/smpn-2-logo.jpg') }}"
+                        class="w-25 m-0 p-0 sidebar-brand-icon img-fluid" alt="Logo SMP Negeri 2"
+                        style="border-radius: 100%">
                     <small class="mx-3 text-left fw-bolder">SMP Negeri 2 <br>
                         Cirebon</small>
                 </a>
@@ -75,6 +77,11 @@
                     <a class="nav-link" href="{{ route('berita.index') }}">
                         <i class="bi bi-newspaper"></i>
                         <span>Berita</span></a>
+                </li>
+                <li class="nav-item {{ request()->routeIs('ekskul.*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('ekskul.index') }}">
+                        <i class="bi bi-activity"></i>
+                        <span>Ekskul</span></a>
                 </li>
                 <li class="nav-item {{ request()->routeIs('masukan.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('masukan.index') }}">
@@ -121,6 +128,8 @@
                                     Setting
                                 @elseif(request()->routeIs('masukan.*'))
                                     Masukan
+                                @elseif(request()->routeIs('ekskul.*'))
+                                    Ekstrakulikuler
                                 @endif
                             </h1>
                         </div>

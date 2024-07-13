@@ -112,7 +112,7 @@
                     <p class=""><i class="fa fa-map-marker-alt me-2"></i>Jl. Siliwangi No.82, Kebonbaru,
                         Kec.
                         Kejaksan, Kota Cirebon, Jawa Barat 45121</p>
-                    <p class=""><i class="fa fa-phone-alt me-2"></i>(0231) 203075</p>
+                    <p class=""><i class="fa fa-phone-alt me-2"></i>(0231) 203075 / +62 852-2437-3344</p>
                     <p class=""><i class="fa fa-envelope me-2"></i>smpn2_crbn@yahoo.co.id</p>
                 </div>
                 <div class="col-lg-6 ps-lg-5">

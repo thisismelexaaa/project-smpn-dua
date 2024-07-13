@@ -6,14 +6,8 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Tambah Gambar</button>
-                    <select name="category" id="selectCategory" class="form-select col-2">
-                        <option value="all">Semua Kategori</option>
-                        <option value="prestasi">Prestasi</option>
-                        <option value="pengumuman">Pengumuman</option>
-                    </select>
                 </div>
             </div>
-
         </div>
 
         <div class="card mt-2 p-3">
@@ -22,20 +16,20 @@
             @endif
             <div class="row">
                 @foreach ($galleries as $j => $gallerie)
-                    <div class="col-md-3 rounded overflow-hidden gallerie" data-category="{{ $gallerie['category'] }}">
+                    <div class="col-md-3 rounded overflow-hidden gallerie">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $j }}">
-                            <img src="{{ asset('assets/panel/admin/images/galleries/' . $gallerie['image']) }}"
-                                alt="Image" class="shadow-sm image-fluid w-100"
-                                style="{{ $gallerie['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
+                            @if (in_array(pathinfo($gallerie['image'], PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'svg']))
+                                <img src="{{ asset('assets/panel/admin/images/galleries/' . $gallerie['image']) }}"
+                                    alt="Image" class="shadow-sm image-fluid w-100"
+                                    style="{{ $gallerie['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
+                            @elseif (pathinfo($gallerie['video'], PATHINFO_EXTENSION) == 'mp4')
+                                <video src="{{ asset('assets/panel/admin/video/galleries/' . $gallerie['video']) }}"
+                                    class="shadow-sm image-fluid w-100"
+                                    style="{{ $gallerie['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
+                                </video>
+                            @endif
                         </a>
                         <div class="my-2">
-                            @if ($gallerie['category'] == 'pengumuman')
-                                <span class="badge text-bg-primary p-2">Pengumuman</span>
-                            @elseif ($gallerie['category'] == 'prestasi')
-                                <span class="badge text-bg-info p-2">Prestasi</span>
-                            @elseif ($gallerie['category'] == 'berita')
-                                <span class="badge text-bg-success p-2">Berita</span>
-                            @endif
                             <p class="text-capitalize fw-bold mt-3 text-justify" style="text-wrap: wrap">
                                 <a href="#" class="text-decoration-none text-dark" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal{{ $j }}">
@@ -48,20 +42,35 @@
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                        {{-- <h5 class="modal-title">Modal title</h5> --}}
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
                                     <div class="modal-body">
-                                        <img src="{{ asset('assets/panel/admin/images/galleries/' . $gallerie['image']) }}"
-                                            alt="Image" class="w-100 rounded-lg">
+                                        @if (in_array(pathinfo($gallerie['image'], PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'svg']))
+                                            <img src="{{ asset('assets/panel/admin/images/galleries/' . $gallerie['image']) }}"
+                                                alt="Image" class="shadow-sm image-fluid w-100"
+                                                style="{{ $gallerie['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
+                                        @elseif (pathinfo($gallerie['video'], PATHINFO_EXTENSION) == 'mp4')
+                                            <video
+                                                src="{{ asset('assets/panel/admin/video/galleries/' . $gallerie['video']) }}"
+                                                class="shadow-sm image-fluid w-100"
+                                                style="{{ $gallerie['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;"
+                                                {{ $gallerie['status'] == 0 ? '' : 'controls' }}>
+                                            </video>
+                                        @endif
                                     </div>
                                     <div class="modal-footer">
                                         <form action="{{ route('galleries.update', $gallerie['id']) }}" method="POST">
                                             @csrf
                                             @method('put')
-                                            <button type="submit" class="btn btn-success">Restore Gambar</button>
+                                            <button type="submit" class="btn btn-success">Restore Media</button>
                                         </form>
                                         <form action="{{ route('galleries.destroy', $gallerie['id']) }}" method="POST">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-danger">Delete Gambar</button>
+                                            <button type="submit" class="btn btn-danger">Delete Media</button>
                                         </form>
                                     </div>
                                 </div>
@@ -85,36 +94,24 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-6">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Judul</label>
                                     <input type="text" class="form-control" id="title" name="title"
                                         placeholder="Judul">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row mb-2">
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label for="formFile" class="form-label">Pilih Gambar</label>
-                                    <input class="form-control" type="file" id="formFile" name="image">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Category</label>
-                                    <select type="text" placeholder="" class="form-select js-states" id="category"
-                                        name="category">
-                                        <option disabled selected>Category</option>
-                                        <option value="pengumuman">Pengumuman</option>
-                                        <option value="prestasi">Prestasi</option>
-                                    </select>
+                                    <label for="formFile" class="form-label">Foto / Video</label>
+                                    <input class="form-control" type="file" id="formFile" name="file">
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <img class="img-fluid rounded" id="preview" src="https://via.placeholder.com/200"
+                        <div class="d-flex justify-content-center" id="preview-container">
+                            <img class="img-fluid rounded" id="preview-image" src="https://via.placeholder.com/200"
                                 alt="">
+                            <video class="img-fluid rounded" id="preview-video" style="display: none;" controls></video>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -129,28 +126,33 @@
 
 @section('scripts')
     <script>
-        $(document).ready(() => {
-            // Filter cards based on the selected category
-            function filterCards(category) {
-                $('.gallerie').each(function() {
-                    let cardCategory = $(this).data('category');
-                    if (category === 'all' || category === cardCategory) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            }
+        const previewFileInput = document.querySelector('#formFile');
+        const previewImage = document.querySelector('#preview-image');
+        const previewVideo = document.querySelector('#preview-video');
 
-            // Initial filter based on default selected value
-            let category = $('#selectCategory').val();
-            filterCards(category);
+        previewFileInput.addEventListener('change', function() {
+            const file = previewFileInput.files[0];
+            const fileType = file.type;
 
-            // Filter cards when the category changes
-            $('#selectCategory').on('change', function() {
-                category = $(this).val();
-                filterCards(category);
-            });
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(file);
+
+            oFReader.onload = function(oFREvent) {
+                if (fileType.startsWith('image/')) {
+                    previewImage.style.display = 'block';
+                    previewVideo.style.display = 'none';
+                    previewImage.src = oFREvent.target.result;
+                } else if (fileType.startsWith('video/')) {
+                    previewImage.style.display = 'none';
+                    previewVideo.style.display = 'block';
+                    previewVideo.src = oFREvent.target.result;
+                } else {
+                    previewImage.style.display = 'block';
+                    previewVideo.style.display = 'none';
+                    previewImage.src = 'https://via.placeholder.com/200';
+                    alert('Unsupported file type. Please select an image or video.');
+                }
+            };
         });
     </script>
 @endsection
