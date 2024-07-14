@@ -22,6 +22,7 @@ class ekskulController extends Controller
 
             $data = [
                 'title' => $request->title,
+                'description' => $request->description,
                 'status' => 1,
             ];
 

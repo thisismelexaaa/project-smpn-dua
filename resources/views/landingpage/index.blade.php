@@ -8,24 +8,22 @@
             <div class="bg-hero"></div>
             <div class="row hero justify-content-start">
                 <div class="col-lg-6 text-start">
-                    <h1 class="display-1 text-white animated slideInRight mb-3">Welcome to Website <br>
-                        <span class="text-header">SMP Negeri 2 Kota Cirebon</span>
-                    </h1>
-                    <p class="mb-5 text-white animated slideInRight fs-4">Unggul Dalam Mutu Teruji Dalam Prestasi
-                        Dengan Dilandasi Iman Dan Taqwa</p>
-                    <a href="#profil" class="btn btn-primary py-3 px-5 animated slideInRight">Tentang
-                        Kami</a>
+                    <div class="welcome-text">
+                        <h1 class="display-1 text-white animated slideInRight mb-3">Welcome to Website <br>
+                            <span class="text-header">SMP Negeri 2 Kota Cirebon</span>
+                        </h1>
+                        <p class="mb-5 text-white animated slideInRight fs-4">Unggul Dalam Mutu Teruji Dalam Prestasi
+                            Dengan Dilandasi Iman Dan Taqwa</p>
+                        <a href="#raport" class="btn btn-primary py-3 px-5 animated slideInRight">Tentang
+                            Kami</a>
+                    </div>
                 </div>
-                {{-- <div class="col-lg-6 d-lg-block d-none">
-                    <img src="{{ asset('assets/landingpage/img/siswa.png') }}" alt=""
-                        class="img-fluid siswa mx-auto">
-                </div> --}}
             </div>
         </div>
     </div>
 
     {{-- rapor pendidikan --}}
-    <div class="container-fluid container-rapor py-5">
+    <div class="container-fluid container-rapor py-5" id="raport">
         <div class="container">
             <h1 class="mb-3 fadeIn" data-wow-delay="0.3s">Rapor pendidikan SMP Negeri 2 Kota Cirebon</h1>
             <div class="d-flex flex-wrap justify-content-center g-0 feature-row bg-white fadeIn" id="rapor"
@@ -56,55 +54,17 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row g-4 fadeIn" data-wow-delay="0.5s" id="personil">
-                <h1 class="display-6 text-dark fw-bold mb-2">Tenaga Pendidik</h1>
-                <div class="accordion accordion-flush" id="accordionFlushExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                Lihat semua tenaga pendidik Kami
-                            </button>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                <div class="owl-carousel owl-theme">
-                                    @foreach ($personils as $personil)
-                                        @if ($personil->jabatan == 2)
-                                            <div class="item">
-                                                <div class="shadow-sm border" data-wow-delay="0.1s">
-                                                    <div class="team-item">
-                                                        <div class="position-relative overflow-hidden">
-                                                            <img class="img-fluid w-100"
-                                                                src="{{ asset('assets/panel/admin/images/personil/' . $personil->image) }}"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="text-center p-4">
-                                                            <h5 class="mb-1">{{ $personil->name }}</h5>
-                                                            <span>
-                                                                {{ $personil->jabatan == 1 ? 'Kepala Sekolah' : 'Guru' }}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
     <div class="container-fluid container-service">
         {{-- prestasi --}}
         <div class="container py-5" id="prestasi">
-            <h1 class="mb-3">Prestasi SMP Negeri 2 Kota Cirebon</h1>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="mb-3">Prestasi SMP Negeri 2 Kota Cirebon</h1>
+                <a href="{{ route('prestasi') }}" class="btn btn-primary btn-sm shadow">Lihat Semua Prestasi</a>
+            </div>
+
             <div class="row g-4 fadeIn" data-wow-delay="0.2s">
                 @if (count($prestasi) == 0)
                     <h5 class="text-center">Tidak ada prestasi</h5>
@@ -132,14 +92,10 @@
 
         <div class="container-fluid" id="berita" style="height: 100%">
             <div class="container">
-                <h1 class="display-6 mb-3">Berita</h1>
-                {{-- <div class="d-flex justify-content-between wow fadeInUp" data-wow-delay="0.1s">
-                    <select name="category" id="selectCategory" class="form-select w-25 h-25">
-                        <option value="all">Semua Kategori</option>
-                        <option value="prestasi">Prestasi</option>
-                        <option value="pengumuman">Pengumuman</option>
-                    </select>
-                </div> --}}
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1 class="display-6 mb-3">Berita</h1>
+                    <a href="{{ route('berita') }}" class="btn btn-primary btn-sm shadow">Lihat Semua Berita</a>
+                </div>
                 <div class="row g-2">
                     @if (count($pengumuman) == 0)
                         <h5 class="text-center">Tidak ada pengumuman</h5>
@@ -149,28 +105,28 @@
                             data-wow-delay="0.2s"style="border-radius: 1%;" data-wow-delay="0.1s"
                             data-category="{{ $pengumuman['category'] }}">
                             <div class="service-item">
-                                <div class="mb-4">
-                                    <img src="{{ asset('assets/panel/admin/images/berita/' . $pengumuman['image']) }}"
-                                        alt="Image of {{ $pengumuman['title'] }}" class="image-fluid shadow-sm"
-                                        style="width: 100%; height: 250px; object-fit: cover">
+                                <div class="h-100">
+                                    <div class="mb-3">
+                                        <img src="{{ asset('assets/panel/admin/images/berita/' . $pengumuman['image']) }}"
+                                            alt="Image of {{ $pengumuman['title'] }}" class="image-fluid shadow-sm"
+                                            style="width: 100%; height: 250px; object-fit: cover">
+                                    </div>
+                                    <hr class="p-0 my-1">
+                                    <div class="d-flex justify-content-between my-1">
+                                        <span class="text-capitalize">
+                                            <i class="bi bi-calendar-week"></i>
+                                            {{ \Carbon\Carbon::parse($pengumuman['tgl_posting'])->isoFormat('dddd, D MMMM YYYY', 'Do MMMM YYYY') }}
+                                        </span>
+                                        <span class="text-capitalize">
+                                            <i class="bi bi-bookmark-fill"></i> {{ $pengumuman['category'] }}
+                                        </span>
+                                        <input type="hidden" class="category" value="{{ $pengumuman['category'] }}">
+                                    </div>
+                                    <hr class="p-0 my-1">
+                                    <a class="text-dark h5" href="{{ route('home.show', $pengumuman['id']) }}">
+                                        {{ $pengumuman['title'] }}
+                                    </a>
                                 </div>
-                                <hr class="p-0 my-1">
-                                <div class="d-flex justify-content-between my-1">
-                                    <span class="text-capitalize">
-                                        <i class="bi bi-calendar-week"></i>
-                                        {{ \Carbon\Carbon::parse($pengumuman['tgl_posting'])->isoFormat('dddd, D MMMM YYYY', 'Do MMMM YYYY') }}
-                                    </span>
-                                    <span class="text-capitalize">
-                                        <i class="bi bi-bookmark-fill"></i> {{ $pengumuman['category'] }}
-                                    </span>
-                                    <input type="hidden" class="category" value="{{ $pengumuman['category'] }}">
-                                </div>
-                                <hr class="p-0 my-1">
-                                <span class="h3">{{ $pengumuman['title'] }}</span><br>
-                                {{-- <span class="mb-4">{!! Str::limit($pengumuman['content'], 50, '...') !!}</span> --}}
-                                <a class="btn btn-light mt-3"
-                                    href="{{ route('home.show', $pengumuman['id']) }}">Selengkapnya<i
-                                        class="bi bi-chevron-double-right ms-1"></i></a>
                             </div>
                         </div>
                     @endforeach
@@ -178,14 +134,14 @@
             </div>
         </div>
 
-        <div class="container-fluid py-5 ">
+        <div class="container-fluid py-5">
             <form action="{{ route('kritikDanSaran.store') }}" method="POST">
                 @csrf
                 @method('POST')
                 <div class="container">
                     <h1 class="display-6 text-dark mb-4">Kritik dan Saran</h1>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md">
                             <div class="input-group mb-3">
                                 <label class="input-group-text" id="basic-addon1">Nama Lengkap</label>
                                 <input type="text" class="form-control" name="name" placeholder="Nama Lengkap"
@@ -193,12 +149,20 @@
                                 <input type="hidden" value="@gmail.com" name="gmail">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Email</span>
                                 <input type="text" class="form-control" name="email" placeholder="Email"
                                     aria-label="Masukkan Email" aria-describedby="basic-addon1"></input>
                             </div>
+                        </div>
+                        <div class="col-md">
+                            <select name="type" class="form-select text-capitalize" id="">
+                                <option selected disabled>Pilih</option>
+                                <option value="1">masyarakat</option>
+                                <option value="2">guru</option>
+                                <option value="3">siswa</option>
+                            </select>
                         </div>
                     </div>
                     <div class="input-group mb-3">
@@ -211,7 +175,8 @@
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                             @for ($i = 1; $i <= 5; $i++)
                                 <input type="radio" class="btn-check" name="rating" id="btnradio{{ $i }}"
-                                    autocomplete="off" onclick="fillStar({{ $i }})" value="{{ $i }}">
+                                    autocomplete="off" onclick="fillStar({{ $i }})"
+                                    value="{{ $i }}">
                                 <label class="mx-2 h1" for="btnradio{{ $i }}">
                                     <i class="bi bi-star text-warning" style="cursor: pointer"
                                         id="star{{ $i }}"></i>
@@ -238,12 +203,12 @@
                         didukung untuk mengembangkan bakat dan minat mereka, baik dalam bidang akademik maupun non-akademik.
                         Berikut beberapa komentar dari siswa kami:</p>
                 </div>
-                <div class="col-lg-6 mb-n5 wow fadeIn" data-wow-delay="0.5s">
+                <div class="col-lg-6 mb-n5 py-5 wow fadeIn" data-wow-delay="0.5s">
                     <div class="bg-white p-4">
                         <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay="0.1s">
                             @foreach ($masukan as $index => $masukan)
                                 <div class="testimonial-item mx-3">
-                                    <div class="mb-4 pt-3">
+                                    <div class="my-auto">
                                         @for ($i = 1; $i <= $masukan['rating']; $i++)
                                             <i class="bi bi-star-fill h4 text-warning"></i>
                                         @endfor
@@ -255,7 +220,15 @@
                                                 <span class="text-secondary mx-2">|</span>
                                                 <span class="text-secondary">{{ $masukan->email }}</span>
                                             </span>
-                                            <p class="text-primary text-wrap">Siswa SMP Negeri 2 Kota Cirebon</p>
+                                            <p class="text-primary text-wrap">
+                                                @if ($masukan->type == 1)
+                                                <span>Masyarakat</span>
+                                                @elseif ($masukan->type == 2)
+                                                <span>Guru SMP Negeri 2 Kota Cirebon</span>
+                                                @elseif ($masukan->type == 3)
+                                                    <span>Siswa SMP Negeri 2 Kota Cirebon</span>
+                                                @endif
+                                            </p>
                                         </div>
                                     </div>
                                     <p class="fs-5 mb-4" style="text-align: justify; word-wrap: break-word;">

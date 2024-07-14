@@ -58,6 +58,9 @@
                                                 {{ $ekskul['status'] == 0 ? '' : 'controls' }}>
                                             </video>
                                         @endif
+                                        <div class="py-4">
+                                            {{ $ekskul['description'] }}
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <form action="{{ route('ekskul.update', $ekskul['id']) }}" method="POST">
@@ -100,6 +103,10 @@
                             <div class="mb-3 col-6">
                                 <label for="image" class="form-label">Foto/Video</label>
                                 <input class="form-control" type="file" id="formFile" name="file">
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="image" class="form-label">Deskripsi</label>
+                                <textarea name="description" id="description" cols="20" rows="2" class="form-control" placeholder="Masukkan Deskripsi"></textarea>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center" id="preview-container">

@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('home');
 Route::get('/galleries', [LandingPageController::class, 'galleries'])->name('galleries');
-Route::get('/informasi', [LandingPageController::class, 'informasi'])->name('informasi');
+Route::get('/berita', [LandingPageController::class, 'berita'])->name('berita');
+Route::get('/prestasi', [LandingPageController::class, 'prestasi'])->name('prestasi');
+Route::get('/personil', [LandingPageController::class, 'personil'])->name('personil');
 Route::get('/profile', [LandingPageController::class, 'profile'])->name('profile');
 Route::get('/ekskul', [LandingPageController::class, 'ekskul'])->name('ekskul');
 Route::post('/kritik-dan-saran', [LandingPageController::class, 'kritikDanSaran'])->name('kritikDanSaran.store');

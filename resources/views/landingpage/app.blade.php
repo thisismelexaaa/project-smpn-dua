@@ -30,6 +30,8 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('assets/landingpage/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/panel/vendor/datatables/dataTables.min.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
@@ -108,7 +110,7 @@
                     </a>
                     <p>Unggul Dalam Mutu Teruji Dalam Prestasi Dengan Dilandasi Iman Dan Taqwa</p>
                     <h1 class="text-white w-100">Ayo Hubungi Kami</h1>
-                    <p class="fs-5 mb-4 ">Mari berinteraksi dengan kami via kontak berikut ini</p>
+                    <p class="fs-5 mb-4 pt-1">Mari berinteraksi dengan kami via kontak berikut ini</p>
                     <p class=""><i class="fa fa-map-marker-alt me-2"></i>Jl. Siliwangi No.82, Kebonbaru,
                         Kec.
                         Kejaksan, Kota Cirebon, Jawa Barat 45121</p>

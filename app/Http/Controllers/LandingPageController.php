@@ -11,15 +11,16 @@ use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $personils = Personil::all();
         $kepalaSekolah = Personil::where('jabatan', 1)->first();
-        $prestasi = Berita::where('category', 'prestasi')->get();
-        $pengumuman = Berita::where('category', 'pengumuman')->get();
+        $prestasi = Berita::where('category', 'prestasi')->get()->take(3);
+        $pengumuman = Berita::where('category', 'pengumuman')->get()->take(3);
         $masukan = kritikDanSaran::all();
+        $ekskuls = Ekskul::all();
 
-        return view('landingpage.index', compact('personils', 'kepalaSekolah', 'prestasi', 'pengumuman', 'masukan'));
+        return view('landingpage.index', compact('personils', 'kepalaSekolah', 'prestasi', 'pengumuman', 'masukan', 'ekskuls'));
     }
 
     public function show($id)
@@ -36,10 +37,22 @@ class LandingPageController extends Controller
         return view('landingpage.galleries', compact('galleries'));
     }
 
-    public function informasi()
+    public function berita()
     {
-        $beritas = Berita::all();
-        return view('landingpage.informasi', compact('beritas'));
+        $beritas = Berita::where('category', 'pengumuman')->get();
+        return view('landingpage.berita', compact('beritas'));
+    }
+
+    public function prestasi()
+    {
+        $beritas = Berita::where('category', 'prestasi')->get();
+        return view('landingpage.prestasi', compact('beritas'));
+    }
+
+    public function personil()
+    {
+        $personils = Personil::all()->except(1);
+        return view('landingpage.personil', compact('personils'));
     }
 
     public function profile()
@@ -54,7 +67,8 @@ class LandingPageController extends Controller
                 'name' => $request->name,
                 'email' => $request->email . $request->gmail,
                 'message' => $request->message,
-                'rating' => $request->rating
+                'rating' => $request->rating,
+                'type' => $request->type
             ];
 
             // dd($data);
@@ -64,8 +78,8 @@ class LandingPageController extends Controller
             toast()->success('Pesan Terkirim, Terima kasih. Pesan anda akan kami terima.', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
-
-            toast()->error('Gagal Mengirim Pesan', 'Error');
+            dd($e);
+            toast()->error('Gagal Mengirim Pesan' . $e, 'Error');
             return redirect()->back()->with('error', 'Terjadi kesalahan. Silahkan coba lagi.');
         };
     }
