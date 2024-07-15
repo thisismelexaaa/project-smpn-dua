@@ -31,12 +31,6 @@ class LandingPageController extends Controller
         return view('landingpage.show', compact('berita', 'beritas'));
     }
 
-    public function galleries()
-    {
-        $galleries = Galleries::where('status', 1)->get();
-        return view('landingpage.galleries', compact('galleries'));
-    }
-
     public function berita()
     {
         $beritas = Berita::where('category', 'pengumuman')->get();
@@ -89,5 +83,18 @@ class LandingPageController extends Controller
     {
         $ekskuls = Ekskul::all();
         return view('landingpage.ekskul', compact('ekskuls'));
+    }
+
+    public function galleriesFoto()
+    {
+        $galleries = Galleries::where('status', 1)->get();
+        return view('landingpage.foto', compact('galleries'));
+    }
+
+    public function galleriesVideo()
+    {
+        $galleries = Galleries::where('status', 1)
+            ->get();
+        return view('landingpage.video', compact('galleries'));
     }
 }

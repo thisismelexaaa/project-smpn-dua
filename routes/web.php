@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('home');
-Route::get('/galleries', [LandingPageController::class, 'galleries'])->name('galleries');
 Route::get('/berita', [LandingPageController::class, 'berita'])->name('berita');
 Route::get('/prestasi', [LandingPageController::class, 'prestasi'])->name('prestasi');
 Route::get('/personil', [LandingPageController::class, 'personil'])->name('personil');
 Route::get('/profile', [LandingPageController::class, 'profile'])->name('profile');
 Route::get('/ekskul', [LandingPageController::class, 'ekskul'])->name('ekskul');
+Route::get('/gallery-foto' , [LandingPageController::class, 'galleriesFoto'])->name('galleries.foto');
+Route::get('/gallery-video' , [LandingPageController::class, 'galleriesVideo'])->name('galleriesVideo');
 Route::post('/kritik-dan-saran', [LandingPageController::class, 'kritikDanSaran'])->name('kritikDanSaran.store');
 Route::resource('/home', LandingPageController::class);
 

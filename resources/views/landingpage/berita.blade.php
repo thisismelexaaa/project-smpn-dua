@@ -1,7 +1,7 @@
 @extends('landingpage.app')
 
 @section('content')
-    <div class="container-fluid bg-white py-5" id="berita" style="height: 100%">
+    <div class="container-fluid container-team py-5" id="berita" style="height: 100%">
         <div class="container pb-5">
             <h1 class="display-6 mb-3">Berita</h1>
             <div class="row g-2">

@@ -67,24 +67,49 @@ class ekskulController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $ekskuls = Ekskul::findOrFail($id);
+            $ekskul = Ekskul::findOrFail($id);
 
-            $ekskuls->update(['status' => 1]);
+            $image = $ekskul->file;
 
-            toast()->success('Galeri Berhasil Dihapus', 'Success');
+            if ($request->hasFile('file')) {
+                // Delete old image if it exists
+                if ($ekskul->file && file_exists(public_path('assets/panel/admin/images/ekskul/' . $ekskul->file))) {
+                    unlink(public_path('assets/panel/admin/images/ekskul/' . $ekskul->file));
+                }
+
+                $file = $request->file('file');
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/panel/admin/images/ekskul'), $fileName);
+
+                $image = $fileName;
+            }
+
+            $data = [
+                'title' => $request->title,
+                'description' => $request->description,
+                'image' => $image,
+            ];
+
+            $ekskul->update($data);
+
+            toast()->success('Galeri Berhasil Diperbarui', 'Success');
             return redirect()->back();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             toast()->error('Galeri Tidak Ditemukan', 'Error');
             return redirect()->back();
+        } catch (\Exception $e) {
+            toast()->error('Terjadi kesalahan saat memperbarui data. Silakan coba lagi.', 'Error');
+            return redirect()->back();
         }
     }
+
 
     public function destroy(string $id)
     {
         try {
             $ekskuls = Ekskul::findOrFail($id);
 
-            $ekskuls->update(['status' => 0]);
+            $ekskuls->delete();
 
             toast()->success('Galeri Berhasil Dihapus', 'Success');
             return redirect()->back();

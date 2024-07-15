@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid py-5 bg-white">
-        <div class="container">
+        <div class="container py-5">
             <div class="row">
                 <div class="col-md-8 text-wrap" style="text-align: justify; overflow-wrap: break-word;">
                     <h3>{{ $berita->title }}</h3>
@@ -16,7 +16,9 @@
                     <img src="{{ asset('assets/panel/admin/images/berita/' . $berita->image) }}"
                         alt="Image of {{ $berita->title }}" class="image-fluid col-md-12 col-sm-12 mb-3"
                         style="width: 75%; height: auto">
-                    {!! $berita->content !!}
+                    <div class="d-block">
+                        {!! $berita->content !!}
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <h3 class="fw-bold bg-white w-100">

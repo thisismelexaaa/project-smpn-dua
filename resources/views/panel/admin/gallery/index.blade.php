@@ -10,8 +10,9 @@
                         <option value="all" selected>Semua</option>
                         <option value="pengumuman">Pengumuman</option>
                         <option value="prestasi">Prestasi</option>
-                        <option value="kegiatan">Kegiatan</option>
-                        <option value="pensi">Pensi</option>
+                        @foreach ($ekskul as $item)
+                            <option value="{{ $item['title'] }}">{{ $item['title'] }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -120,9 +121,9 @@
                                     <select name="category" id="selectCategory" class="form-select">
                                         <option disabled selected>Pilih Kategori</option>
                                         <option value="pengumuman">Pengumuman</option>
-                                        <option value="prestasi">Prestasi</option>
-                                        <option value="kegiatan">Kegiatan</option>
-                                        <option value="pensi">Pensi</option>
+                                        @foreach ($ekskul as $item)
+                                            <option value="{{ $item['title'] }}">{{ $item['title'] }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

@@ -32,7 +32,7 @@ class PersonilSeeder extends Seeder
                 'name' => $name,
                 'email' => $name . '@gmail.com',
                 'phone' => $faker->phoneNumber,
-                'jabatan' => 2,
+                'jabatan' => $faker->numberBetween(2, 3),
                 'image' => 'person.jpg',
             ]);
         }

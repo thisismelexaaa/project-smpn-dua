@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\Ekskul;
 use App\Models\Galleries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -20,7 +21,8 @@ class GalleriesController extends Controller
     public function index()
     {
         $galleries = Galleries::all();
-        return view('panel.admin.gallery.index', compact('galleries'));
+        $ekskul = Ekskul::all();
+        return view('panel.admin.gallery.index', compact('galleries', 'ekskul'));
     }
 
     /**
