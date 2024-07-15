@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\kritikDanSaranController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PersonilController;
+use App\Http\Controllers\SaranaPrasanaController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -38,4 +39,5 @@ Route::prefix('/panel/admin/')->group(function () {
     Route::resource('/masukan', kritikDanSaranController::class);
     Route::resource('/ekskul', ekskulController::class);
     Route::resource('/setting', SettingController::class);
+    Route::resource('/sarana-prasarana', SaranaPrasanaController::class);
 });

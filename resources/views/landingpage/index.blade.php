@@ -171,7 +171,7 @@
                             placeholder="Masukkan Kritik dan saran maksimal 250 kata" maxlength="250"></textarea>
                     </div>
                     <div class="text-center">
-                        <h3>Berikan kami bintang</h3>
+                        <h3>Berikan kami nilai</h3>
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                             @for ($i = 1; $i <= 5; $i++)
                                 <input type="radio" class="btn-check" name="rating" id="btnradio{{ $i }}"
@@ -207,33 +207,37 @@
                     <div class="bg-white p-4">
                         <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay="0.1s">
                             @foreach ($masukan as $index => $masukan)
-                                <div class="testimonial-item mx-3">
-                                    <div class="my-auto">
-                                        @for ($i = 1; $i <= $masukan['rating']; $i++)
-                                            <i class="bi bi-star-fill h4 text-warning"></i>
-                                        @endfor
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <div class="py-2">
-                                            <span class="mb-2">
-                                                <span class="h5">{{ $masukan->name }}</span>
-                                                <span class="text-secondary mx-2">|</span>
-                                                <span class="text-secondary">{{ $masukan->email }}</span>
-                                            </span>
-                                            <p class="text-primary text-wrap">
-                                                @if ($masukan->type == 1)
-                                                <span>Masyarakat</span>
-                                                @elseif ($masukan->type == 2)
-                                                <span>Guru SMP Negeri 2 Kota Cirebon</span>
-                                                @elseif ($masukan->type == 3)
-                                                    <span>Siswa SMP Negeri 2 Kota Cirebon</span>
-                                                @endif
-                                            </p>
+                                @if ($masukan['status'] == 1)
+                                    <div class="testimonial-item mx-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="py-2">
+                                                <span class="mb-2">
+                                                    <span class="h5">{{ $masukan->name }}</span>
+                                                    <span class="text-secondary mx-2">|</span>
+                                                    <span class="text-secondary">{{ $masukan->email }}</span>
+                                                </span>
+                                                <br>
+                                                <span class="text-primary text-wrap">
+                                                    @if ($masukan->type == 1)
+                                                        <span>Masyarakat</span>
+                                                    @elseif ($masukan->type == 2)
+                                                        <span>Guru SMP Negeri 2 Kota Cirebon</span>
+                                                    @elseif ($masukan->type == 3)
+                                                        <span>Siswa SMP Negeri 2 Kota Cirebon</span>
+                                                    @endif
+                                                </span>
+                                                <br>
+                                                {{-- <div class="my-auto"> --}}
+                                                    @for ($i = 1; $i <= $masukan['rating']; $i++)
+                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                    @endfor
+                                                {{-- </div> --}}
+                                            </div>
                                         </div>
+                                        <p class="fs-5 mb-4" style="text-align: justify; word-wrap: break-word;">
+                                            {{ $masukan->message }}</p>
                                     </div>
-                                    <p class="fs-5 mb-4" style="text-align: justify; word-wrap: break-word;">
-                                        {{ $masukan->message }}</p>
-                                </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>

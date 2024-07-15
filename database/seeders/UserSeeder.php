@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         $admin->name = 'Admin';
         $admin->email = 'admin@admin.com';
         $admin->email_verified_at = date('Y-m-d H:i:s');
-        $admin->password = bcrypt('password');
+        $admin->password = bcrypt('123123');
         $admin->save();
     }
 }

@@ -67,12 +67,12 @@
         </div>
         <div class="container pb-5">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <h4 class="text-primary">Visi</h4>
                     <p>Unggul Dalam Mutu Teruji Dalam Prestasi
                         Dengan Dilandasi Iman Dan Taqwa</p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <h4 class="text-primary">Misi</h4>
                     <p>Dalam rangka mencapai visi tersebut, perlu dijabarkan menjadi beberapa misi. Adapun misi SMP
                         Negeri 2 Kota Cirebon sebagai berikut :</p>
@@ -88,33 +88,37 @@
                         <li>Melaksanakan pemeliharaan lingkungan sekolah yang asri dan nyaman</li>
                     </ol>
                 </div>
-                {{-- <p class="text-center">
-                    SPENDA BERAKSI
-                    <br>
-                    <br>
-                    ( BERSIH, EMPATI, RELIGIUS, AKTIF, KREATIF, SEMANGAT, INOVATIF)
-                    <br>
-                    <br>
-                    BERSIH LINGKUNGAN SEKOLAH MENJADI BUDAYA KESEHARIAN
-                    <br>
-                    <br>
-                    EMPATI WUJUD KASIH SAYANG SESAMA INSANI
-                    <br>
-                    <br>
-                    RELIGIUS DALAM SETIAP LANGKAH
-                    <br>
-                    <br>
-                    AKTIF DISEGALA BIDANG
-                    <br>
-                    <br>
-                    KREATIF MENCIPTAKAN IDE BARU
-                    <br>
-                    <br>
-                    SEMANGAT MENJALANKAN KEWAJIBAN
-                    <br>
-                    <br>
-                    INOFATIF MAMPU MENGEMBANGKAN DIRI MEMUNCULKAN IDE BARU
-                </p> --}}
+                <div class="col-md-4">
+
+                    <h4 class="text-primary">Slogan</h4>
+                    <p>
+                        SPENDA BERAKSI
+                        <br>
+                        <br>
+                        ( BERSIH, EMPATI, RELIGIUS, AKTIF, KREATIF, SEMANGAT, INOVATIF)
+                        <br>
+                        <br>
+                        BERSIH LINGKUNGAN SEKOLAH MENJADI BUDAYA KESEHARIAN
+                        <br>
+                        <br>
+                        EMPATI WUJUD KASIH SAYANG SESAMA INSANI
+                        <br>
+                        <br>
+                        RELIGIUS DALAM SETIAP LANGKAH
+                        <br>
+                        <br>
+                        AKTIF DISEGALA BIDANG
+                        <br>
+                        <br>
+                        KREATIF MENCIPTAKAN IDE BARU
+                        <br>
+                        <br>
+                        SEMANGAT MENJALANKAN KEWAJIBAN
+                        <br>
+                        <br>
+                        INOFATIF MAMPU MENGEMBANGKAN DIRI MEMUNCULKAN IDE BARU
+                    </p>
+                </div>
             </div>
         </div>
     </div>

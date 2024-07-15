@@ -32,15 +32,15 @@
 </head>
 
 <body class="bg-gradient-primary">
-    <div class="container">
-        <div class="card o-hidden border-0 shadow-lg my-5 w-75 mx-auto">
+    <div class="container d-flex" style="height:100vh">
+        <div class="card o-hidden border-0 shadow-lg w-75 m-auto">
             <div class="card-body p-5">
                 <div class="row">
                     <div class="col row mb-4 ">
                         <img class="img-fluid" src="{{ asset('assets/landingpage/img/smpn-2-logo.jpg') }}"
                             alt="Logo SMP Negeri 2 Kota Cirebon">
                     </div>
-                    <div class="col mx-auto">
+                    <div class="col my-auto">
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Halaman Login Admin SMP Negeri 2 Kota Cirebon</h1>
                         </div>

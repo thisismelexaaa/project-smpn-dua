@@ -46,6 +46,7 @@
                                         <option disabled selected>Pilih Jabatan</option>
                                         <option value="1" {{ $jabatan ? 'hidden' : '' }}>Kepala Sekolah</option>
                                         <option value="2">Guru</option>
+                                        <option value="3">Staff</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
@@ -66,7 +67,6 @@
                                 <div class="col-md-12 col-sm-12">
                                     <label for="image" class="form-label my-auto pb-1">Sambutan Kepala Sekolah</label>
                                     <textarea class="form-control col" name="sambutan" cols="20" rows="5" id="editor">
-                                        {{ $jabatan ? $jabatan['sambutan'] : '' }}
                                     </textarea>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $item)
-                            @if ($item['jabatan'] == 2)
+                            @if ($item['jabatan'] != 1)
                                 <tr>
                                     <td class="text-start">{{ $loop->iteration }}</td>
                                     <td>{{ $item['name'] }}</td>

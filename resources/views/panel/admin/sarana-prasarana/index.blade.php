@@ -5,21 +5,19 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Tambah Gambar</button>
-                    <select name="category" id="selectCategory" class="form-select w-25 h-50">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Tambah Sarana & Prasarana</button>
+                    {{-- <select name="category" id="selectCategory" class="form-select w-25 h-50">
                         <option value="all" selected>Semua</option>
-                        <option value="pengumuman">Pengumuman</option>
-                        <option value="prestasi">Prestasi</option>
-                        <option value="kegiatan">Kegiatan</option>
-                        <option value="pensi">Pensi</option>
-                    </select>
+                        <option value="sarana">Sarana</option>
+                        <option value="prasarana">Prasarana</option>
+                    </select> --}}
                 </div>
             </div>
         </div>
 
         <div class="card mt-2 p-3">
-            @if ($galleries->isEmpty())
-                <h4>Tidak ada gambar</h4>
+            @if ($sarana->isEmpty())
+                <h4>Tidak ada Sarana & Prasarana</h4>
             @endif
             <div class="row">
                 @foreach ($galleries as $j => $gallerie)

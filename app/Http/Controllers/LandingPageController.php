@@ -51,7 +51,7 @@ class LandingPageController extends Controller
 
     public function personil()
     {
-        $personils = Personil::all()->except(1);
+        $personils = Personil::where('jabatan', '!=', 1)->get();
         return view('landingpage.personil', compact('personils'));
     }
 
@@ -68,7 +68,8 @@ class LandingPageController extends Controller
                 'email' => $request->email . $request->gmail,
                 'message' => $request->message,
                 'rating' => $request->rating,
-                'type' => $request->type
+                'type' => $request->type,
+                'status' => 0,
             ];
 
             // dd($data);

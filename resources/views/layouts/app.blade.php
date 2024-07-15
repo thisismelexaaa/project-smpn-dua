@@ -122,7 +122,7 @@
                                     Personil
                                 @elseif(request()->routeIs('berita.*'))
                                     Berita
-                                @elseif(request()->routeIs('gallery.*'))
+                                @elseif(request()->routeIs('galleries.*'))
                                     Gallery
                                 @elseif(request()->routeIs('setting.*'))
                                     Setting

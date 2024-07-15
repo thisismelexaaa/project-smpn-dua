@@ -21,8 +21,9 @@ class KritikDanSaranSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->email,
                 'message' => $faker->paragraph(),
-                'rating' => $faker->numberBetween(1, 5),
+                'rating' => $faker->numberBetween(0, 5),
                 'type' => $faker->numberBetween(1, 3),
+                'status' => 0,
             ]);
         }
     }

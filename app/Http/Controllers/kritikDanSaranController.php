@@ -26,9 +26,23 @@ class kritikDanSaranController extends Controller
     {
         //
     }
-    public function update()
+    public function update($id)
     {
-        //
+        try{
+            $masukan = kritikDanSaran::find($id);
+
+            if($masukan->status == 1)
+                $masukan->update(['status' => 0]);
+            else{
+                $masukan->update(['status' => 1]);
+            }
+
+            toast('Masukan Berhasil Ditampilkan', 'success');
+            return redirect()->route('masukan.index');
+        }catch(\Exception $e){
+            toast('Terjadi kesalahan saat mengupdate data. Silakan coba lagi. ', 'error');
+            return redirect()->back();
+        }
     }
 
     public function destroy($id)

@@ -4,51 +4,32 @@
     <div class="container-fluid bg-white py-5" id="berita" style="height: 100%">
         <div class="container pb-5">
             <h1 class="display-6 mb-3">Tenaga Pendidik</h1>
-            <table class="table dataTable table-hover table-striped" id="dataTable">
-                <thead>
-                    <tr>
-                        <th class="text-start">#</th>
-                        <th>Nama</th>
-                        <th>Jabatan</th>
-                        <th>Foto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($personils as $index => $personil)
-                        <tr>
-                            <td class="text-start">{{ $loop->iteration }}</td>
-                            <td>{{ $personil->name }}</td>
-                            <td>{{ $personil->jabatan == 2 ? 'Guru' : 'Kepala Sekolah' }}</td>
-                            <td>
-                                <button class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#modalFoto{{ $index }}"><i class="bi bi-card-image"></i></button>
-                            </td>
-                        </tr>
-
-                        <div class="modal fade" id="modalFoto{{ $index }}" tabindex="-1"
-                            aria-labelledby="modalFoto{{ $index }}Label" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="modalFoto{{ $index }}Label">Foto
-                                            {{ $personil->name }}</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <img src="{{ asset('assets/panel/admin/images/personil/' . $personil->image) }}"
-                                            class="img-fluid">
-                                    </div>
-                                    {{-- <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary text-white"
-                                            data-bs-dismiss="modal">Close</button>
-                                    </div> --}}
+            <div class="row">
+                @foreach ($personils as $index => $personil)
+                    <div class="col-md-3 my-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <span class="fw-bold">{{ $personil->name }}</span>
+                                    <span>
+                                        @if ($personil->jabatan == 1)
+                                            Kepala Sekolah
+                                        @elseif ($personil->jabatan == 2)
+                                            Guru
+                                        @else
+                                        Staff
+                                        @endif
+                                    </span>
                                 </div>
+                                <hr class="border-dark mx-auto">
+                                <img src="{{ asset('assets/panel/admin/images/personil/' . $personil->image) }}"
+                                    alt="Image" class="image-fluid text-center w-100">
+                                <p class="text-justify">{{ $personil->content }}</p>
                             </div>
                         </div>
-                    @endforeach
-                </tbody>
-            </table>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection

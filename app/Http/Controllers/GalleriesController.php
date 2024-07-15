@@ -43,6 +43,7 @@ class GalleriesController extends Controller
 
             $data = [
                 'title' => $request->title,
+                'category' => $request->category,
                 'status' => 1,
             ];
 
