@@ -5,7 +5,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Tambah Sarana & Prasarana</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Tambah Sarana &
+                        Prasarana</button>
                     {{-- <select name="category" id="selectCategory" class="form-select w-25 h-50">
                         <option value="all" selected>Semua</option>
                         <option value="sarana">Sarana</option>
@@ -20,25 +21,18 @@
                 <h4>Tidak ada Sarana & Prasarana</h4>
             @endif
             <div class="row">
-                @foreach ($galleries as $j => $gallerie)
-                    <div class="col-md-3 rounded overflow-hidden gallerie" data-category="{{ $gallerie['category'] }}">
+                @foreach ($sarana as $j => $sarana)
+                    <div class="col-md-3 rounded overflow-hidden gallerie" data-category="{{ $sarana['category'] }}">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $j }}">
-                            @if (in_array(pathinfo($gallerie['image'], PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'svg']))
-                                <img src="{{ asset('assets/panel/admin/images/galleries/' . $gallerie['image']) }}"
-                                    alt="Image" class="shadow-sm image-fluid w-100"
-                                    style="{{ $gallerie['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
-                            @elseif (pathinfo($gallerie['video'], PATHINFO_EXTENSION) == 'mp4')
-                                <video src="{{ asset('assets/panel/admin/video/galleries/' . $gallerie['video']) }}"
-                                    class="shadow-sm image-fluid w-100"
-                                    style="{{ $gallerie['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
-                                </video>
-                            @endif
+                            <img src="{{ asset('assets/panel/admin/images/sarana-prasarana/' . $sarana['image']) }}"
+                                alt="Image" class="shadow-sm image-fluid w-100"
+                                style="{{ $sarana['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
                         </a>
                         <div class="my-2">
                             <p class="text-capitalize fw-bold mt-3 text-justify" style="text-wrap: wrap">
                                 <a href="#" class="text-decoration-none text-dark" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal{{ $j }}">
-                                    {{ $gallerie['title'] }}
+                                    {{ $sarana['name'] }}
                                 </a>
                             </p>
                         </div>
@@ -48,31 +42,22 @@
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        {{-- <h5 class="modal-title">Modal title</h5> --}}
+                                        <h5 class="modal-title">{{ $sarana['name'] }}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        @if (in_array(pathinfo($gallerie['image'], PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'svg']))
-                                            <img src="{{ asset('assets/panel/admin/images/galleries/' . $gallerie['image']) }}"
-                                                alt="Image" class="shadow-sm image-fluid w-100"
-                                                style="{{ $gallerie['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
-                                        @elseif (pathinfo($gallerie['video'], PATHINFO_EXTENSION) == 'mp4')
-                                            <video
-                                                src="{{ asset('assets/panel/admin/video/galleries/' . $gallerie['video']) }}"
-                                                class="shadow-sm image-fluid w-100"
-                                                style="{{ $gallerie['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;"
-                                                {{ $gallerie['status'] == 0 ? '' : 'controls' }}>
-                                            </video>
-                                        @endif
+                                        <img src="{{ asset('assets/panel/admin/images/sarana-prasarana/' . $sarana['image']) }}"
+                                            alt="Image" class="shadow-sm image-fluid w-100"
+                                            style="{{ $sarana['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
                                     </div>
                                     <div class="modal-footer">
-                                        <form action="{{ route('galleries.update', $gallerie['id']) }}" method="POST">
+                                        <form action="{{ route('sarana-prasarana.update', $sarana['id']) }}" method="POST">
                                             @csrf
                                             @method('put')
                                             <button type="submit" class="btn btn-success">Restore Media</button>
                                         </form>
-                                        <form action="{{ route('galleries.destroy', $gallerie['id']) }}" method="POST">
+                                        <form action="{{ route('sarana-prasarana.destroy', $sarana['id']) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger">Delete Media</button>
@@ -90,18 +75,18 @@
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
-                <form action="{{ route('galleries.store') }}" enctype="multipart/form-data" method="POST">
+                <form action="{{ route('sarana-prasarana.store') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('POST')
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Gambar</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Sarana Prasarana</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label for="title" class="form-label">Judul</label>
+                                    <label for="title" class="form-label">Nama</label>
                                     <input type="text" class="form-control" id="title" name="title"
                                         placeholder="Judul">
                                 </div>
@@ -112,7 +97,7 @@
                                     <input class="form-control" type="file" id="formFile" name="file">
                                 </div>
                             </div>
-                            <div class="col-12">
+                            {{-- <div class="col-12">
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Kategori</label>
                                     <select name="category" id="selectCategory" class="form-select">
@@ -123,7 +108,7 @@
                                         <option value="pensi">Pensi</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="d-flex justify-content-center" id="preview-container">
                             <img class="img-fluid rounded" id="preview-image" src="https://via.placeholder.com/200"
@@ -140,7 +125,7 @@
         </div>
     </div>
 @endsection
-
+{{--
 @section('scripts')
     <script>
         const previewFileInput = document.querySelector('#formFile');
@@ -196,4 +181,4 @@
             });
         });
     </script>
-@endsection
+@endsection --}}

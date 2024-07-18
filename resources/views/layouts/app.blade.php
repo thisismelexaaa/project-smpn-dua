@@ -83,6 +83,11 @@
                         <i class="bi bi-activity"></i>
                         <span>Ekskul</span></a>
                 </li>
+                <li class="nav-item {{ request()->routeIs('sarana-prasarana.*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('sarana-prasarana.index') }}">
+                        <i class="bi bi-hammer"></i>
+                        <span>sarana-prasarana</span></a>
+                </li>
                 <li class="nav-item {{ request()->routeIs('masukan.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('masukan.index') }}">
                         <i class="bi bi-chat-dots-fill"></i>
@@ -130,6 +135,8 @@
                                     Masukan
                                 @elseif(request()->routeIs('ekskul.*'))
                                     Ekstrakulikuler
+                                @elseif(request()->routeIs('sarana-prasarana.*'))
+                                    Sarana Prasarana
                                 @endif
                             </h1>
                         </div>

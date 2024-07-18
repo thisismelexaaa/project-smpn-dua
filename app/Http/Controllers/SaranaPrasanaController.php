@@ -22,7 +22,7 @@ class SaranaPrasanaController extends Controller
             $fileExtension = $file->getClientOriginalExtension();
 
             $data = [
-                'name' => $request->name,
+                'name' => $request->title,
                 'status' => 1,
             ];
 
@@ -30,12 +30,12 @@ class SaranaPrasanaController extends Controller
                 // Handle image files
                 if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'svg'])) {
                     // Delete old image if it exists
-                    if ($request->image && file_exists(public_path('assets/panel/admin/images/galleries/' . $request->image))) {
-                        unlink(public_path('assets/panel/admin/images/galleries/' . $request->image));
+                    if ($request->image && file_exists(public_path('assets/panel/admin/images/sarana-prasarana/' . $request->image))) {
+                        unlink(public_path('assets/panel/admin/images/sarana-prasarana/' . $request->image));
                     }
 
                     $fileName = time() . '.' . $fileExtension;
-                    $file->move(public_path('assets/panel/admin/images/galleries'), $fileName);
+                    $file->move(public_path('assets/panel/admin/images/sarana-prasarana'), $fileName);
                     $data['image'] = $fileName;
                 } else {
                     throw new \Exception("Unsupported file type: $fileExtension");
@@ -44,10 +44,40 @@ class SaranaPrasanaController extends Controller
 
             SaranaPrasarana::create($data);
 
-            toast()->success('Galeri Berhasil Ditambah', 'Success');
+            toast()->success('Sarana Prasarana Berhasil Ditambah', 'Success');
             return redirect()->back();
         } catch (Exception $e) {
             toast()->error($e->getMessage(), 'Error');
+            return redirect()->back();
+        }
+    }
+
+    public function update(Request $request, string $id)
+    {
+        try {
+            $gallery = SaranaPrasarana::findOrFail($id);
+
+            $gallery->update(['status' => 1]);
+
+            toast()->success('Sarana Prasarana Berhasil Dihapus', 'Success');
+            return redirect()->back();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            toast()->error('Sarana Prasarana Tidak Ditemukan', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    public function destroy(string $id)
+    {
+        try {
+            $gallery = SaranaPrasarana::findOrFail($id);
+
+            $gallery->update(['status' => 0]);
+
+            toast()->success('Sarana Prasarana Berhasil Dihapus', 'Success');
+            return redirect()->back();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            toast()->error('Sarana Prasarana Tidak Ditemukan', 'Error');
             return redirect()->back();
         }
     }
