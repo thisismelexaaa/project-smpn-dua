@@ -4,8 +4,23 @@
     <div class="container-fluid mb-4">
         <div class="card">
             <div class="card-body">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Tambah
-                    Ekstrakurikuler</button>
+
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Tambah
+                        Ekstrakurikuler</button>
+                    <select name="category" id="selectCategory" class="form-select w-25 h-50">
+                        <option disabled selected>Pilih Ekskul</option>
+                        <option value="Pramuka">Pramuka</option>
+                        <option value="Paskibra">Paskibra</option>
+                        <option value="PMR">PMR</option>
+                        <option value="Karate">Karate</option>
+                        <option value="Pencak Silat">Pencak Silat</option>
+                        <option value="SepakBola">Sepak Bola</option>
+                        <option value="Futsal">Futsal</option>
+                        <option value="Bulutangkis">Bulutangkis</option>
+                        <option value="Catur">Catur</option>
+                    </select>
+                </div>
             </div>
         </div>
 
@@ -116,6 +131,7 @@
                     <form action="{{ route('ekskul.store') }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         @method('POST')
+                        <input type="hidden" name="slug" value="ekskul">
                         <div class="row">
                             <div class="mb-3 col-6">
                                 <label for="name" class="form-label">Nama</label>
@@ -130,6 +146,21 @@
                                 <label for="image" class="form-label">Deskripsi</label>
                                 <textarea name="description" id="description" cols="20" rows="2" class="form-control"
                                     placeholder="Masukkan Deskripsi"></textarea>
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="image" class="form-label">Ekstrakurikuler</label>
+                                <select name="slug" id="selectCategory" class="form-select">
+                                    <option disabled selected>Pilih Ekskul</option>
+                                    <option value="Pramuka">Pramuka</option>
+                                    <option value="Paskibra">Paskibra</option>
+                                    <option value="PMR">PMR</option>
+                                    <option value="Karate">Karate</option>
+                                    <option value="Pencak Silat">Pencak Silat</option>
+                                    <option value="SepakBola">Sepak Bola</option>
+                                    <option value="Futsal">Futsal</option>
+                                    <option value="Bulutangkis">Bulutangkis</option>
+                                    <option value="Catur">Catur</option>
+                                </select>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center" id="preview-container">

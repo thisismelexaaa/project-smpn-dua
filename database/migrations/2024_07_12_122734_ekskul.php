@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('video')->nullable();
             $table->string('description')->nullable();
             $table->string('status');
+            $table->string('slug');
             $table->timestamps();
         });
     }

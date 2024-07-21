@@ -175,24 +175,23 @@
                                 <label class="input-group-text" id="basic-addon1">Nama Lengkap</label>
                                 <input type="text" class="form-control" name="name" placeholder="Nama Lengkap"
                                     aria-label="Masukkan Nama Lengkap" aria-describedby="basic-addon1">
-                                <input type="hidden" value="@gmail.com" name="gmail">
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Email</span>
-                                <input type="text" class="form-control" name="email" placeholder="Email"
+                                <input re type="email" class="form-control" name="email" placeholder="Email"
                                     aria-label="Masukkan Email" aria-describedby="basic-addon1"></input>
                             </div>
                         </div>
-                        <div class="col-md">
+                        {{-- <div class="col-md">
                             <select name="type" class="form-select text-capitalize" id="">
                                 <option selected disabled>Pilih</option>
                                 <option value="1">masyarakat</option>
                                 <option value="2">guru</option>
                                 <option value="3">siswa</option>
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Kritik dan saran</span>
@@ -257,11 +256,9 @@
                                                     @endif
                                                 </span>
                                                 <br>
-                                                {{-- <div class="my-auto"> --}}
                                                 @for ($i = 1; $i <= $masukan['rating']; $i++)
                                                     <i class="bi bi-star-fill text-warning"></i>
                                                 @endfor
-                                                {{-- </div> --}}
                                             </div>
                                         </div>
                                         <p class="fs-5 mb-4" style="text-align: justify; word-wrap: break-word;">

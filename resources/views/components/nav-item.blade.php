@@ -7,7 +7,8 @@
             <a href="/berita" class="dropdown-item">Berita</a>
             <a href="/prestasi" class="dropdown-item">Prestasi</a>
             <a href="/sarana-prasana" class="dropdown-item">Sarana Prasarana</a>
-            <a href="/personil" class="dropdown-item">Tenaga Pendidik</a>
+            <a href="/tenaga-pendidik" class="dropdown-item">Tenaga Pendidik</a>
+            <a href="/ekskul" class="dropdown-item">Ekstrakulikuler</a>
         </div>
     </div>
     <div class="nav-item dropdown">

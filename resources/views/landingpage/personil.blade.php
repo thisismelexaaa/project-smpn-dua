@@ -7,55 +7,22 @@
             <span class="text-primary fw-bold">Guru</span>
             <div class="row">
                 @foreach ($personils as $index => $personil)
-                    @if ($personil->jabatan == 2)
+                    @if ($personil['jabatan'] == 2)
                         <div class="col-md-3 my-3">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <span class="fw-bold">{{ $personil->name }}</span>
+                                        <span class="fw-bold">{{ $personil['name'] }}</span>
                                         <span>
-                                            @if ($personil->jabatan == 1)
-                                                Kepala Sekolah
-                                            @elseif ($personil->jabatan == 2)
+                                            @if ($personil['jabatan'] == 2)
                                                 Guru
-                                            @else
-                                                Staff
                                             @endif
                                         </span>
                                     </div>
                                     <hr class="border-dark mx-auto">
-                                    <img src="{{ asset('assets/panel/admin/images/personil/' . $personil->image) }}"
+                                    <img src="{{ asset('assets/panel/admin/images/personil/' . $personil['image']) }}"
                                         alt="Image" class="image-fluid text-center w-100">
-                                    <p class="text-justify">{{ $personil->content }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-            <span class="text-primary fw-bold">Staff</span>
-            <div class="row">
-                @foreach ($personils as $index => $personil)
-                    @if ($personil->jabatan == 3)
-                        <div class="col-md-3 my-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <span class="fw-bold">{{ $personil->name }}</span>
-                                        <span>
-                                            @if ($personil->jabatan == 1)
-                                                Kepala Sekolah
-                                            @elseif ($personil->jabatan == 2)
-                                                Guru
-                                            @else
-                                                Staff
-                                            @endif
-                                        </span>
-                                    </div>
-                                    <hr class="border-dark mx-auto">
-                                    <img src="{{ asset('assets/panel/admin/images/personil/' . $personil->image) }}"
-                                        alt="Image" class="image-fluid text-center w-100">
-                                    <p class="text-justify">{{ $personil->content }}</p>
+                                    <p class="text-center">{{ $personil['mapel'] }}</p>
                                 </div>
                             </div>
                         </div>

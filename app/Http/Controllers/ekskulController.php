@@ -23,6 +23,7 @@ class ekskulController extends Controller
             $data = [
                 'title' => $request->title,
                 'description' => $request->description,
+                'slug' => $request->slug,
                 'status' => 1,
             ];
 
@@ -38,17 +39,7 @@ class ekskulController extends Controller
                     $file->move(public_path('assets/panel/admin/images/ekskul'), $fileName);
                     $data['image'] = $fileName;
                 }
-                // Handle video files
-                else if ($fileExtension == 'mp4') {
-                    // Delete old video if it exists
-                    if ($request->video && file_exists(public_path('assets/panel/admin/video/ekskul/' . $request->video))) {
-                        unlink(public_path('assets/panel/admin/video/ekskul/' . $request->video));
-                    }
-
-                    $fileName = time() . '.' . $fileExtension;
-                    $file->move(public_path('assets/panel/admin/video/ekskul'), $fileName);
-                    $data['video'] = $fileName;
-                } else {
+                else {
                     throw new \Exception("Unsupported file type: $fileExtension");
                 }
             }

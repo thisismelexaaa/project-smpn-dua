@@ -45,7 +45,28 @@ class LandingPageController extends Controller
 
     public function personil()
     {
-        $personils = Personil::where('jabatan', '!=', 1)->get();
+        $personils = Personil::where('jabatan', '!=', 1)
+            ->get(['id', 'name', 'jabatan', 'phone', 'image', 'email', 'mapel'])
+            ->map(function ($item) {
+                $fullName = explode(' ', $item->name);
+                $email = explode('@', $item->email);
+
+                // Decode JSON mapel and ensure it is an array
+                $mapel = json_decode($item->mapel, true);
+                $mapel = is_array($mapel) ? implode(', ', $mapel) : $item->mapel;
+
+                return [
+                    'id' => $item->id,
+                    'name' => $item->name,
+                    'jabatan' => $item->jabatan,
+                    'phone' => $item->phone,
+                    'image' => $item->image,
+                    'first_name' => $fullName[0],
+                    'last_name' => isset($fullName[1]) ? $fullName[1] : '',
+                    'email' => $email[0],
+                    'mapel' => $mapel,
+                ];
+            });
         return view('landingpage.personil', compact('personils'));
     }
 
@@ -59,14 +80,11 @@ class LandingPageController extends Controller
         try {
             $data = [
                 'name' => $request->name,
-                'email' => $request->email . $request->gmail,
+                'email' => $request->email,
                 'message' => $request->message,
                 'rating' => $request->rating,
-                'type' => $request->type,
                 'status' => 0,
             ];
-
-            // dd($data);
 
             kritikDanSaran::create($data);
 

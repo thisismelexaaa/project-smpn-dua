@@ -31,6 +31,9 @@
     <link href="{{ asset('assets/panel/vendor/ckeditor5-build-classic/sample/css/sample.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('select2/dist/css/select2-bootstrap-5-theme.min.css') }}">
 </head>
 
 <body class="bg-gradient-primary">
@@ -68,10 +71,10 @@
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item {{ request()->routeIs('personil.*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('personil.index') }}">
+                <li class="nav-item {{ request()->routeIs('tenaga-pendidik.*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('tenaga-pendidik.index') }}">
                         <i class="bi bi-person-fill"></i>
-                        <span>Personil</span></a>
+                        <span>Tenaga Pendidik</span></a>
                 </li>
                 <li class="nav-item {{ request()->routeIs('berita.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('berita.index') }}">
@@ -123,8 +126,8 @@
                             <h1 class="h3 mb-0 text-gray-800">
                                 @if (request()->routeIs('home'))
                                     Dashboard Guru
-                                @elseif(request()->routeIs('personil.*'))
-                                    Personil
+                                @elseif(request()->routeIs('tenaga-pendidik.*'))
+                                    Tenaga Pendidik
                                 @elseif(request()->routeIs('berita.*'))
                                     Berita
                                 @elseif(request()->routeIs('galleries.*'))
@@ -226,6 +229,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('assets/panel/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('select2/dist/js/select2.full.min.js') }}"></script>
 
     <!-- Page level plugins -->
     {{-- <script src="{{ asset('assets/panel/vendor/chart.js/Chart.min.js') }}"></script> --}}

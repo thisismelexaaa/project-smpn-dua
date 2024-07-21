@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone');
             $table->string('jabatan');
+            $table->string('mapel')->nullable();
             $table->string('image')->nullable();
             $table->text('sambutan')->nullable();
             $table->timestamps();

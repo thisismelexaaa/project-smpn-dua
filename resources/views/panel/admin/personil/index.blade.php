@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="container-fluid mb-4">
-        <div class="accordion accordion-flush mb-4 border shadow-sm" style="border-radius: 1%" id="accordionFlushExample">
+        {{-- <div class="accordion accordion-flush mb-4 border shadow-sm" style="border-radius: 1%" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        Tambah Data Personil
+                        Tambah Data Tenaga pendidik
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
-                        <form action="{{ route('personil.store') }}" class="mx-3" method="POST"
+                        <form action="{{ route('tenaga-pendidik.store') }}" class="mx-3" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-2">
@@ -39,14 +39,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-2">
+
+                            <div class="row mb-2 gy-2">
                                 <div class="col-md-6 col-sm-12">
                                     <label for="jabatan" class="form-label my-auto pb-1">Jabatan</label>
                                     <select name="jabatan" class="form-select" id="jabatanPersonil">
                                         <option disabled selected>Pilih Jabatan</option>
                                         <option value="1" {{ $jabatan ? 'hidden' : '' }}>Kepala Sekolah</option>
                                         <option value="2">Guru</option>
-                                        <option value="3">Staff</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
@@ -55,12 +55,31 @@
                                         placeholder="Nomor Telepon" aria-label="Recipient's username"
                                         aria-describedby="button-addon2">
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
                                 <div class="col-md-6 col-sm-12">
                                     <label for="image" class="form-label my-auto pb-1">Foto</label>
                                     <input required name="image" type="file" class="form-control col"
                                         aria-label="Recipient's username" aria-describedby="button-addon2">
+                                </div>
+                                <div class="col-md-6 col-sm-12 ">
+                                    <label for="mapel" class="form-label my-auto pb-1">Mata Pelajaran</label>
+                                    <select name="mapel[]" class="form-select" id="mapel"
+                                        data-placeholder="Pilih Mata Pelajaran" multiple>
+                                        <option></option>
+                                        <option value="PAI">PAI</option>
+                                        <option value="PPKn">PPKn</option>
+                                        <option value="IPA">IPA</option>
+                                        <option value="IPS">IPS</option>
+                                        <option value="MATEMATIKA">MATEMATIKA</option>
+                                        <option value="BAHASA INDONESIA">BAHASA INDONESIA</option>
+                                        <option value="BAHASA INGGRIS">BAHASA INGGRIS</option>
+                                        <option value="PJOK">PJOK</option>
+                                        <option value="SENI BUDAYA">SENI BUDAYA</option>
+                                        <option value="INFORMATIKA">INFORMATIKA</option>
+                                        <option value="PRAKARYA">PRAKARYA</option>
+                                        <option value="BAHASA SUNDA">BAHASA SUNDA</option>
+                                        <option value="BAHASA CIREBON">BAHASA CIREBON</option>
+                                        <option value="BIMBINGAN KONSELING">BIMBINGAN KONSELING</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="mb-3 row" id="sambutanKepalasekolah">
@@ -75,8 +94,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
+        @include('panel.admin.personil.tambahComponent')
+
+        {{-- kepala sekolah --}}
         <div class="card shadow-sm mb-3">
             <div class="card-header">
                 <span>Data Kepala Sekolah</span>
@@ -105,7 +127,8 @@
                                     <div class="d-flex gap-1">
                                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#modalKepalaSekolah">Edit</button>
-                                        <form action="{{ route('personil.destroy', $jabatan['id']) }}" method="POST">
+                                        <form action="{{ route('tenaga-pendidik.destroy', $jabatan['id']) }}"
+                                            method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-sm btn-danger">Delete</button>
@@ -123,9 +146,10 @@
             </div>
         </div>
 
+        {{-- guru --}}
         <div class="card shadow-sm">
             <div class="card-header">
-                <span>Data Personil</span>
+                <span>Data Tenaga pendidik</span>
             </div>
             <div class="card-body overflow-auto" style="height: 100%">
                 <table class="table table-bordered dataTable table-hover table-striped" id="dataTable">
@@ -135,6 +159,7 @@
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Telepon</th>
+                            <th>Mapel</th>
                             <th>Jabatan</th>
                             <th>Action</th>
                         </tr>
@@ -147,12 +172,14 @@
                                     <td>{{ $item['name'] }}</td>
                                     <td>{{ $item['email'] }}@gmail.com</td>
                                     <td>{{ $item['phone'] }}</td>
+                                    <td>{!! $item['mapel'] !!}</td>
                                     <td>Guru</td>
                                     <td>
                                         <div class="d-flex gap-1">
                                             <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#modalEdit{{ $item['id'] }}">Edit</button>
-                                            <form action="{{ route('personil.destroy', $item['id']) }}" method="POST">
+                                            <form action="{{ route('tenaga-pendidik.destroy', $item['id']) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-danger">Delete</button>
@@ -178,8 +205,8 @@
                         {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('personil.update', $jabatan['id']) }}" class="px-3" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('tenaga-pendidik.update', $jabatan['id']) }}" class="px-3"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-3 row">
@@ -256,7 +283,7 @@
                         {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('personil.update', $item['id']) }}" class="px-3" method="POST"
+                        <form action="{{ route('tenaga-pendidik.update', $item['id']) }}" class="px-3" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -359,6 +386,15 @@
             $('#jabatanPersonil').on('change', function() {
                 let jabatan = $(this).val();
                 $('#sambutanKepalasekolah').toggle(jabatan == 1);
+            });
+
+            // select2
+            $('#mapel').select2({
+                theme: "bootstrap-5",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
+                    'style',
+                placeholder: $(this).data('placeholder'),
+                closeOnSelect: false,
             });
         });
     </script>

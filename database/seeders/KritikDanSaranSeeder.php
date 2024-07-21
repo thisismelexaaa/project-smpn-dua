@@ -22,7 +22,7 @@ class KritikDanSaranSeeder extends Seeder
                 'email' => $faker->email,
                 'message' => $faker->paragraph(),
                 'rating' => $faker->numberBetween(0, 5),
-                'type' => $faker->numberBetween(1, 3),
+                // 'type' => $faker->numberBetween(1, 3),
                 'status' => 0,
             ]);
         }

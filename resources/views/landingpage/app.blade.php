@@ -53,16 +53,18 @@
             </a>
             <div class="d-block">
                 <div class="d-flex justify-content-end pe-3 pb-1">
-                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href=""><i
+                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank"
+                        href="https://www.instagram.com/smpn2cirebonofficial?igsh=dTNkeDhwaDhkOGFz"><i
                             class="fab fa-instagram"></i></a>
-                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href=""><i
+                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank"
+                        href="https://www.facebook.com/pages/SMPN2-Kota-Cirebon/248605785250927?locale=id_ID"><i
                             class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank" href=""><i
-                            class="fab fa-youtube"></i></a>
+                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank"
+                        href="https://www.youtube.com/@spendacherbon9064"><i class="fab fa-youtube"></i></a>
                     <a class="btn btn-sm-square border border-dark ms-2" target="_blank"
                         href="mailto:smpn2_crbn@yahoo.co.id"><i class="fa fa-envelope"></i></a>
-                    <a class="btn btn-sm-square border border-dark ms-2" target="_blank"
-                        href="https://wa.me/0231203075"><i class="fab fa-whatsapp"></i></a>
+                    <a class="btn btn-sm-square border border-dark ms-2" href=""><i
+                            class="fab fa-whatsapp"></i></a>
 
                 </div>
                 <div class="d-flex">
@@ -111,11 +113,22 @@
                     <p>Unggul Dalam Mutu Teruji Dalam Prestasi Dengan Dilandasi Iman Dan Taqwa</p>
                     <h1 class="text-white w-100">Ayo Hubungi Kami</h1>
                     <p class="fs-5 mb-4 pt-1">Mari berinteraksi dengan kami via kontak berikut ini</p>
-                    <p class=""><i class="fa fa-map-marker-alt me-2"></i>Jl. Siliwangi No.82, Kebonbaru,
-                        Kec.
-                        Kejaksan, Kota Cirebon, Jawa Barat 45121</p>
-                    <p class=""><i class="fa fa-phone-alt me-2"></i>(0231) 203075 / +62 852-2437-3344</p>
-                    <p class=""><i class="fa fa-envelope me-2"></i>smpn2_crbn@yahoo.co.id</p>
+                    <div class="row gy-2">
+                        <a class="text-white" target="_blank"
+                            href="https://www.google.com/maps?ll=-6.708235,108.558771&z=16&t=m&hl=id&gl=ID&mapclient=embed&cid=6191927413615920340">
+                            <i class="fa fa-map-marker-alt me-2"></i>Jl. Siliwangi No.82, Kebonbaru,
+                            Kec.
+                            Kejaksan, Kota Cirebon, Jawa Barat 45121
+                        </a>
+                        <a class="text-white" href="">
+                            <i class="fa fa-phone-alt me-2"></i>
+                            (0231) 203075
+                        </a>
+                        <a href="mailto:smpn2_crbn@yahoo.co.id" target="_blank" class="text-white">
+                            <i class="fa fa-envelope me-2"></i>
+                            smpn2_crbn@yahoo.co.id
+                        </a>
+                    </div>
                 </div>
                 <div class="col-lg-6 ps-lg-5">
                     <div class="row g-5">
@@ -134,28 +147,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 d-none">
-                            <h4 class="text-light mb-4 ">Quick Links</h4>
+                        <div class="col-sm-12">
+                            <h4 class="text-light mb-4 ">Social Media</h4>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <a href="/" class="nav-item nav-link active text-white">Beranda</a>
-                                    <a href="/profile" class="nav-item nav-link text-white">Profil</a>
-                                    <a href="#personil" class="nav-item nav-link text-white">Personil</a>
-                                </div>
-                                <div class="col-sm-3">
-                                    <a href="/informasi" class="nav-item nav-link text-white">Informasi</a>
-                                    <a href="/galleries" class="nav-item nav-link text-white">Gallery</a>
-                                    <a href="#contact" class="nav-item nav-link text-white">Contact</a>
-                                </div>
-                                <div class="col-sm-3">
-                                    <a href="/informasi" class="nav-item nav-link text-white">Informasi</a>
-                                    <a href="/galleries" class="nav-item nav-link text-white">Gallery</a>
-                                    <a href="#contact" class="nav-item nav-link text-white">Contact</a>
-                                </div>
-                                <div class="col-sm-3">
-                                    <a href="/informasi" class="nav-item nav-link text-white">Informasi</a>
-                                    <a href="/galleries" class="nav-item nav-link text-white">Gallery</a>
-                                    <a href="#contact" class="nav-item nav-link text-white">Contact</a>
+                                    <a target="_blank"
+                                        href="https://www.instagram.com/smpn2cirebonofficial?igsh=dTNkeDhwaDhkOGFz"
+                                        class="nav-item d-flex gap-2 align-items-center nav-link active text-white">
+                                        <i class="fab fa-instagram"></i>
+                                        Instagram
+                                    </a>
+                                    <a target="_blank" href="https://www.youtube.com/@spendacherbon9064"
+                                        class="nav-item d-flex gap-2 align-items-center nav-link text-white">
+                                        <i class="fab fa-youtube"></i>
+                                        Youtube
+                                    </a>
+                                    <a target="_blank"
+                                        href="https://www.facebook.com/pages/SMPN2-Kota-Cirebon/248605785250927?locale=id_ID"
+                                        class="nav-item d-flex gap-2 align-items-center nav-link text-white">
+                                        <i class="fab fa-facebook-f"></i>
+                                        Facebook
+                                    </a>
                                 </div>
                             </div>
                         </div>

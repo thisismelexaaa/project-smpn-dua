@@ -52,12 +52,14 @@
                                             style="{{ $sarana['status'] == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover;">
                                     </div>
                                     <div class="modal-footer">
-                                        <form action="{{ route('sarana-prasarana.update', $sarana['id']) }}" method="POST">
+                                        <form action="{{ route('sarana-prasarana.update', $sarana['id']) }}"
+                                            method="POST">
                                             @csrf
                                             @method('put')
                                             <button type="submit" class="btn btn-success">Restore Media</button>
                                         </form>
-                                        <form action="{{ route('sarana-prasarana.destroy', $sarana['id']) }}" method="POST">
+                                        <form action="{{ route('sarana-prasarana.destroy', $sarana['id']) }}"
+                                            method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger">Delete Media</button>
@@ -125,7 +127,7 @@
         </div>
     </div>
 @endsection
-{{--
+
 @section('scripts')
     <script>
         const previewFileInput = document.querySelector('#formFile');
@@ -156,29 +158,5 @@
                 }
             };
         });
-
-        $(document).ready(() => {
-            // Filter cards based on the selected category
-            function filterCards(category) {
-                $('.gallerie').each(function() {
-                    let cardCategory = $(this).data('category');
-                    if (category === 'all' || category === cardCategory) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            }
-
-            // Initial filter based on default selected value
-            let category = $('#selectCategory').val();
-            filterCards(category);
-
-            // Filter cards when the category changes
-            $('#selectCategory').on('change', function() {
-                category = $(this).val();
-                filterCards(category);
-            });
-        });
     </script>
-@endsection --}}
+@endsection
