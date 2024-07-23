@@ -1,7 +1,7 @@
 @extends('landingpage.app')
 
 @section('content')
-    <div class="container-fluid py-5 bg-white"style="height: 100%">
+    <div class="container-fluid py-5 bg-white" style="height: 100%">
         <div class="container">
             <div class="d-flex justify-content-between">
                 <h1 class="display-6 mb-3">Gallery Foto</h1>
@@ -14,20 +14,17 @@
                 </select> --}}
             </div>
             <div class="row">
-                @foreach ($galleries as $gallery)
-                    @if ($gallery->video == null)
-                        <div class="col-md-4 mb-3 gallerie" style="object-fit: cover;"
-                            data-category="{{ $gallery['category'] }}">
-                            <div class="card">
-                                <div class="card-body">
-                                    <img src="{{ asset('assets/panel/admin/images/galleries/' . $gallery->image) }}"
-                                        alt="" class="img-fluid w-100"
-                                        style="{{ $gallery->status == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover">
-                                    <p class="h5 my-3">{{ $gallery->title }}</p>
-                                </div>
+                @foreach ($sarana as $sarana)
+                    <div class="col-md-4 mb-3 gallerie" style="object-fit: cover;">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="{{ asset('assets/panel/admin/images/sarana-prasarana/' . $sarana->image) }}"
+                                    alt="" class="img-fluid w-100"
+                                    style="{{ $sarana->status == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover">
+                                <p class="h5 my-3">{{ $sarana->title }}</p>
                             </div>
                         </div>
-                    @endif
+                    </div>
                 @endforeach
             </div>
         </div>

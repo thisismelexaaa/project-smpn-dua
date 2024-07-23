@@ -7,6 +7,7 @@ use App\Models\Ekskul;
 use App\Models\Galleries;
 use App\Models\kritikDanSaran;
 use App\Models\Personil;
+use App\Models\SaranaPrasarana;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -114,5 +115,11 @@ class LandingPageController extends Controller
         $galleries = Galleries::where('status', 1)
             ->get();
         return view('landingpage.video', compact('galleries'));
+    }
+
+    public function saranaPrasarana()
+    {
+        $sarana = SaranaPrasarana::where('status', 1)->get();
+        return view('landingpage.sarana', compact('sarana'));
     }
 }

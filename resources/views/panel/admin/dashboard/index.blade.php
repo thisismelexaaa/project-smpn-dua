@@ -30,7 +30,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Total Gallery</div>
+                                    Total Galleri</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $gallerieCount }}</div>
                             </div>
                             <div class="col-auto">
@@ -48,7 +48,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Personil</div>
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Tenaga Pendidik</div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $personilCount }}</div>
@@ -94,7 +94,7 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
-                        <span>Gallery</span>
+                        <span>Galleri</span>
                     </div>
                     <div class="card-body overflow-auto" style="height: 50vh">
                         <div class="row">

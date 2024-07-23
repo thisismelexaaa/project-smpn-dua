@@ -129,7 +129,7 @@ class GalleriesController extends Controller
         try {
             $gallery = Galleries::findOrFail($id);
 
-            $gallery->update(['status' => 0]);
+            $gallery->delete();
 
             toast()->success('Galeri Berhasil Dihapus', 'Success');
             return redirect()->back();

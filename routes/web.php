@@ -23,6 +23,7 @@ Route::prefix('/')->group(function () {
     Route::get('/ekskul', [LandingPageController::class, 'ekskul'])->name('ekskul');
     Route::get('/gallery-foto', [LandingPageController::class, 'galleriesFoto'])->name('galleries.foto');
     Route::get('/gallery-video', [LandingPageController::class, 'galleriesVideo'])->name('galleriesVideo');
+    Route::get('/sarana-prasana', [LandingPageController::class, 'saranaPrasarana'])->name('saranaPrasarana');
     Route::post('/kritik-dan-saran', [LandingPageController::class, 'kritikDanSaran'])->name('kritikDanSaran.store');
     Route::resource('/home', LandingPageController::class);
 });

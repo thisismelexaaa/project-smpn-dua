@@ -126,7 +126,8 @@
                                 <td>
                                     <div class="d-flex gap-1">
                                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalKepalaSekolah">Edit</button>
+                                            data-bs-target="#modalKepalaSekolah"
+                                            data-id="{{ $jabatan['id'] }}">Edit</button>
                                         <form action="{{ route('tenaga-pendidik.destroy', $jabatan['id']) }}"
                                             method="POST">
                                             @csrf
@@ -196,8 +197,7 @@
     </div>
 
     @if ($jabatan)
-        <div class="modal fade" id="modalKepalaSekolah" tabindex="-1" aria-labelledby="modalEditLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="modalKepalaSekolah" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -205,16 +205,15 @@
                         {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('tenaga-pendidik.update', $jabatan['id']) }}" class="px-3"
-                            method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('tenaga-pendidik.update', $jabatan['id']) }}" class="px-3" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-3 row">
                                 <label for="nama" class="form-label col-md-3">Nama Lengkap</label>
-                                <input required name="first_name" type="text"
-                                    class="form-control col-md-4 me-1 col-sm-2" placeholder="Nama Depan"
-                                    aria-label="Recipient's username" aria-describedby="button-addon2"
-                                    value="{{ $jabatan['first_name'] }}">
+                                <input required name="first_name" type="text" class="form-control col-md-4 me-1 col-sm-2"
+                                    placeholder="Nama Depan" aria-label="Recipient's username"
+                                    aria-describedby="button-addon2" value="{{ $jabatan['first_name'] }}">
                                 <input name="last_name" type="text" class="form-control col-md-4  col-sm-2"
                                     placeholder="Nama Belakang" aria-label="Recipient's username"
                                     aria-describedby="button-addon2" value="{{ $jabatan['last_name'] }}">
@@ -320,6 +319,27 @@
                                     aria-describedby="button-addon2" value="{{ $item['phone'] }}">
                             </div>
                             <div class="mb-3 row">
+                                <label for="mapel" class="form-label my-auto pb-1">Mata Pelajaran</label>
+                                <select name="mapel[]" class="form-select" id="mapel{{ $item['id'] }}"
+                                    data-placeholder="Pilih Mata Pelajaran" multiple>
+                                    <option></option>
+                                    <option value="PAI">PAI</option>
+                                    <option value="PPKn">PPKn</option>
+                                    <option value="IPA">IPA</option>
+                                    <option value="IPS">IPS</option>
+                                    <option value="MATEMATIKA">MATEMATIKA</option>
+                                    <option value="BAHASA INDONESIA">BAHASA INDONESIA</option>
+                                    <option value="BAHASA INGGRIS">BAHASA INGGRIS</option>
+                                    <option value="PJOK">PJOK</option>
+                                    <option value="SENI BUDAYA">SENI BUDAYA</option>
+                                    <option value="INFORMATIKA">INFORMATIKA</option>
+                                    <option value="PRAKARYA">PRAKARYA</option>
+                                    <option value="BAHASA SUNDA">BAHASA SUNDA</option>
+                                    <option value="BAHASA CIREBON">BAHASA CIREBON</option>
+                                    <option value="BIMBINGAN KONSELING">BIMBINGAN KONSELING</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 row">
                                 <label for="image" class="form-label col-md-3">Foto</label>
                                 <input name="image" type="file" class="form-control col-md-8 col-sm-2"
                                     aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -388,14 +408,21 @@
                 $('#sambutanKepalasekolah').toggle(jabatan == 1);
             });
 
+
             // select2
             $('#mapel').select2({
                 theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
+                width: function() {
+                    var width = $(this).data('width');
+                    return width ? width : $(this).hasClass('w-100') ? '100%' : 'style';
+                },
+                placeholder: function() {
+                    return $(this).data('placeholder');
+                },
                 closeOnSelect: false,
             });
+
+            
         });
     </script>
 @endsection

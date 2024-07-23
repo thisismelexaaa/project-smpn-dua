@@ -44,7 +44,7 @@
             <ul class="navbar-nav bg-gradient sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
                     <img src="{{ asset('assets/landingpage/img/smpn-2-logo.jpg') }}"
                         class="w-25 m-0 p-0 sidebar-brand-icon img-fluid" alt="Logo SMP Negeri 2"
                         style="border-radius: 100%">
@@ -89,7 +89,7 @@
                 <li class="nav-item {{ request()->routeIs('sarana-prasarana.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('sarana-prasarana.index') }}">
                         <i class="bi bi-hammer"></i>
-                        <span>sarana-prasarana</span></a>
+                        <span>Sarana & Prasarana</span></a>
                 </li>
                 <li class="nav-item {{ request()->routeIs('masukan.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('masukan.index') }}">
@@ -99,13 +99,13 @@
                 <li class="nav-item {{ request()->routeIs('galleries.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('galleries.index') }}">
                         <i class="bi bi-card-image"></i>
-                        <span>Gallery</span></a>
+                        <span>Galleri</span></a>
                 </li>
-                <li class="nav-item {{ request()->routeIs('setting.*') ? 'active' : '' }}">
+                {{-- <li class="nav-item {{ request()->routeIs('setting.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('setting.index') }}">
                         <i class="bi bi-gear-fill"></i>
                         <span>Settings</span></a>
-                </li>
+                </li> --}}
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="/">
                         <i class="fas fa-fw fa-chart-area"></i>
@@ -131,7 +131,7 @@
                                 @elseif(request()->routeIs('berita.*'))
                                     Berita
                                 @elseif(request()->routeIs('galleries.*'))
-                                    Gallery
+                                    Galleri
                                 @elseif(request()->routeIs('setting.*'))
                                     Setting
                                 @elseif(request()->routeIs('masukan.*'))
@@ -139,7 +139,7 @@
                                 @elseif(request()->routeIs('ekskul.*'))
                                     Ekstrakulikuler
                                 @elseif(request()->routeIs('sarana-prasarana.*'))
-                                    Sarana Prasarana
+                                    Sarana & Prasarana
                                 @endif
                             </h1>
                         </div>

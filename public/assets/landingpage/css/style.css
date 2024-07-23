@@ -53,6 +53,10 @@
 
 .container-rapor {
     background: #fff;
+    background: url("../img/bg-white.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .siswa {
@@ -482,11 +486,11 @@
 .container-service::after {
     position: absolute;
     content: "";
-    background: url('../img/background1.png');
+    background: url('../img/bg-white.png');
     background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* filter: blur(2.5px); */
+    background-repeat: repeat;
+    /* background-size: cover; */
+    /* filter: blur(1px); */
     width: 100%;
     height: 100%;
     left: 0px;
@@ -497,7 +501,12 @@
 .container-service::before {
     position: absolute;
     content: "";
-    background: var(--bs-gradient);
+    /* background: var(--bs-gradient); */
+    background: url("../img/bg-blue.png");
+    background-position: center;
+    background-repeat: repeat;
+    /* background-size: cover; */
+    /* filter: blur(1px); */
     width: 100%;
     height: 100%;
     left: 0px;
@@ -553,14 +562,17 @@
 /*** Team ***/
 .container-team {
     position: relative;
-    /* background: var(--bs-white);
-    clip-path: polygon(0 0, 100% 0, 100% 30%, 0 70%); */
+    background: url("../img/bg-white.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background: var(--bs-white); */
 }
 
 .container-team::after {
     position: absolute;
     content: "";
-    background: url('../img/background1.png');
+    background: url('../img/bg-white.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -569,14 +581,18 @@
     left: 0px;
     top: 0px;
     /* background: var(--bs-white); */
-    clip-path: polygon(0 0, 100% 0, 100% 30%, 0 70%);
+    /* clip-path: polygon(0 0, 100% 0, 100% 30%, 0 70%); */
     z-index: -1;
 }
 
 .container-team::before {
     position: absolute;
     content: "";
-    background: var(--bs-gradient);
+    /* background: var(--bs-gradient); */
+    /* background: url('../img/bg-blue.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
     width: 100%;
     height: 100%;
     left: 0px;

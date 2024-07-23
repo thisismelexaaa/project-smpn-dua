@@ -1,7 +1,7 @@
 @extends('landingpage.app')
 
 @section('content')
-    <div class="container-fluid py-5 container-team style="height: 100%">
+    <div class="container-fluid py-5 bg-white style="height: 100%">
         <div class="container">
             <div class="d-flex justify-content-between">
                 <h1 class="display-6 mb-3">Gallery Video</h1>

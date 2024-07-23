@@ -73,12 +73,12 @@
                                         <form action="{{ route('galleries.update', $gallerie['id']) }}" method="POST">
                                             @csrf
                                             @method('put')
-                                            <button type="submit" class="btn btn-success">Restore Media</button>
+                                            <button type="submit" class="btn btn-success">Tampilkan Ke Beranda</button>
                                         </form>
                                         <form action="{{ route('galleries.destroy', $gallerie['id']) }}" method="POST">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-danger">Delete Media</button>
+                                            <button type="submit" class="btn btn-danger">Hapus Gambar</button>
                                         </form>
                                     </div>
                                 </div>
