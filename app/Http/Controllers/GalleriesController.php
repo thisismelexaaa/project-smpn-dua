@@ -111,7 +111,12 @@ class GalleriesController extends Controller
         try {
             $gallery = Galleries::findOrFail($id);
 
-            $gallery->update(['status' => 1]);
+
+            if ($gallery->status == 1) {
+                $gallery->update(['status' => 0]);
+            } else {
+                $gallery->update(['status' => 1]);
+            }
 
             toast()->success('Galeri Berhasil Dihapus', 'Success');
             return redirect()->back();

@@ -73,7 +73,7 @@
                                         <form action="{{ route('galleries.update', $gallerie['id']) }}" method="POST">
                                             @csrf
                                             @method('put')
-                                            <button type="submit" class="btn btn-success">Tampilkan Ke Beranda</button>
+                                            <button type="submit" class="btn btn-success">{{ $gallerie['status'] == 1 ? 'Tampilkan ke Beranda' : 'Sembunyikan dari Beranda' }}</button>
                                         </form>
                                         <form action="{{ route('galleries.destroy', $gallerie['id']) }}" method="POST">
                                             @csrf

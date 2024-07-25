@@ -77,7 +77,7 @@ class SaranaPrasanaController extends Controller
         try {
             $gallery = SaranaPrasarana::findOrFail($id);
 
-            $gallery->update(['status' => 0]);
+            $gallery->delete();
 
             toast()->success('Sarana Prasarana Berhasil Dihapus', 'Success');
             return redirect()->back();
