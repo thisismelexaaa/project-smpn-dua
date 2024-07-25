@@ -112,7 +112,7 @@
                     </a>
                     <p>Unggul Dalam Mutu Teruji Dalam Prestasi Dengan Dilandasi Iman Dan Taqwa</p>
                     <h1 class="text-white w-100">Ayo Hubungi Kami</h1>
-                    <p class="fs-5 mb-4 pt-1">Mari berinteraksi dengan kami via kontak berikut ini</p>
+                    <p class="">Mari berinteraksi dengan kami via kontak berikut ini</p>
                     <div class="row gy-2">
                         <a class="text-white" target="_blank"
                             href="https://www.google.com/maps?ll=-6.708235,108.558771&z=16&t=m&hl=id&gl=ID&mapclient=embed&cid=6191927413615920340">
@@ -135,16 +135,24 @@
                         <div class="col-sm-12">
                             <h4 class="text-white mb-4">Navigasi Cepat</h4>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm">
                                     <a href="/" class="nav-item nav-link active text-white">Beranda</a>
                                     <a href="/profile" class="nav-item nav-link text-white">Profil</a>
                                     <a href="/berita" class="nav-item nav-link text-white">Berita</a>
-                                </div>
-                                <div class="col-sm-6">
                                     <a href="/prestasi" class="nav-item nav-link text-white">Prestasi</a>
-                                    <a href="/galleries" class="nav-item nav-link text-white">Gallery</a>
-                                    <a href="#contact" class="nav-item nav-link text-white">Contact</a>
+                                    <a href="/sarana-prasana" class="nav-item nav-link text-white">Sarana
+                                        Prasaranan</a>
                                 </div>
+                                <div class="col-sm">
+                                    <a href="/ekskul" class="nav-item nav-link text-white">Ekstrakulikuler</a>
+                                    <a href="/tenaga-pendidik" class="nav-item nav-link text-white">Tenaga
+                                        Pendidik</a>
+                                    <a href="/gallery-foto" class="nav-item nav-link text-white">Foto</a>
+                                    <a href="/gallery-video" class="nav-item nav-link text-white">Video</a>
+                                    <a href="#contact" class="nav-item nav-link text-white">Kontak</a>
+                                </div>
+                                {{-- <div class="col-sm">
+                                </div> --}}
                             </div>
                         </div>
                         <div class="col-sm-12">

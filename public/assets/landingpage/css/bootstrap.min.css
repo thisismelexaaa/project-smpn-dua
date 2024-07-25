@@ -34,9 +34,9 @@
         "Liberation Mono", "Courier New", monospace;
     --bs-gradient: linear-gradient(
         90deg,
-        rgba(0, 74, 139, 1) 0%,
-        rgba(46, 138, 200, 1) 50%,
-        rgba(89, 174, 250, 1) 100%
+        rgba(78, 173, 255, 1) 0%,
+        rgba(153, 211, 255, 1) 50%,
+        rgba(252, 252, 252, 1) 100%
     );
 }
 *,

@@ -5,18 +5,18 @@
         <div class="container">
             <div class="d-flex justify-content-between">
                 <h1 class="display-6 mb-3">Gallery Video</h1>
-                {{-- <select name="category" id="selectCategory" class="form-select w-25 h-50">
+                <select name="category" id="selectCategory" class="form-select w-25 h-50">
                     <option value="all" selected>Semua</option>
                     <option value="pengumuman">Pengumuman</option>
                     <option value="prestasi">Prestasi</option>
                     <option value="kegiatan">Kegiatan</option>
                     <option value="pensi">Pensi</option>
-                </select> --}}
+                </select>
             </div>
             <div class="row">
                 @foreach ($galleries as $gallery)
                     @if ($gallery->image == null)
-                        <div class="col-md-4 mb-3" style="object-fit: cover;">
+                        <div class="col-md-4 mb-3 gallerie" style="object-fit: cover;" data-category="{{ $gallery['category'] }}">
                             <div class="card">
                                 <div class="card-body">
                                     <video src="{{ asset('assets/panel/admin/video/galleries/' . $gallery['video']) }}"
@@ -37,28 +37,28 @@
 
 @section('scripts')
     <script>
-        // $(document).ready(() => {
-        //     // Filter cards based on the selected category
-        //     function filterCards(category) {
-        //         $('.gallerie').each(function() {
-        //             let cardCategory = $(this).data('category');
-        //             if (category === 'all' || category === cardCategory) {
-        //                 $(this).show();
-        //             } else {
-        //                 $(this).hide();
-        //             }
-        //         });
-        //     }
+        $(document).ready(() => {
+            // Filter cards based on the selected category
+            function filterCards(category) {
+                $('.gallerie').each(function() {
+                    let cardCategory = $(this).data('category');
+                    if (category === 'all' || category === cardCategory) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
 
-        //     // Initial filter based on default selected value
-        //     let category = $('#selectCategory').val();
-        //     filterCards(category);
+            // Initial filter based on default selected value
+            let category = $('#selectCategory').val();
+            filterCards(category);
 
-        //     // Filter cards when the category changes
-        //     $('#selectCategory').on('change', function() {
-        //         category = $(this).val();
-        //         filterCards(category);
-        //     });
-        // });
+            // Filter cards when the category changes
+            $('#selectCategory').on('change', function() {
+                category = $(this).val();
+                filterCards(category);
+            });
+        });
     </script>
 @endsection

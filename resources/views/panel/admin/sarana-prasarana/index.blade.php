@@ -99,6 +99,12 @@
                                     <input class="form-control" type="file" id="formFile" name="file">
                                 </div>
                             </div>
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="keterangan" class="form-label">Keterangan</label>
+                                    <textarea class="form-control w-100" type="text" id="keterangan" name="keterangan" placeholder="Masukkan Keterangan"></textarea>
+                                </div>
+                            </div>
                             {{-- <div class="col-12">
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Kategori</label>

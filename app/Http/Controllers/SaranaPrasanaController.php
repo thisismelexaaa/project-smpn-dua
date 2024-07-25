@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class SaranaPrasanaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $sarana = SaranaPrasarana::all();
@@ -23,6 +27,7 @@ class SaranaPrasanaController extends Controller
 
             $data = [
                 'name' => $request->title,
+                'keterangan' => $request->keterangan,
                 'status' => 1,
             ];
 

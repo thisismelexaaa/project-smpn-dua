@@ -4,7 +4,7 @@
     <div class="container-fluid py-5 bg-white" style="height: 100%">
         <div class="container">
             <div class="d-flex justify-content-between">
-                <h1 class="display-6 mb-3">Gallery Foto</h1>
+                <h1 class="display-6 mb-3">Sarana Prasarana</h1>
                 {{-- <select name="category" id="selectCategory" class="form-select w-25 h-50">
                     <option value="all" selected>Semua</option>
                     <option value="pengumuman">Pengumuman</option>
@@ -21,7 +21,8 @@
                                 <img src="{{ asset('assets/panel/admin/images/sarana-prasarana/' . $sarana->image) }}"
                                     alt="" class="img-fluid w-100"
                                     style="{{ $sarana->status == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover">
-                                <p class="h5 my-3">{{ $sarana->title }}</p>
+                                <p class="h5 my-3">{{ $sarana->name }}</p>
+                                <p>{{ $sarana->keterangan }}</p>
                             </div>
                         </div>
                     </div>

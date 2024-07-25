@@ -29,7 +29,9 @@
     {{-- personil --}}
     <div class="container-fluid container-service py-5" id="personil">
         <div class="container pb-5">
-            <h1 class="mb-3 fadeIn text-white" data-wow-delay="0.3s">Rapor pendidikan SMP Negeri 2 Kota Cirebon</h1>
+            <h1 class="mb-3 fadeIn text-white" data-wow-delay="0.3s" style="text-shadow: 2px 2px black">
+                Rapor pendidikan SMP Negeri 2 Kota Cirebon
+            </h1>
             <div class="d-flex flex-wrap justify-content-center g-0 feature-row bg-white fadeIn" id="rapor"
                 data-wow-delay="0.3s">
             </div>
@@ -37,7 +39,7 @@
 
         <div class="container pb-5">
             <div class="row py-2">
-                <h1 class="display-6 fw-bold mb-3 text-white">Kepala Sekolah</h1>
+                <h1 class="display-6 fw-bold mb-3 text-white" style="text-shadow: 2px 2px black">Kepala Sekolah</h1>
                 <div class="col-md-6 wow fadeIn mt-2 my-4" data-wow-delay="0.3s">
                     <img class="img-fluid w-100 shadow" style="border-radius: 1%"
                         src="{{ isset($kepalaSekolah) ? asset('assets/panel/admin/images/personil/' . $kepalaSekolah->image) : asset('assets/panel/admin/images/personil/person.jpg') }}"
@@ -59,12 +61,12 @@
 
         <div class="container pb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="display-6 mb-3">Ekstrakulikuler</h1>
+                <h1 class="display-6 mb-3 text-white" style="text-shadow: 2px 2px black">Ekstrakulikuler</h1>
                 {{-- <a href="{{ route('berita') }}" class="btn btn-primary btn-sm shadow">Lihat Semua Berita</a> --}}
             </div>
             <div class="row g-2">
                 @if (count($ekskuls) == 0)
-                    <h5 class="text-center">Tidak ada Ekstrakulikuler</h5>
+                    <h5 class="text-center text-white" style="text-shadow: 2px 2px black">Tidak ada Ekstrakulikuler</h5>
                 @endif
                 @foreach ($ekskuls as $ekskul)
                     <div class="col-lg-4 col-md-4 wow fadeInUp overflow-hidden fadeIn shadow"
@@ -88,13 +90,13 @@
 
         <div class="container pb-5" id="prestasi">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="mb-3">Prestasi SMP Negeri 2 Kota Cirebon</h1>
+                <h1 class="mb-3 text-white" style="text-shadow: 2px 2px black">Prestasi SMP Negeri 2 Kota Cirebon</h1>
                 <a href="{{ route('prestasi') }}" class="btn btn-primary btn-sm shadow">Lihat Semua Prestasi</a>
             </div>
 
             <div class="row g-4 fadeIn" data-wow-delay="0.2s">
                 @if (count($prestasi) == 0)
-                    <h5 class="text-center">Tidak ada prestasi</h5>
+                    <h5 class="text-center text-white" style="text-shadow: 2px 2px black">Tidak ada prestasi</h5>
                 @endif
                 @foreach ($prestasi as $prestasi)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" style="object-fit: cover;">
@@ -119,12 +121,12 @@
 
         <div class="container pb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="display-6 mb-3">Berita</h1>
+                <h1 class="display-6 mb-3 text-white" style="text-shadow: 2px 2px black;">Berita</h1>
                 <a href="{{ route('berita') }}" class="btn btn-primary btn-sm shadow">Lihat Semua Berita</a>
             </div>
             <div class="row g-2">
                 @if (count($pengumuman) == 0)
-                    <h5 class="text-center">Tidak ada pengumuman</h5>
+                    <h5 class="text-center text-white" style="text-shadow: 2px 2px black">Tidak ada pengumuman</h5>
                 @endif
                 @foreach ($pengumuman as $pengumuman)
                     <div class="col-lg-4 col-md-6 wow fadeInUp overflow-hidden fadeIn shadow"
@@ -160,7 +162,7 @@
         </div>
 
         <div class="container pb-5">
-            <h1 class="display-6 text-dark mb-4">Kritik dan Saran</h1>
+            <h1 class="display-6 text-white mb-4" style="text-shadow: 2px 2px black">Kritik dan Saran</h1>
             <form action="{{ route('kritikDanSaran.store') }}" method="POST">
                 @csrf
                 @method('POST')
@@ -196,7 +198,7 @@
                     </div>
                     <div class="cold-md-12">
                         <div class="text-center">
-                            <h3>Berikan kami nilai</h3>
+                            <h3 class="text-white" style="text-shadow: 2px 2px black">Berikan kami nilai</h3>
                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                                 @for ($i = 1; $i <= 5; $i++)
                                     <input type="radio" class="btn-check" name="rating"
@@ -228,12 +230,14 @@
         <div class="container pt-5">
             <div class="row gy-5 gx-0">
                 <div class="col-lg-6 pe-lg-5 wow fadeIn" data-wow-delay="0.3s">
-                    <h1 class="display-6 text-white mb-4">Apa yang di katakan siswa tentang kami?</h1>
-                    <p class="text-white mb-5">Siswa kami sangat menghargai pengalaman belajar yang mereka dapatkan di
-                        sekolah ini. Menurut mereka, lingkungan yang ramah dan guru-guru yang berdedikasi membuat proses
-                        belajar menjadi menyenangkan dan bermanfaat. Beberapa siswa juga mengatakan bahwa mereka merasa
-                        didukung untuk mengembangkan bakat dan minat mereka, baik dalam bidang akademik maupun non-akademik.
-                        Berikut beberapa komentar dari siswa kami:</p>
+                    <h1 class="display-6 text-white mb-4">Apa yang orang katakan tentang kami?</h1>
+                    <p class="text-white mb-5" style="text-align: justify">
+                        Orang-orang yang terlibat dengan sekolah kami sangat menghargai pengalaman belajar yang mereka
+                        peroleh. Mereka merasa bahwa lingkungan yang ramah dan pendidik yang berdedikasi membuat proses
+                        belajar menjadi menyenangkan dan bermanfaat. Beberapa juga menyatakan bahwa mereka merasa didukung
+                        dalam mengembangkan bakat dan minat, baik dalam bidang akademik maupun non-akademik. Berikut
+                        beberapa komentar dari mereka:
+                    </p>
                 </div>
                 <div class="col-lg-6 mb-n5 py-5 wow fadeIn" data-wow-delay="0.5s">
                     <div class="bg-white p-4">
