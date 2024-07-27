@@ -60,14 +60,19 @@ class SaranaPrasanaController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $gallery = SaranaPrasarana::findOrFail($id);
+            $sarana = SaranaPrasarana::findOrFail($id);
 
-            $gallery->update(['status' => 1]);
 
-            toast()->success('Sarana Prasarana Berhasil Dihapus', 'Success');
+            if ($sarana->status == 1) {
+                $sarana->update(['status' => 0]);
+            } else {
+                $sarana->update(['status' => 1]);
+            }
+
+            toast()->success('Galeri Berhasil Dihapus', 'Success');
             return redirect()->back();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            toast()->error('Sarana Prasarana Tidak Ditemukan', 'Error');
+            toast()->error('Galeri Tidak Ditemukan', 'Error');
             return redirect()->back();
         }
     }

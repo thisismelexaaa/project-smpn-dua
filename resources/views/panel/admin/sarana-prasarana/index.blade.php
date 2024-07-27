@@ -56,7 +56,8 @@
                                             method="POST">
                                             @csrf
                                             @method('put')
-                                            <button type="submit" class="btn btn-success">Restore Media</button>
+                                            <button type="submit"
+                                                class="btn btn-success">{{ $sarana['status'] != 1 ? 'Tampilkan ke Beranda' : 'Sembunyikan dari Beranda' }}</button>
                                         </form>
                                         <form action="{{ route('sarana-prasarana.destroy', $sarana['id']) }}"
                                             method="POST">

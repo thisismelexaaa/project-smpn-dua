@@ -41,17 +41,17 @@
                                                 @csrf
                                                 @method('PUT')
                                                 @if ($masukan['status'] == 0)
-                                                    <button type="submit" class="btn btn-primary btn-sm">Tampilkan</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm">Show</button>
                                                 @else
                                                     <button type="submit"
-                                                        class="btn btn-primary btn-sm">Sembunyikan</button>
+                                                        class="btn btn-primary btn-sm">Hide</button>
                                                 @endif
                                             </form>
                                             <form action="{{ route('masukan.destroy', $masukan['id']) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" href="{{ route('masukan.destroy', $masukan['id']) }}"
-                                                    class="btn btn-danger btn-sm">Hapus</button>
+                                                    class="btn btn-danger btn-sm">Delete</button>
                                             </form>
                                         </div>
                                     </td>
