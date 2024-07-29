@@ -128,6 +128,35 @@
         </div>
 
         <div class="container py-5 my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="display-6 mb-3 text-white" style="text-shadow: 2px 2px black">Ekstrakulikuler</h1>
+                {{-- <a href="{{ route('berita') }}" class="btn btn-primary btn-sm shadow">Lihat Semua Berita</a> --}}
+            </div>
+            <div class="row g-2">
+                @if (count($ekskuls) == 0)
+                    <h5 class="text-center text-white" style="text-shadow: 2px 2px black">Tidak ada Ekstrakulikuler</h5>
+                @endif
+                @foreach ($ekskuls as $ekskul)
+                    <div class="col-lg-4 col-md-4 wow fadeInUp overflow-hidden fadeIn shadow"
+                        data-wow-delay="0.2s"style="border-radius: 1%;" data-wow-delay="0.1s">
+                        <div class="service-item">
+                            <div class="h-100">
+                                <div class="mb-3">
+                                    <img src="{{ asset('assets/panel/admin/images/ekskul/' . $ekskul['image']) }}"
+                                        alt="Image of {{ $ekskul['title'] }}" class="image-fluid shadow-sm"
+                                        style="width: 100%; height: 250px; object-fit: cover">
+                                </div>
+                                <a class="text-dark h5" href="{{ route('home.show', $ekskul['id']) }}">
+                                    {{ $ekskul['title'] }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        <div class="container py-5 my-5">
             <h1 class="display-6 text-white mb-4" style="text-shadow: 2px 2px black">Kritik dan Saran</h1>
             <form action="{{ route('kritikDanSaran.store') }}" method="POST">
                 @csrf
@@ -183,35 +212,6 @@
                     </div>
                 </div>
             </form>
-        </div>
-
-        <div class="container py-5 my-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="display-6 mb-3 text-white" style="text-shadow: 2px 2px black">Ekstrakulikuler</h1>
-                {{-- <a href="{{ route('berita') }}" class="btn btn-primary btn-sm shadow">Lihat Semua Berita</a> --}}
-            </div>
-            <div class="row g-2">
-                @if (count($ekskuls) == 0)
-                    <h5 class="text-center text-white" style="text-shadow: 2px 2px black">Tidak ada Ekstrakulikuler</h5>
-                @endif
-                @foreach ($ekskuls as $ekskul)
-                    <div class="col-lg-4 col-md-4 wow fadeInUp overflow-hidden fadeIn shadow"
-                        data-wow-delay="0.2s"style="border-radius: 1%;" data-wow-delay="0.1s">
-                        <div class="service-item">
-                            <div class="h-100">
-                                <div class="mb-3">
-                                    <img src="{{ asset('assets/panel/admin/images/ekskul/' . $ekskul['image']) }}"
-                                        alt="Image of {{ $ekskul['title'] }}" class="image-fluid shadow-sm"
-                                        style="width: 100%; height: 250px; object-fit: cover">
-                                </div>
-                                <a class="text-dark h5" href="{{ route('home.show', $ekskul['id']) }}">
-                                    {{ $ekskul['title'] }}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
         </div>
     </div>
 
