@@ -14,7 +14,7 @@
                         </h1>
                         <p class="mb-5 text-white animated slideInRight fs-4">Unggul Dalam Mutu Teruji Dalam Prestasi
                             Dengan Dilandasi Iman Dan Taqwa</p>
-                        <a href="#raport" class="btn btn-primary py-3 px-5 animated slideInRight">Tentang
+                        <a href="#personil" class="btn btn-primary py-3 px-5 animated slideInRight">Tentang
                             Kami</a>
                     </div>
                 </div>
@@ -22,13 +22,8 @@
         </div>
     </div>
 
-    {{-- rapor pendidikan --}}
-    {{-- <div class="container-fluid container-rapor py-5" id="raport">
-    </div> --}}
-
-    {{-- personil --}}
     <div class="container-fluid container-service py-5" id="personil">
-        <div class="container pb-5">
+        <div class="container py-5 my-5">
             <h1 class="mb-3 fadeIn text-white" data-wow-delay="0.3s" style="text-shadow: 2px 2px black">
                 Rapor pendidikan SMP Negeri 2 Kota Cirebon
             </h1>
@@ -37,8 +32,8 @@
             </div>
         </div>
 
-        <div class="container pb-5">
-            <div class="row py-2">
+        <div class="container py-5 my-5">
+            <div class="row">
                 <h1 class="display-6 fw-bold mb-3 text-white" style="text-shadow: 2px 2px black">Kepala Sekolah</h1>
                 <div class="col-md-6 wow fadeIn mt-2 my-4" data-wow-delay="0.3s">
                     <img class="img-fluid w-100 shadow" style="border-radius: 1%"
@@ -59,36 +54,7 @@
             </div>
         </div>
 
-        <div class="container pb-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="display-6 mb-3 text-white" style="text-shadow: 2px 2px black">Ekstrakulikuler</h1>
-                {{-- <a href="{{ route('berita') }}" class="btn btn-primary btn-sm shadow">Lihat Semua Berita</a> --}}
-            </div>
-            <div class="row g-2">
-                @if (count($ekskuls) == 0)
-                    <h5 class="text-center text-white" style="text-shadow: 2px 2px black">Tidak ada Ekstrakulikuler</h5>
-                @endif
-                @foreach ($ekskuls as $ekskul)
-                    <div class="col-lg-4 col-md-4 wow fadeInUp overflow-hidden fadeIn shadow"
-                        data-wow-delay="0.2s"style="border-radius: 1%;" data-wow-delay="0.1s">
-                        <div class="service-item">
-                            <div class="h-100">
-                                <div class="mb-3">
-                                    <img src="{{ asset('assets/panel/admin/images/ekskul/' . $ekskul['image']) }}"
-                                        alt="Image of {{ $ekskul['title'] }}" class="image-fluid shadow-sm"
-                                        style="width: 100%; height: 250px; object-fit: cover">
-                                </div>
-                                <a class="text-dark h5" href="{{ route('home.show', $ekskul['id']) }}">
-                                    {{ $ekskul['title'] }}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-
-        <div class="container pb-5" id="prestasi">
+        <div class="container py-5 my-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="mb-3 text-white" style="text-shadow: 2px 2px black">Prestasi SMP Negeri 2 Kota Cirebon</h1>
                 <a href="{{ route('prestasi') }}" class="btn btn-primary btn-sm shadow">Lihat Semua Prestasi</a>
@@ -119,7 +85,7 @@
             </div>
         </div>
 
-        <div class="container pb-5">
+        <div class="container py-5 my-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="display-6 mb-3 text-white" style="text-shadow: 2px 2px black;">Berita</h1>
                 <a href="{{ route('berita') }}" class="btn btn-primary btn-sm shadow">Lihat Semua Berita</a>
@@ -161,7 +127,7 @@
             </div>
         </div>
 
-        <div class="container pb-5">
+        <div class="container py-5 my-5">
             <h1 class="display-6 text-white mb-4" style="text-shadow: 2px 2px black">Kritik dan Saran</h1>
             <form action="{{ route('kritikDanSaran.store') }}" method="POST">
                 @csrf
@@ -218,14 +184,37 @@
                 </div>
             </form>
         </div>
+
+        <div class="container py-5 my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="display-6 mb-3 text-white" style="text-shadow: 2px 2px black">Ekstrakulikuler</h1>
+                {{-- <a href="{{ route('berita') }}" class="btn btn-primary btn-sm shadow">Lihat Semua Berita</a> --}}
+            </div>
+            <div class="row g-2">
+                @if (count($ekskuls) == 0)
+                    <h5 class="text-center text-white" style="text-shadow: 2px 2px black">Tidak ada Ekstrakulikuler</h5>
+                @endif
+                @foreach ($ekskuls as $ekskul)
+                    <div class="col-lg-4 col-md-4 wow fadeInUp overflow-hidden fadeIn shadow"
+                        data-wow-delay="0.2s"style="border-radius: 1%;" data-wow-delay="0.1s">
+                        <div class="service-item">
+                            <div class="h-100">
+                                <div class="mb-3">
+                                    <img src="{{ asset('assets/panel/admin/images/ekskul/' . $ekskul['image']) }}"
+                                        alt="Image of {{ $ekskul['title'] }}" class="image-fluid shadow-sm"
+                                        style="width: 100%; height: 250px; object-fit: cover">
+                                </div>
+                                <a class="text-dark h5" href="{{ route('home.show', $ekskul['id']) }}">
+                                    {{ $ekskul['title'] }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 
-    {{-- prestasi & berita --}}
-    {{-- <div class="container-fluid container-team pt-5">
-
-    </div> --}}
-
-    {{-- kritik dan saran --}}
     <div class="container-fluid py-5">
         <div class="container pt-5">
             <div class="row gy-5 gx-0">

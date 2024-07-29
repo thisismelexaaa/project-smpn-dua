@@ -63,9 +63,8 @@
                         href="https://www.youtube.com/@spendacherbon9064"><i class="fab fa-youtube"></i></a>
                     <a class="btn btn-sm-square border border-dark ms-2" target="_blank"
                         href="mailto:smpn2_crbn@yahoo.co.id"><i class="fa fa-envelope"></i></a>
-                    <a class="btn btn-sm-square border border-dark ms-2" href=""><i
-                            class="fab fa-whatsapp"></i></a>
-
+                    {{-- <a class="btn btn-sm-square border border-dark ms-2" href=""><i
+                            class="fab fa-whatsapp"></i></a> --}}
                 </div>
                 <div class="d-flex">
                     <x-navItem class="text-dark"></x-navItem>
@@ -120,10 +119,10 @@
                             Kec.
                             Kejaksan, Kota Cirebon, Jawa Barat 45121
                         </a>
-                        <a class="text-white" href="">
+                        <span class="text-white" href="">
                             <i class="fa fa-phone-alt me-2"></i>
                             (0231) 203075
-                        </a>
+                        </span>
                         <a href="mailto:smpn2_crbn@yahoo.co.id" target="_blank" class="text-white">
                             <i class="fa fa-envelope me-2"></i>
                             smpn2_crbn@yahoo.co.id
