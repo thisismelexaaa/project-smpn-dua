@@ -146,7 +146,7 @@
                                         alt="Image of {{ $ekskul['title'] }}" class="image-fluid shadow-sm"
                                         style="width: 100%; height: 250px; object-fit: cover">
                                 </div>
-                                <a class="text-dark h5" href="{{ route('home.show', $ekskul['id']) }}">
+                                <a class="text-dark h5" href="{{ route('ekskul') }}">
                                     {{ $ekskul['title'] }}
                                 </a>
                             </div>
