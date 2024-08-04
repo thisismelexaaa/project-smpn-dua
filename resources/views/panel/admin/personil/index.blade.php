@@ -319,9 +319,9 @@
                                     aria-describedby="button-addon2" value="{{ $item['phone'] }}">
                             </div>
                             <div class="mb-3 row">
-                                <label for="mapel" class="form-label my-auto pb-1">Mata Pelajaran</label>
-                                <select name="mapel[]" class="form-select" id="mapel{{ $item['id'] }}"
-                                    data-placeholder="Pilih Mata Pelajaran" multiple>
+                                <label for="mapel" class="form-label col-md-3">Mata Pelajaran</label>
+                                <select name="mapel[]" class="form-control col-md-8 col-sm-2 mapeledit"
+                                    id="mapel{{ $item['id'] }}" data-placeholder="Pilih Mata Pelajaran" multiple>
                                     <option></option>
                                     <option value="PAI">PAI</option>
                                     <option value="PPKn">PPKn</option>
@@ -410,19 +410,15 @@
 
 
             // select2
-            $('#mapel').select2({
+            $('#mapel, .mapeledit').select2({
                 theme: "bootstrap-5",
-                width: function() {
-                    var width = $(this).data('width');
-                    return width ? width : $(this).hasClass('w-100') ? '100%' : 'style';
-                },
                 placeholder: function() {
                     return $(this).data('placeholder');
                 },
                 closeOnSelect: false,
             });
 
-            
+
         });
     </script>
 @endsection

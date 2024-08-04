@@ -20,13 +20,38 @@
             </h1>
             <div class="row">
                 @foreach ($ekskuls as $ekskul)
-                    <div class="col-md-4 mb-3 ekskuls" style="object-fit: cover;" data-slug="{{ $ekskul->slug }}">
-                        <div class="card">
+                    <div class="col-md-4 mb-3 ekskuls" style="object-fit: cover;" data-slug="{{ $ekskul->slug }}"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="card" style="cursor: pointer">
                             <div class="card-body">
                                 <img src="{{ asset('assets/panel/admin/images/ekskul/' . $ekskul->image) }}" alt=""
                                     class="img-fluid w-100"
                                     style="{{ $ekskul->status == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover">
                                 <p class="h5 my-3">{{ $ekskul->title }}</p>
+                                <span class="">{{ $ekskul->description }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $ekskul->title }}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="{{ asset('assets/panel/admin/images/ekskul/' . $ekskul->image) }}"
+                                        alt="" class="img-fluid w-100"
+                                        style="{{ $ekskul->status == 0 ? 'filter: grayscale(100%);' : '' }} width: 250px; height: 250px; object-fit: cover">
+                                    <p class="pt-4">{{ $ekskul->description }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
                             </div>
                         </div>
                     </div>
