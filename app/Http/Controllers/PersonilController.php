@@ -92,15 +92,13 @@ class PersonilController extends Controller
                 'jabatan' => 'required|string|max:255',
                 'email' => 'nullable|string|max:255',
                 'phone' => 'required|string|max:20',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
-            // Menggabungkan first_name dan last_name menjadi name
+            // Combining first_name and last_name into name
             $name = $request->first_name . ' ' . $request->last_name;
-
-            $mapel = json_encode($request->mapel);
-
-            // Combine email and gmail fields
             $email = $request->email;
+            $mapel = json_encode($request->mapel);
 
             $data = [
                 'name' => $name,
@@ -112,37 +110,18 @@ class PersonilController extends Controller
             ];
 
             if ($request->hasFile('image')) {
-                $image = $request->file('image');
-
-                // Generate unique filename
-                $imageName = time() . '_' . $image->getClientOriginalName();
-
-                // Determine destination paths
-                $personilPath = public_path('assets/panel/admin/images/personil');
-
-                // Ensure directories exist or create them
-                if (!file_exists($personilPath)) {
-                    mkdir($personilPath, 0777, true);
-                }
-
-                // Move file to personil directory
-                $image->move($personilPath, $imageName);
-                $data['image'] = $imageName;
+                $data['image'] = $this->handleImageUpload($request->file('image'));
             }
-
-            // dd($data);
 
             // Store in personil table
             Personil::create($data);
 
-            // Menampilkan pesan sukses
+            // Display success message
             toast('Data Berhasil Ditambahkan', 'success');
             return redirect()->back();
         } catch (\Exception $e) {
-            // Menangkap dan mencatat pesan kesalahan
+            // Log and display error message
             Log::error('Error while saving personil: ' . $e->getMessage());
-
-            // Menampilkan pesan kesalahan kepada pengguna
             toast('Terjadi kesalahan saat menyimpan data. Silakan coba lagi.' . $e->getMessage(), 'error');
             return redirect()->back();
         }
@@ -170,22 +149,17 @@ class PersonilController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            // Validate the request
             $this->validate($request, [
                 'jabatan' => 'required|string|max:255',
-                'email' => 'required|string|max:255',
+                'email' => 'nullable|string|max:255',
                 'phone' => 'required|string|max:20',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
-            // Find the personil data by ID
-            $personil = Personil::findOrFail($id);
-
-            // Combine first_name and last_name into name
+            // Combining first_name and last_name into name
             $name = $request->first_name . ' ' . $request->last_name;
-
-            // Combine email and gmail fields
             $email = $request->email;
+            $mapel = json_encode($request->mapel);
 
             $data = [
                 'name' => $name,
@@ -195,43 +169,58 @@ class PersonilController extends Controller
                 'sambutan' => $request->sambutan
             ];
 
-            // Handle file upload if present
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $imageName = time() . '_' . $image->getClientOriginalName();
-                $personilPath = public_path('assets/panel/admin/images/personil');
+            if ($request->jabatan != 1) {
+                $personil = Personil::findOrFail($id);
 
-                // Ensure directories exist or create them
-                if (!file_exists($personilPath)) {
-                    mkdir($personilPath, 0777, true);
+                $mapel = json_encode($request->mapel);
+                $data['mapel'] = $mapel;
+
+                if ($request->hasFile('image')) {
+                    $data['image'] = $this->handleImageUpload($request->file('image'));
+                }
+                // dd($data, $personil);
+                $personil->update($data);
+                toast('Data Berhasil Ditambahkan', 'success');
+            } else {
+                $personil = Personil::findOrFail($id);
+
+                if ($request->hasFile('image')) {
+                    $data['image'] = $this->handleImageUpload($request->file('image'), $personil->image);
                 }
 
-                // Move file to personil directory and copy to galleries directory
-                $image->move($personilPath, $imageName);
-                $data['image'] = $imageName;
-
-                // Delete previous image file if exists
-                if (!empty($personil->image)) {
-                    $previousImagePath = $personilPath . '/' . $personil->image;
-                    if (file_exists($previousImagePath)) {
-                        unlink($previousImagePath);
-                    }
-                }
+                $personil->update($data);
+                toast('Data Berhasil Diperbarui', 'success');
             }
 
-            // Update personil data
-            $personil->update($data);
-
-            // Display success message
-            toast('Data Berhasil Diperbarui', 'success');
             return redirect()->back();
         } catch (\Exception $e) {
-            // Log and display error message
             Log::error('Error while updating personil: ' . $e->getMessage());
             toast('Terjadi kesalahan saat memperbarui data. Silakan coba lagi.' . $e->getMessage(), 'error');
             return redirect()->back();
         }
     }
+
+    private function handleImageUpload($image, $existingImage = null)
+    {
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $personilPath = public_path('assets/panel/admin/images/personil');
+
+        if (!file_exists($personilPath)) {
+            mkdir($personilPath, 0777, true);
+        }
+
+        $image->move($personilPath, $imageName);
+
+        if ($existingImage) {
+            $previousImagePath = $personilPath . '/' . $existingImage;
+            if (file_exists($previousImagePath)) {
+                unlink($previousImagePath);
+            }
+        }
+
+        return $imageName;
+    }
+
 
     /**
      * Remove the specified resource from storage.
