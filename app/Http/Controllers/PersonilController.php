@@ -92,7 +92,7 @@ class PersonilController extends Controller
                 'jabatan' => 'required|string|max:255',
                 'email' => 'nullable|string|max:255',
                 'phone' => 'required|string|max:20',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             ]);
 
             // Combining first_name and last_name into name
